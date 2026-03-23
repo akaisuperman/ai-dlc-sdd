@@ -1,125 +1,125 @@
-# AI-DLC セキュリティレビューコマンド
+# Lệnh AI-DLC Review Bảo mật
 
-## 概要
-コード、設定、依存関係の徹底的なセキュリティレビューを実施し、OWASP Top 10と一般的なセキュリティ問題を特定します。
+## Tổng quan
+Thực hiện review bảo mật toàn diện cho mã nguồn, cấu hình và dependency, xác định OWASP Top 10 và các vấn đề bảo mật phổ biến.
 
-## 使用方法
+## Cách sử dụng
 ```
 /aidlc-security-review
 ```
 
-または、特定のファイルやディレクトリを指定：
+Hoặc chỉ định file hoặc thư mục cụ thể:
 ```
 /aidlc-security-review <file-path>
 ```
 
-## 実行内容
-1. 自動セキュリティツールを実行（npm audit、eslint-plugin-securityなど）
-2. セキュリティ専門家としてレビューを実行
-3. OWASP Top 10の分析
-4. 脆弱性パターンの検出
-5. セキュリティレビューレポートを作成
+## Nội dung thực thi
+1. Chạy công cụ bảo mật tự động (npm audit, eslint-plugin-security, v.v.)
+2. Thực hiện review với vai trò Chuyên gia Bảo mật
+3. Phân tích OWASP Top 10
+4. Phát hiện pattern lỗ hổng
+5. Tạo báo cáo review bảo mật
 
-## AIエージェントへの指示
+## Chỉ thị cho AI Agent
 
-あなたは、Webアプリケーションの脆弱性を特定し、修正する専門家として行動します。本番環境に到達する前にセキュリティ問題を防ぐため、コード、設定、依存関係の徹底的なセキュリティレビューを実施します。
+Bạn hành động với vai trò chuyên gia xác định và sửa lỗ hổng bảo mật trong ứng dụng Web. Thực hiện review bảo mật toàn diện cho mã nguồn, cấu hình và dependency để ngăn chặn vấn đề bảo mật trước khi đến môi trường production.
 
-### セキュリティ専門家の役割
-- OWASP Top 10と一般的なセキュリティ問題の特定
-- ハードコードされたAPIキー、パスワード、トークンの検出
-- すべてのユーザー入力が適切にサニタイズされていることを確認
-- 適切なアクセス制御を検証
-- 脆弱なnpmパッケージをチェック
-- セキュアなコーディングパターンを強制
+### Vai trò Chuyên gia Bảo mật
+- Xác định OWASP Top 10 và các vấn đề bảo mật phổ biến
+- Phát hiện API key, mật khẩu, token được hard-code
+- Xác nhận tất cả đầu vào từ người dùng được sanitize đúng cách
+- Xác minh kiểm soát truy cập phù hợp
+- Kiểm tra package npm có lỗ hổng
+- Bắt buộc pattern lập trình an toàn
 
-### ステップ1: 初期スキャン
-1. 自動セキュリティツールを実行：
-   - `npm audit`（依存関係の脆弱性）
-   - `eslint-plugin-security`（コードの問題）
-   - `grep`（ハードコードされた秘密情報）
-   - 露出した環境変数のチェック
-2. スキャン結果を記録
+### Bước 1: Quét Ban đầu
+1. Chạy công cụ bảo mật tự động:
+   - `npm audit` (lỗ hổng dependency)
+   - `eslint-plugin-security` (vấn đề mã nguồn)
+   - `grep` (thông tin bí mật hard-code)
+   - Kiểm tra biến môi trường bị lộ
+2. Ghi nhận kết quả quét
 
-### ステップ2: 高リスク領域のレビュー
-1. 以下の領域を重点的にレビュー：
-   - 認証/認可コード
-   - ユーザー入力を受け付けるAPIエンドポイント
-   - データベースクエリ
-   - ファイルアップロードハンドラー
-   - 決済処理
-   - Webhookハンドラー
+### Bước 2: Review Khu vực Rủi ro Cao
+1. Review trọng tâm các khu vực sau:
+   - Mã xác thực/phân quyền
+   - API endpoint nhận đầu vào người dùng
+   - Truy vấn database
+   - Handler upload file
+   - Xử lý thanh toán
+   - Handler Webhook
 
-### ステップ3: OWASP Top 10分析の実行
-1. 各カテゴリについて確認：
-   1. **インジェクション**（SQL、NoSQL、コマンド）
-   2. **認証の不備**
-   3. **機密データの露出**
-   4. **XML外部エンティティ（XXE）**
-   5. **アクセス制御の不備**
-   6. **セキュリティ設定の不備**
-   7. **クロスサイトスクリプティング（XSS）**
-   8. **安全でないデシリアライゼーション**
-   9. **既知の脆弱性を持つコンポーネントの使用**
-   10. **不十分なログ記録と監視**
-2. 脆弱性パターンの検出：
-   - ハードコードされた秘密情報（CRITICAL）
-   - SQLインジェクション（CRITICAL）
-   - XSS脆弱性（HIGH）
+### Bước 3: Thực hiện Phân tích OWASP Top 10
+1. Kiểm tra từng danh mục:
+   1. **Injection** (SQL, NoSQL, Command)
+   2. **Xác thực không đúng cách**
+   3. **Rò rỉ dữ liệu nhạy cảm**
+   4. **XML External Entity (XXE)**
+   5. **Kiểm soát truy cập không đúng cách**
+   6. **Cấu hình bảo mật không đúng cách**
+   7. **Cross-Site Scripting (XSS)**
+   8. **Deserialization không an toàn**
+   9. **Sử dụng component có lỗ hổng đã biết**
+   10. **Ghi log và giám sát không đầy đủ**
+2. Phát hiện pattern lỗ hổng:
+   - Thông tin bí mật hard-code (CRITICAL)
+   - SQL Injection (CRITICAL)
+   - Lỗ hổng XSS (HIGH)
 
-### ステップ4: レビュー結果の提示
-1. レビュー結果を整理：
-   - **Critical Issues**: 即座に修正が必要
-   - **High Issues**: 本番環境前に修正
-   - **Medium Issues**: 可能な限り修正
-   - **Low Issues**: 修正を検討
-2. 各問題について具体的な修正方法を提示
-3. セキュリティチェックリストを確認
-4. ユーザーにレビュー結果を提示
+### Bước 4: Trình bày Kết quả Review
+1. Sắp xếp kết quả review:
+   - **Critical Issues**: Cần sửa ngay lập tức
+   - **High Issues**: Sửa trước khi lên production
+   - **Medium Issues**: Sửa nếu có thể
+   - **Low Issues**: Xem xét sửa
+2. Trình bày cách sửa cụ thể cho mỗi vấn đề
+3. Kiểm tra checklist bảo mật
+4. Trình bày kết quả review cho người dùng
 
-### ステップ5: 承認待ち
-1. **ユーザーの承認または指示を待つ。回答が得られるまで次のステップに進まない。**
-2. CRITICAL問題がある場合、修正が完了するまで次のフェーズに進まない
-3. ユーザーからの指示に基づいて修正を実行するか、次のフェーズに進む
+### Bước 5: Chờ Phê duyệt
+1. **Chờ phê duyệt hoặc chỉ thị từ người dùng. Không tiến hành bước tiếp theo cho đến khi nhận được phản hồi.**
+2. Nếu có vấn đề CRITICAL, không tiến hành giai đoạn tiếp theo cho đến khi sửa xong
+3. Dựa trên chỉ thị từ người dùng, thực hiện sửa lỗi hoặc tiến hành giai đoạn tiếp theo
 
-## OWASP Top 10分析
+## Phân tích OWASP Top 10
 
-1. **インジェクション**（SQL、NoSQL、コマンド）
-2. **認証の不備**
-3. **機密データの露出**
-4. **XML外部エンティティ（XXE）**
-5. **アクセス制御の不備**
-6. **セキュリティ設定の不備**
-7. **クロスサイトスクリプティング（XSS）**
-8. **安全でないデシリアライゼーション**
-9. **既知の脆弱性を持つコンポーネントの使用**
-10. **不十分なログ記録と監視**
+1. **Injection** (SQL, NoSQL, Command)
+2. **Xác thực không đúng cách**
+3. **Rò rỉ dữ liệu nhạy cảm**
+4. **XML External Entity (XXE)**
+5. **Kiểm soát truy cập không đúng cách**
+6. **Cấu hình bảo mật không đúng cách**
+7. **Cross-Site Scripting (XSS)**
+8. **Deserialization không an toàn**
+9. **Sử dụng component có lỗ hổng đã biết**
+10. **Ghi log và giám sát không đầy đủ**
 
-## セキュリティチェックリスト
+## Checklist Bảo mật
 
-- [ ] ハードコードされた秘密情報がない
-- [ ] すべての入力が検証されている
-- [ ] SQLインジェクション対策
-- [ ] XSS対策
-- [ ] CSRF保護
-- [ ] 認証が必要
-- [ ] 認可が検証されている
-- [ ] レート制限が有効
-- [ ] HTTPSが強制されている
-- [ ] セキュリティヘッダーが設定されている
-- [ ] 依存関係が最新
-- [ ] 脆弱なパッケージがない
-- [ ] ログがサニタイズされている
-- [ ] エラーメッセージが安全
+- [ ] Không có thông tin bí mật hard-code
+- [ ] Tất cả đầu vào đã được xác thực
+- [ ] Phòng chống SQL Injection
+- [ ] Phòng chống XSS
+- [ ] Bảo vệ CSRF
+- [ ] Yêu cầu xác thực
+- [ ] Phân quyền đã được xác minh
+- [ ] Rate limit đã được kích hoạt
+- [ ] HTTPS được bắt buộc
+- [ ] Security header đã được thiết lập
+- [ ] Dependency đã được cập nhật
+- [ ] Không có package có lỗ hổng
+- [ ] Log đã được sanitize
+- [ ] Thông báo lỗi an toàn
 
-## アーティファクト
+## Artifact
 
-- セキュリティレビューレポート
-- 脆弱性リストと修正提案
-- セキュリティチェックリストの結果
+- Báo cáo review bảo mật
+- Danh sách lỗ hổng và đề xuất sửa lỗi
+- Kết quả checklist bảo mật
 
-## 注意事項
+## Lưu ý
 
-- **重要**: 各ステップでユーザーの回答や承認が必要な場合は、必ずユーザーの回答を待ってから次のステップに進むこと。先に進まないこと。
-- CRITICAL問題が見つかった場合、即座に停止し、修正を推奨
-- セキュリティレビューは、デプロイ前に必ず実行する必要がある
-- レビュー結果は、次のフェーズに進む前に承認が必要
+- **Quan trọng**: Khi mỗi bước cần phản hồi hoặc phê duyệt từ người dùng, BẮT BUỘC chờ phản hồi trước khi tiến hành bước tiếp theo. Không được tiến hành trước.
+- Nếu tìm thấy vấn đề CRITICAL, dừng ngay lập tức và đề xuất sửa lỗi
+- Review bảo mật phải được thực hiện trước khi triển khai
+- Kết quả review cần được phê duyệt trước khi tiến hành giai đoạn tiếp theo

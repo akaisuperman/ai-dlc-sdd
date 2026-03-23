@@ -1,74 +1,74 @@
 ---
-description: パフォーマンス最適化。モデル選択戦略、コンテキストウィンドウ管理、並列タスク実行。
+description: Tối ưu hiệu suất. Chiến lược chọn model, quản lý cửa sổ ngữ cảnh, thực thi tác vụ song song.
 alwaysApply: true
 type: always
 ---
 
-# パフォーマンス最適化
+# Tối ưu Hiệu suất
 
-## モデル選択戦略
+## Chiến lược Chọn Model
 
-**Haiku 4.5** (Sonnetの90%の能力、3倍のコスト削減):
-- 頻繁に呼び出される軽量タスク
-- ペアプログラミングとコード生成
-- マルチタスクシステムのワーカータスク
+**Haiku 4.5** (90% năng lực của Sonnet, giảm chi phí 3 lần):
+- Tác vụ nhẹ được gọi thường xuyên
+- Lập trình cặp và sinh mã nguồn
+- Tác vụ worker trong hệ thống đa nhiệm
 
-**Sonnet 4.5** (最高のコーディングモデル):
-- 主要な開発作業
-- マルチタスクワークフローのオーケストレーション
-- 複雑なコーディングタスク
+**Sonnet 4.5** (Model lập trình tốt nhất):
+- Công việc phát triển chính
+- Điều phối workflow đa nhiệm
+- Tác vụ lập trình phức tạp
 
-**Opus 4.5** (最も深い推論):
-- 複雑なアーキテクチャ決定
-- 最大の推論要件
-- 研究と分析タスク
+**Opus 4.5** (Suy luận sâu nhất):
+- Quyết định kiến trúc phức tạp
+- Yêu cầu suy luận tối đa
+- Tác vụ nghiên cứu và phân tích
 
-## コンテキストウィンドウ管理
+## Quản lý Cửa sổ Ngữ cảnh
 
-**コンテキストウィンドウの最後20%を避ける**:
-- 大規模なリファクタリング
-- 複数ファイルにまたがる機能実装
-- 複雑な相互作用のデバッグ
+**Tránh 20% cuối của cửa sổ ngữ cảnh**:
+- Tái cấu trúc quy mô lớn
+- Triển khai tính năng trải dài nhiều file
+- Debug tương tác phức tạp
 
-**低コンテキスト感度タスク**:
-- 単一ファイルの編集
-- 独立したユーティリティの作成
-- ドキュメント更新
-- 簡単なバグ修正
+**Tác vụ ít nhạy cảm với ngữ cảnh**:
+- Chỉnh sửa file đơn lẻ
+- Tạo utility độc lập
+- Cập nhật tài liệu
+- Sửa bug đơn giản
 
 ## Ultrathink + Plan Mode
 
-複雑なタスクで深い推論が必要な場合:
-1. `ultrathink`を使用して推論を強化
-2. **Plan Mode**を有効にして構造化アプローチ
-3. 複数の批判ラウンドで「エンジンを回す」
-4. 多様な分析のために分割ロールの専門家の役割を使用
+Khi tác vụ phức tạp cần suy luận sâu:
+1. Sử dụng `ultrathink` để tăng cường suy luận
+2. Kích hoạt **Plan Mode** cho phương pháp có cấu trúc
+3. "Quay động cơ" với nhiều vòng phản biện
+4. Sử dụng vai trò chuyên gia phân chia để phân tích đa dạng
 
-## ビルドトラブルシューティング
+## Xử lý sự cố Build
 
-ビルドが失敗した場合:
-1. **ビルドエラー解決専門家として行動**（`aidlc-build-fix`コマンドまたは`aidlc-code-generation`コマンド内）
-2. エラーメッセージを分析
-3. 段階的に修正
-4. 各修正後に検証
+Khi build thất bại:
+1. **Hành động với vai trò Chuyên gia Xử lý Lỗi Build** (lệnh `aidlc-build-fix` hoặc trong lệnh `aidlc-code-generation`)
+2. Phân tích thông báo lỗi
+3. Sửa lỗi từng bước
+4. Xác minh sau mỗi lần sửa
 
-## 並列タスク実行
+## Thực thi Tác vụ Song song
 
-**独立した操作は常に並列実行**:
+**Các thao tác độc lập luôn được thực thi song song**:
 
 ```markdown
-# ✅ 良い例: 並列実行
-3つの専門家の役割を並列で実行:
-1. セキュリティ専門家: auth.tsのセキュリティ分析
-2. パフォーマンス専門家: キャッシュシステムのパフォーマンスレビュー
-3. 型チェック専門家: utils.tsの型チェック
+# ✅ Ví dụ tốt: Thực thi song song
+Chạy 3 vai trò chuyên gia song song:
+1. Chuyên gia Bảo mật: Phân tích bảo mật auth.ts
+2. Chuyên gia Hiệu suất: Review hiệu suất hệ thống cache
+3. Chuyên gia Kiểm tra Kiểu: Kiểm tra kiểu dữ liệu utils.ts
 
-# ❌ 悪い例: 不要な順次実行
-まずセキュリティ専門家、次にパフォーマンス専門家、最後に型チェック専門家
+# ❌ Ví dụ xấu: Thực thi tuần tự không cần thiết
+Trước tiên Chuyên gia Bảo mật, sau đó Chuyên gia Hiệu suất, cuối cùng Chuyên gia Kiểm tra Kiểu
 ```
 
-## AI-DLC統合
+## Tích hợp AI-DLC
 
-- **専門家の役割**: 各専門家の役割に適切なモデルを指定（Commands内で実装）
-- **並列実行**: 独立したUnitsの実装を並列で実行可能
-- **コンテキスト管理**: 大規模なリファクタリング時はコンテキストを分割
+- **Vai trò Chuyên gia**: Chỉ định model phù hợp cho từng vai trò chuyên gia (triển khai trong Commands)
+- **Thực thi Song song**: Có thể thực thi song song việc triển khai các Units độc lập
+- **Quản lý Ngữ cảnh**: Chia nhỏ ngữ cảnh khi tái cấu trúc quy mô lớn

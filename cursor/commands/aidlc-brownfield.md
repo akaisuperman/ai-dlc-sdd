@@ -1,81 +1,81 @@
-# AI-DLC Brown-Field Developmentコマンド
+# Lệnh AI-DLC Phát triển Brown-Field
 
-## 概要
-既存システムのコードを高レベルなモデリング表現に変換し、Brown-Field開発のコンテキストを構築します。
+## Tổng quan
+Chuyển đổi mã nguồn hệ thống hiện có thành biểu diễn mô hình hoá cấp cao và xây dựng ngữ cảnh cho phát triển Brown-Field.
 
-## 使用方法
+## Cách sử dụng
 ```
 @aidlc-brownfield <existing-code-path>
 ```
 
-例:
+Ví dụ:
 ```
 @aidlc-brownfield "BACKEND/legacy-system"
 ```
 
-## 実行内容
-1. 既存コードの分析
-2. 静的モデル（コンポーネント、責任、関係）の作成
-3. 動的モデル（ユースケース実現のための相互作用）の作成
-4. コンテキストの構築
+## Nội dung thực thi
+1. Phân tích mã nguồn hiện có
+2. Tạo mô hình tĩnh (component, trách nhiệm, quan hệ)
+3. Tạo mô hình động (tương tác để thực hiện use case)
+4. Xây dựng ngữ cảnh
 
-## AIエージェントへの指示
+## Chỉ thị cho AI Agent
 
-あなたはBrown-Field Developmentエージェント（リバースエンジニアリング専門家）です。
+Bạn là Agent Phát triển Brown-Field (Chuyên gia Reverse Engineering).
 
-### ステップ1: 計画の作成
-1. `aidlc-docs/plans/brownfield_plan.md` に計画を作成
-2. 以下のステップを含める：
-   - [ ] 既存コードベースの分析
-   - [ ] 静的モデルの作成
-   - [ ] 動的モデルの作成
-   - [ ] コンテキストドキュメントの作成
-3. ユーザーの承認を待つ
+### Bước 1: Tạo Kế hoạch
+1. Tạo kế hoạch tại `aidlc-docs/plans/brownfield_plan.md`
+2. Bao gồm các bước:
+   - [ ] Phân tích codebase hiện có
+   - [ ] Tạo mô hình tĩnh
+   - [ ] Tạo mô hình động
+   - [ ] Tạo tài liệu ngữ cảnh
+3. Chờ phê duyệt từ người dùng
 
-### ステップ2: 既存コードベースの分析
-1. 指定されたパスのコードを分析
-2. 以下の情報を抽出：
-   - ファイル構造
-   - 依存関係
-   - 主要なコンポーネント
-   - データモデル
-   - APIエンドポイント
+### Bước 2: Phân tích Codebase Hiện có
+1. Phân tích mã nguồn tại đường dẫn được chỉ định
+2. Trích xuất các thông tin sau:
+   - Cấu trúc file
+   - Phụ thuộc
+   - Component chính
+   - Mô hình dữ liệu
+   - API endpoint
 
-### ステップ3: 静的モデルの作成
-1. ドメインコンポーネントを特定
-2. 各コンポーネントの以下を定義：
-   - 名前と説明
-   - 責任
-   - 属性
-   - メソッド
-   - 他のコンポーネントとの関係
-3. `aidlc-docs/design-artifacts/static-models/<system-name>_static_model.md` に保存
+### Bước 3: Tạo Mô hình Tĩnh
+1. Xác định domain component
+2. Định nghĩa cho mỗi component:
+   - Tên và mô tả
+   - Trách nhiệm
+   - Thuộc tính
+   - Phương thức
+   - Quan hệ với các component khác
+3. Lưu vào `aidlc-docs/design-artifacts/static-models/<system-name>_static_model.md`
 
-### ステップ4: 動的モデルの作成
-1. 重要なユースケースを特定
-2. 各ユースケースについて以下を定義：
-   - ユースケース名
-   - トリガー
-   - 参加コンポーネント
-   - 相互作用のシーケンス
-   - 結果
-3. シーケンス図またはフロー図を作成
-4. `aidlc-docs/design-artifacts/dynamic-models/<system-name>_dynamic_model.md` に保存
+### Bước 4: Tạo Mô hình Động
+1. Xác định các use case quan trọng
+2. Định nghĩa cho mỗi use case:
+   - Tên use case
+   - Trigger
+   - Component tham gia
+   - Sequence tương tác
+   - Kết quả
+3. Tạo sơ đồ sequence hoặc sơ đồ luồng
+4. Lưu vào `aidlc-docs/design-artifacts/dynamic-models/<system-name>_dynamic_model.md`
 
-### ステップ5: コンテキストドキュメントの作成
-1. システムの概要を文書化
-2. アーキテクチャの説明
-3. 技術スタック
-4. 既知の技術的負債
-5. `aidlc-docs/design-artifacts/brownfield-context/<system-name>_context.md` に保存
+### Bước 5: Tạo Tài liệu Ngữ cảnh
+1. Ghi nhận tổng quan hệ thống
+2. Mô tả kiến trúc
+3. Ngăn xếp công nghệ
+4. Nợ kỹ thuật đã biết
+5. Lưu vào `aidlc-docs/design-artifacts/brownfield-context/<system-name>_context.md`
 
-## アーティファクト
+## Artifact
 - `aidlc-docs/design-artifacts/static-models/<system-name>_static_model.md`
 - `aidlc-docs/design-artifacts/dynamic-models/<system-name>_dynamic_model.md`
 - `aidlc-docs/design-artifacts/brownfield-context/<system-name>_context.md`
 
-## 注意事項
-- 既存コードを変更しない（読み取り専用）
-- モデルは後続のConstruction Phaseで使用されるため、正確で包括的である必要がある
-- 開発者と協力してモデルを検証・修正する
+## Lưu ý
+- Không thay đổi mã nguồn hiện có (chỉ đọc)
+- Mô hình phải chính xác và toàn diện vì sẽ được sử dụng trong Giai đoạn Construction tiếp theo
+- Phối hợp với developer để xác minh và sửa đổi mô hình
 

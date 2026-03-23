@@ -1,83 +1,83 @@
-# AI-DLC Deploymentコマンド
+# Lệnh AI-DLC Triển khai
 
-## 概要
-Deployment Unitsをパッケージ化し、ステージング環境または本番環境にデプロイします。
+## Tổng quan
+Đóng gói Deployment Units và triển khai đến môi trường staging hoặc production.
 
-## 使用方法
+## Cách sử dụng
 ```
 @aidlc-deployment <unit-name> [environment]
 ```
 
-例:
+Ví dụ:
 ```
-@aidlc-deployment "レコメンデーションアルゴリズム" staging
-@aidlc-deployment "レコメンデーションアルゴリズム" production
+@aidlc-deployment "Thuật toán đề xuất" staging
+@aidlc-deployment "Thuật toán đề xuất" production
 ```
 
-## 実行内容
-1. Deployment Unitsのパッケージ化
-2. デプロイメント設定の検証
-3. デプロイメントの実行
-4. デプロイメント後の検証
+## Nội dung thực thi
+1. Đóng gói Deployment Units
+2. Xác minh cấu hình triển khai
+3. Thực hiện triển khai
+4. Xác minh sau triển khai
 
-## AIエージェントへの指示
+## Chỉ thị cho AI Agent
 
-あなたはDeploymentエージェント（DevOpsエンジニア）です。
+Bạn là Agent Triển khai (Kỹ sư DevOps).
 
-### ステップ1: 計画の作成
-1. `aidlc-docs/plans/deployment_<unit-name>_<environment>_plan.md` に計画を作成
-2. 以下のステップを含める：
-   - [ ] Deployment Unitsの確認
-   - [ ] デプロイメント設定の検証
-   - [ ] パッケージ化
-   - [ ] デプロイメントの実行
-   - [ ] デプロイメント後の検証
-3. ユーザーの承認を待つ
+### Bước 1: Tạo Kế hoạch
+1. Tạo kế hoạch tại `aidlc-docs/plans/deployment_<unit-name>_<environment>_plan.md`
+2. Bao gồm các bước:
+   - [ ] Xác nhận Deployment Units
+   - [ ] Xác minh cấu hình triển khai
+   - [ ] Đóng gói
+   - [ ] Thực hiện triển khai
+   - [ ] Xác minh sau triển khai
+3. Chờ phê duyệt từ người dùng
 
-### ステップ2: Deployment Unitsの確認
-1. 以下のアーティファクトを確認：
-   - コンテナイメージ（該当する場合）
-   - サーバーレス関数（該当する場合）
-   - IaCコード
-   - 設定ファイル
-2. すべての依存関係が揃っていることを確認
+### Bước 2: Xác nhận Deployment Units
+1. Kiểm tra các artifact sau:
+   - Container image (nếu có)
+   - Serverless function (nếu có)
+   - Mã IaC
+   - File cấu hình
+2. Xác nhận tất cả dependency đã đầy đủ
 
-### ステップ3: デプロイメント設定の検証
-1. 環境変数の設定を確認
-2. シークレットの設定を確認
-3. ネットワーク設定を確認
-4. セキュリティ設定を確認
-5. ユーザーに設定を提示して承認を求める
-6. **ユーザーの承認を待つ。承認が得られるまで次のステップに進まない。**
-7. ユーザーからの承認または修正指示を受け取ったら、必要に応じて設定を調整し、次のステップに進む
+### Bước 3: Xác minh Cấu hình Triển khai
+1. Kiểm tra cài đặt biến môi trường
+2. Kiểm tra cài đặt secret
+3. Kiểm tra cấu hình mạng
+4. Kiểm tra cấu hình bảo mật
+5. Trình bày cấu hình cho người dùng và xin phê duyệt
+6. **Chờ phê duyệt từ người dùng. Không tiến hành bước tiếp theo cho đến khi được phê duyệt.**
+7. Sau khi nhận được phê duyệt hoặc chỉ thị sửa đổi, điều chỉnh cấu hình nếu cần và tiến hành bước tiếp theo
 
-### ステップ4: パッケージ化
-1. コンテナイメージをビルド（該当する場合）
-2. サーバーレス関数をパッケージ化（該当する場合）
-3. 設定ファイルをバンドル
-4. デプロイメントパッケージを作成
+### Bước 4: Đóng gói
+1. Build container image (nếu có)
+2. Đóng gói serverless function (nếu có)
+3. Bundle file cấu hình
+4. Tạo deployment package
 
-### ステップ5: デプロイメントの実行
-1. IaCを適用してインフラストラクチャをデプロイ
-2. アプリケーションをデプロイ
-3. デプロイメントログを記録
-4. エラーが発生した場合は停止して報告
+### Bước 5: Thực hiện Triển khai
+1. Áp dụng IaC để triển khai hạ tầng
+2. Triển khai ứng dụng
+3. Ghi nhận log triển khai
+4. Nếu có lỗi, dừng lại và báo cáo
 
-### ステップ6: デプロイメント後の検証
-1. ヘルスチェックを実行
-2. エンドポイントの可用性を確認
-3. 基本的な機能テストを実行
-4. メトリクスの収集を開始
-5. 検証レポートを生成
+### Bước 6: Xác minh Sau Triển khai
+1. Thực hiện health check
+2. Xác nhận tính khả dụng của endpoint
+3. Chạy test chức năng cơ bản
+4. Bắt đầu thu thập metrics
+5. Tạo báo cáo xác minh
 
-## アーティファクト
-- `DEPLOYMENT/<unit-name>/packages/` - デプロイメントパッケージ
-- `aidlc-docs/plans/deployment_<unit-name>_<environment>_plan.md` - デプロイメント計画
-- `aidlc-docs/plans/deployment_<unit-name>_<environment>_report.md` - デプロイメントレポート
+## Artifact
+- `DEPLOYMENT/<unit-name>/packages/` - Deployment package
+- `aidlc-docs/plans/deployment_<unit-name>_<environment>_plan.md` - Kế hoạch triển khai
+- `aidlc-docs/plans/deployment_<unit-name>_<environment>_report.md` - Báo cáo triển khai
 
-## 注意事項
-- **重要**: 各ステップでユーザーの回答や承認が必要な場合は、必ずユーザーの回答を待ってから次のステップに進むこと。先に進まないこと。
-- 本番環境へのデプロイメントは特に慎重に行う
-- ロールバック計画を準備
-- すべてのステップを記録
+## Lưu ý
+- **Quan trọng**: Khi mỗi bước cần phản hồi hoặc phê duyệt từ người dùng, BẮT BUỘC chờ phản hồi trước khi tiến hành bước tiếp theo. Không được tiến hành trước.
+- Triển khai lên môi trường production cần đặc biệt thận trọng
+- Chuẩn bị kế hoạch rollback
+- Ghi nhận tất cả các bước
 

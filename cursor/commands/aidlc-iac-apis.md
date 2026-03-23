@@ -1,103 +1,103 @@
-# AI-DLC IaC/REST APIsコマンド
+# Lệnh AI-DLC IaC/REST APIs
 
-## 概要
-Infrastructure as Code (IaC) とREST APIを生成します。
+## Tổng quan
+Sinh Infrastructure as Code (IaC) và REST API.
 
-## 使用方法
+## Cách sử dụng
 ```
 @aidlc-iac-apis <unit-name> [tool]
 ```
 
-例:
+Ví dụ:
 ```
-@aidlc-iac-apis "レコメンデーションアルゴリズム" terraform
-@aidlc-iac-apis "レコメンデーションアルゴリズム" cdk
-@aidlc-iac-apis "レコメンデーションアルゴリズム" cloudformation
+@aidlc-iac-apis "Thuật toán đề xuất" terraform
+@aidlc-iac-apis "Thuật toán đề xuất" cdk
+@aidlc-iac-apis "Thuật toán đề xuất" cloudformation
 ```
 
-## 実行内容
-1. Logical Designを読み込む
-2. IaCを生成（Terraform、CDK、CloudFormationから選択）
-3. REST APIを生成
-4. 検証計画を作成
+## Nội dung thực thi
+1. Đọc Logical Design
+2. Sinh IaC (chọn từ Terraform, CDK, CloudFormation)
+3. Sinh REST API
+4. Tạo kế hoạch xác minh
 
-## AIエージェントへの指示
+## Chỉ thị cho AI Agent
 
-あなたはIaC/REST APIsエージェント（DevOpsエンジニア/ソフトウェアエンジニア）です。
+Bạn là Agent IaC/REST APIs (Kỹ sư DevOps / Kỹ sư Phần mềm).
 
-### ステップ1: 計画の作成
-1. `aidlc-docs/plans/iac_apis_<unit-name>_plan.md` に計画を作成
-2. 以下のステップを含める：
-   - [ ] Logical Designの読み込み
-   - [ ] インフラストラクチャ要件の分析
-   - [ ] IaCの生成
-   - [ ] REST APIの生成
-   - [ ] 検証計画の作成
-3. ユーザーの承認を待つ
+### Bước 1: Tạo Kế hoạch
+1. Tạo kế hoạch tại `aidlc-docs/plans/iac_apis_<unit-name>_plan.md`
+2. Bao gồm các bước:
+   - [ ] Đọc Logical Design
+   - [ ] Phân tích yêu cầu hạ tầng
+   - [ ] Sinh IaC
+   - [ ] Sinh REST API
+   - [ ] Tạo kế hoạch xác minh
+3. Chờ phê duyệt từ người dùng
 
-### ステップ2: Logical Designの読み込み
-1. `aidlc-docs/design-artifacts/logical-designs/<unit-name>_logical_design.md` を読み込む
-2. バックエンドコードを参照（存在する場合）
-3. インフラストラクチャ要件を抽出
+### Bước 2: Đọc Logical Design
+1. Đọc `aidlc-docs/design-artifacts/logical-designs/<unit-name>_logical_design.md`
+2. Tham chiếu mã nguồn backend (nếu có)
+3. Trích xuất yêu cầu hạ tầng
 
-### ステップ3: インフラストラクチャ要件の分析
-1. 必要なAWSサービスを特定：
-   - コンピューティング（Lambda、ECS、EC2）
-   - ストレージ（S3、DynamoDB、RDS）
-   - ネットワーク（VPC、API Gateway、CloudFront）
-   - セキュリティ（IAM、Secrets Manager）
-   - 監視（CloudWatch、X-Ray）
-2. 依存関係を特定
+### Bước 3: Phân tích Yêu cầu Hạ tầng
+1. Xác định dịch vụ AWS cần thiết:
+   - Computing (Lambda, ECS, EC2)
+   - Storage (S3, DynamoDB, RDS)
+   - Network (VPC, API Gateway, CloudFront)
+   - Security (IAM, Secrets Manager)
+   - Monitoring (CloudWatch, X-Ray)
+2. Xác định phụ thuộc
 
-### ステップ4: IaCの生成
-1. 指定されたツール（Terraform、CDK、CloudFormation）でIaCを生成
-2. モジュール化された構造で作成
-3. ベストプラクティスに従う：
-   - 環境変数の使用
-   - セキュリティグループの適切な設定
-   - タグ付け
-   - コスト最適化
-4. `DEPLOYMENT/<unit-name>/<tool>/` に保存
+### Bước 4: Sinh IaC
+1. Sinh IaC bằng công cụ được chỉ định (Terraform, CDK, CloudFormation)
+2. Tạo với cấu trúc module hoá
+3. Tuân theo best practice:
+   - Sử dụng biến môi trường
+   - Thiết lập security group phù hợp
+   - Gán tag
+   - Tối ưu chi phí
+4. Lưu vào `DEPLOYMENT/<unit-name>/<tool>/`
 
-### ステップ5: REST APIの生成
-1. Application Servicesを分析
-2. RESTful APIエンドポイントを設計
-3. OpenAPI/Swagger仕様を作成
-4. Flask/FastAPI実装を生成（Pythonの場合）
-5. 以下を含める：
-   - エンドポイント定義
-   - リクエスト/レスポンススキーマ
-   - エラーハンドリング
-   - 認証・認可
-6. `BACKEND/<unit-name>/api/` に保存
+### Bước 5: Sinh REST API
+1. Phân tích Application Services
+2. Thiết kế RESTful API endpoint
+3. Tạo đặc tả OpenAPI/Swagger
+4. Sinh triển khai Flask/FastAPI (nếu dùng Python)
+5. Bao gồm:
+   - Định nghĩa endpoint
+   - Schema request/response
+   - Xử lý lỗi
+   - Xác thực & phân quyền
+6. Lưu vào `BACKEND/<unit-name>/api/`
 
-### ステップ6: 検証計画の作成
-1. 検証計画を作成：
-   - インフラストラクチャの検証
-   - APIの検証
-   - 統合テスト
-2. `aidlc-docs/plans/iac_apis_<unit-name>_validation_plan.md` に保存
-3. ユーザーの承認を待つ
+### Bước 6: Tạo Kế hoạch Xác minh
+1. Tạo kế hoạch xác minh:
+   - Xác minh hạ tầng
+   - Xác minh API
+   - Test tích hợp
+2. Lưu vào `aidlc-docs/plans/iac_apis_<unit-name>_validation_plan.md`
+3. Chờ phê duyệt từ người dùng
 
-### ステップ7: 検証の実行（承認後）
-1. 検証計画に従って検証を実行
-2. 検証レポートを生成
-3. 問題を特定して修正提案を生成
-4. `aidlc-docs/plans/iac_apis_<unit-name>_validation_report.md` に保存
-5. **ユーザーに検証レポートと修正提案を提示し、承認または指示を待つ。回答が得られるまで次のステップに進まない。**
-6. ユーザーからの指示に基づいて修正を実行するか、次のフェーズに進む
+### Bước 7: Thực hiện Xác minh (sau khi phê duyệt)
+1. Thực hiện xác minh theo kế hoạch
+2. Tạo báo cáo xác minh
+3. Xác định vấn đề và sinh đề xuất sửa lỗi
+4. Lưu vào `aidlc-docs/plans/iac_apis_<unit-name>_validation_report.md`
+5. **Trình bày báo cáo xác minh và đề xuất sửa lỗi cho người dùng, chờ phê duyệt hoặc chỉ thị. Không tiến hành bước tiếp theo cho đến khi nhận được phản hồi.**
+6. Dựa trên chỉ thị từ người dùng, thực hiện sửa lỗi hoặc tiến hành giai đoạn tiếp theo
 
-## アーティファクト
-- `DEPLOYMENT/<unit-name>/<tool>/` - IaCコード
-- `BACKEND/<unit-name>/api/` - REST APIコード
-- `BACKEND/<unit-name>/api/openapi.yaml` - OpenAPI仕様
-- `aidlc-docs/plans/iac_apis_<unit-name>_validation_plan.md` - 検証計画
-- `aidlc-docs/plans/iac_apis_<unit-name>_validation_report.md` - 検証レポート
+## Artifact
+- `DEPLOYMENT/<unit-name>/<tool>/` - Mã IaC
+- `BACKEND/<unit-name>/api/` - Mã REST API
+- `BACKEND/<unit-name>/api/openapi.yaml` - Đặc tả OpenAPI
+- `aidlc-docs/plans/iac_apis_<unit-name>_validation_plan.md` - Kế hoạch xác minh
+- `aidlc-docs/plans/iac_apis_<unit-name>_validation_report.md` - Báo cáo xác minh
 
-## 注意事項
-- **重要**: 各ステップでユーザーの回答や承認が必要な場合は、必ずユーザーの回答を待ってから次のステップに進むこと。先に進まないこと。
-- クリーンでシンプルで説明可能なコードを生成
-- セキュリティベストプラクティスを適用
-- コスト最適化を考慮
-- すべてのコードは検証可能であるべき
+## Lưu ý
+- **Quan trọng**: Khi mỗi bước cần phản hồi hoặc phê duyệt từ người dùng, BẮT BUỘC chờ phản hồi trước khi tiến hành bước tiếp theo. Không được tiến hành trước.
+- Sinh mã nguồn sạch, đơn giản, dễ giải thích
+- Áp dụng best practice bảo mật
+- Xem xét tối ưu chi phí
+- Tất cả mã nguồn phải có thể xác minh
 

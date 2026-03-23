@@ -1,103 +1,103 @@
-# AI-DLC Domain Model作成コマンド
+# Lệnh AI-DLC Tạo Domain Model
 
-## 概要
-指定されたUnitのDomain Design（ドメインデザイン）を作成します。Domain-Driven Design原則に基づいて、ビジネスロジックをインフラストラクチャから独立してモデル化します。
+## Tổng quan
+Tạo Domain Design (Thiết kế Miền) cho Unit được chỉ định. Dựa trên nguyên tắc Domain-Driven Design, mô hình hoá logic nghiệp vụ độc lập với hạ tầng.
 
-## 使用方法
+## Cách sử dụng
 ```
 @aidlc-domain-model <unit-name>
 ```
 
-例:
+Ví dụ:
 ```
-@aidlc-domain-model "レコメンデーションアルゴリズム"
+@aidlc-domain-model "Thuật toán đề xuất"
 ```
 
-## 実行内容
-1. Unit定義を読み込む
-2. Domain-Driven Design原則に基づいてドメインモデルを作成
-3. Aggregates、Value Objects、Entities、Domain Events、Repositories、Factoriesを定義
+## Nội dung thực thi
+1. Đọc định nghĩa Unit
+2. Tạo domain model dựa trên nguyên tắc Domain-Driven Design
+3. Định nghĩa Aggregates, Value Objects, Entities, Domain Events, Repositories, Factories
 
-## AIエージェントへの指示
+## Chỉ thị cho AI Agent
 
-あなたはDomain Model作成エージェント（ソフトウェアエンジニア）です。
+Bạn là Agent Tạo Domain Model (Kỹ sư Phần mềm).
 
-### ステップ1: 計画の作成
-1. `aidlc-docs/plans/domain_model_<unit-name>_plan.md` に計画を作成
-2. 以下のステップを含める：
-   - [ ] Unit定義の読み込み
-   - [ ] ドメインエンティティの特定
-   - [ ] Value Objectsの定義
-   - [ ] Aggregatesの定義
-   - [ ] Domain Eventsの定義
-   - [ ] Repositoriesの定義
-   - [ ] Factoriesの定義
-   - [ ] ドメインモデルドキュメントの作成
-3. ユーザーの承認を待つ
+### Bước 1: Tạo Kế hoạch
+1. Tạo kế hoạch tại `aidlc-docs/plans/domain_model_<unit-name>_plan.md`
+2. Bao gồm các bước:
+   - [ ] Đọc định nghĩa Unit
+   - [ ] Xác định domain entity
+   - [ ] Định nghĩa Value Objects
+   - [ ] Định nghĩa Aggregates
+   - [ ] Định nghĩa Domain Events
+   - [ ] Định nghĩa Repositories
+   - [ ] Định nghĩa Factories
+   - [ ] Tạo tài liệu Domain Model
+3. Chờ phê duyệt từ người dùng
 
-### ステップ2: Unit定義の読み込み
-1. `aidlc-docs/design-artifacts/units/<unit-name>.md` を読み込む
-2. User Storiesと受け入れ基準を分析
-3. ビジネスロジックの要件を抽出
+### Bước 2: Đọc Định nghĩa Unit
+1. Đọc `aidlc-docs/design-artifacts/units/<unit-name>.md`
+2. Phân tích User Stories và tiêu chí chấp nhận
+3. Trích xuất yêu cầu logic nghiệp vụ
 
-### ステップ3: ドメインエンティティの特定
-1. User Storiesから主要なビジネス概念を抽出
-2. 各エンティティの以下を定義：
-   - 識別子
-   - 属性
-   - ビジネスルール
-   - ライフサイクル
-3. 例：「レコメンデーションアルゴリズム」Unitの場合：
-   - Product（商品）
-   - Customer（顧客）
-   - PurchaseHistory（購入履歴）
+### Bước 3: Xác định Domain Entity
+1. Trích xuất các khái niệm nghiệp vụ chính từ User Stories
+2. Định nghĩa cho mỗi entity:
+   - Định danh (Identifier)
+   - Thuộc tính
+   - Quy tắc nghiệp vụ
+   - Vòng đời
+3. Ví dụ: Với Unit "Thuật toán đề xuất":
+   - Product (Sản phẩm)
+   - Customer (Khách hàng)
+   - PurchaseHistory (Lịch sử mua hàng)
 
-### ステップ4: Value Objectsの定義
-1. 値を持つが識別子を持たない概念を特定
-2. 不変性を確保
-3. 例：Money、Address、RecommendationScore
+### Bước 4: Định nghĩa Value Objects
+1. Xác định các khái niệm có giá trị nhưng không có định danh
+2. Đảm bảo tính bất biến
+3. Ví dụ: Money, Address, RecommendationScore
 
-### ステップ5: Aggregatesの定義
-1. エンティティとValue ObjectsをAggregatesにグループ化
-2. Aggregate Rootを特定
-3. 境界を定義
-4. 不変条件を定義
+### Bước 5: Định nghĩa Aggregates
+1. Nhóm Entities và Value Objects thành Aggregates
+2. Xác định Aggregate Root
+3. Định nghĩa ranh giới
+4. Định nghĩa bất biến (invariant)
 
-### ステップ6: Domain Eventsの定義
-1. ビジネス上重要なイベントを特定
-2. 各イベントの以下を定義：
-   - イベント名
-   - ペイロード
-   - 発生タイミング
-3. 例：ProductRecommended、CustomerProfileUpdated
+### Bước 6: Định nghĩa Domain Events
+1. Xác định các sự kiện quan trọng về mặt nghiệp vụ
+2. Định nghĩa cho mỗi event:
+   - Tên event
+   - Payload
+   - Thời điểm phát sinh
+3. Ví dụ: ProductRecommended, CustomerProfileUpdated
 
-### ステップ7: Repositoriesの定義
-1. 各AggregateのRepositoryインターフェースを定義
-2. 永続化の抽象化を提供
-3. クエリメソッドを定義
+### Bước 7: Định nghĩa Repositories
+1. Định nghĩa interface Repository cho mỗi Aggregate
+2. Cung cấp trừu tượng hoá cho lưu trữ bền vững
+3. Định nghĩa phương thức truy vấn
 
-### ステップ8: Factoriesの定義
-1. 複雑なオブジェクト作成を担当するFactoryを定義
-2. 不変条件の検証を含める
+### Bước 8: Định nghĩa Factories
+1. Định nghĩa Factory chịu trách nhiệm tạo object phức tạp
+2. Bao gồm xác thực bất biến
 
-### ステップ9: ドメインモデルドキュメントの作成
-1. `aidlc-docs/design-artifacts/domain-models/<unit-name>_domain_model.md` を作成
-2. 以下を含める：
-   - ドメインモデルの概要
-   - エンティティ図
-   - Aggregatesの説明
-   - Value Objectsの説明
-   - Domain Eventsの説明
-   - Repositoriesの説明
-   - Factoriesの説明
-   - ビジネスルール
-3. 計画ファイルのチェックボックスを更新
+### Bước 9: Tạo Tài liệu Domain Model
+1. Tạo `aidlc-docs/design-artifacts/domain-models/<unit-name>_domain_model.md`
+2. Bao gồm:
+   - Tổng quan domain model
+   - Sơ đồ entity
+   - Mô tả Aggregates
+   - Mô tả Value Objects
+   - Mô tả Domain Events
+   - Mô tả Repositories
+   - Mô tả Factories
+   - Quy tắc nghiệp vụ
+3. Cập nhật checkbox trong file kế hoạch
 
-## アーティファクト
+## Artifact
 - `aidlc-docs/design-artifacts/domain-models/<unit-name>_domain_model.md`
 
-## 注意事項
-- インフラストラクチャの詳細は含めない（純粋なビジネスロジックに焦点）
-- DDDの戦略的設計と戦術的設計の両方を適用
-- 実装コードは生成しない（設計のみ）
+## Lưu ý
+- Không bao gồm chi tiết hạ tầng (tập trung vào logic nghiệp vụ thuần tuý)
+- Áp dụng cả thiết kế chiến lược (strategic) và chiến thuật (tactical) của DDD
+- Không sinh mã nguồn triển khai (chỉ thiết kế)
 

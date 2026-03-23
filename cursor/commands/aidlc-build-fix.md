@@ -1,138 +1,138 @@
-# AI-DLC ビルドエラー修正コマンド
+# Lệnh AI-DLC Sửa Lỗi Build
 
-## 概要
-TypeScript、コンパイル、ビルドエラーを迅速かつ効率的に修正します。最小限の変更でビルドを成功させます。
+## Tổng quan
+Sửa lỗi TypeScript, lỗi biên dịch và lỗi build một cách nhanh chóng và hiệu quả. Build thành công với thay đổi tối thiểu.
 
-## 使用方法
+## Cách sử dụng
 ```
 /aidlc-build-fix
 ```
 
-## 実行内容
-1. ビルドエラーを収集（tsc、npm run buildなど）
-2. ビルドエラー解決専門家としてエラーを分析
-3. エラーを分類して優先順位付け
-4. 最小限の変更でエラーを修正
-5. ビルドが成功することを確認
+## Nội dung thực thi
+1. Thu thập lỗi build (tsc, npm run build, v.v.)
+2. Phân tích lỗi với vai trò Chuyên gia Xử lý Lỗi Build
+3. Phân loại và ưu tiên lỗi
+4. Sửa lỗi với thay đổi tối thiểu
+5. Xác nhận build thành công
 
-## AIエージェントへの指示
+## Chỉ thị cho AI Agent
 
-あなたは、TypeScript、コンパイル、ビルドエラーを迅速かつ効率的に修正する専門家として行動します。最小限の変更でビルドを成功させ、アーキテクチャの変更は行いません。
+Bạn hành động với vai trò chuyên gia sửa lỗi TypeScript, lỗi biên dịch và lỗi build một cách nhanh chóng, hiệu quả. Build thành công với thay đổi tối thiểu, không thay đổi kiến trúc.
 
-### ビルドエラー解決専門家の役割
-1. **TypeScriptエラー解決** - 型エラー、推論の問題、ジェネリック制約を修正
-2. **ビルドエラー修正** - コンパイル失敗、モジュール解決を解決
-3. **依存関係の問題** - インポートエラー、不足パッケージ、バージョン競合を修正
-4. **設定エラー** - tsconfig.json、webpack、Next.js設定の問題を解決
-5. **最小限の差分** - エラーを修正するための最小限の変更を行う
-6. **アーキテクチャ変更なし** - エラーのみを修正し、リファクタリングや再設計は行わない
+### Vai trò Chuyên gia Xử lý Lỗi Build
+1. **Giải quyết lỗi TypeScript** - Sửa lỗi kiểu, vấn đề suy luận, ràng buộc generic
+2. **Sửa lỗi build** - Giải quyết lỗi biên dịch, phân giải module
+3. **Vấn đề phụ thuộc** - Sửa lỗi import, package thiếu, xung đột version
+4. **Lỗi cấu hình** - Giải quyết vấn đề tsconfig.json, webpack, Next.js
+5. **Thay đổi tối thiểu** - Chỉ thay đổi tối thiểu cần thiết để sửa lỗi
+6. **Không thay đổi kiến trúc** - Chỉ sửa lỗi, không tái cấu trúc hay thiết kế lại
 
-### ステップ1: エラーの収集
-1. 完全な型チェックを実行：
+### Bước 1: Thu thập Lỗi
+1. Chạy kiểm tra kiểu đầy đủ:
    ```bash
    npx tsc --noEmit --pretty
    ```
-2. ビルドを実行（該当する場合）：
+2. Chạy build (nếu có):
    ```bash
    npm run build
    ```
-3. すべてのエラーをキャプチャ（最初だけでなく）
-4. エラーをタイプ別に分類：
-   - 型推論の失敗
-   - 不足している型定義
-   - インポート/エクスポートエラー
-   - 設定エラー
-   - 依存関係の問題
-5. 影響度で優先順位付け：
-   - ビルドをブロック: 最初に修正
-   - 型エラー: 順番に修正
-   - 警告: 時間があれば修正
+3. Bắt tất cả lỗi (không chỉ lỗi đầu tiên)
+4. Phân loại lỗi theo loại:
+   - Lỗi suy luận kiểu
+   - Thiếu định nghĩa kiểu
+   - Lỗi import/export
+   - Lỗi cấu hình
+   - Vấn đề phụ thuộc
+5. Ưu tiên theo mức ảnh hưởng:
+   - Chặn build: Sửa trước
+   - Lỗi kiểu: Sửa theo thứ tự
+   - Cảnh báo: Sửa nếu có thời gian
 
-### ステップ2: 修正戦略（最小限の変更）
-各エラーについて：
+### Bước 2: Chiến lược Sửa lỗi (thay đổi tối thiểu)
+Với mỗi lỗi:
 
-1. **エラーを理解する**
-   - エラーメッセージを注意深く読む
-   - ファイルと行番号を確認
-   - 期待される型と実際の型を理解
+1. **Hiểu lỗi**
+   - Đọc kỹ thông báo lỗi
+   - Kiểm tra file và số dòng
+   - Hiểu kiểu mong đợi và kiểu thực tế
 
-2. **最小限の修正を見つける**
-   - 不足している型注釈を追加
-   - インポート文を修正
-   - nullチェックを追加
-   - 型アサーションを使用（最後の手段）
+2. **Tìm sửa lỗi tối thiểu**
+   - Thêm annotation kiểu thiếu
+   - Sửa câu lệnh import
+   - Thêm kiểm tra null
+   - Sử dụng type assertion (biện pháp cuối)
 
-3. **修正が他のコードを壊さないことを確認**
-   - 各修正後にtscを再実行
-   - 関連ファイルを確認
-   - 新しいエラーが導入されていないことを確認
+3. **Xác nhận sửa lỗi không phá vỡ mã khác**
+   - Chạy lại tsc sau mỗi sửa
+   - Kiểm tra file liên quan
+   - Xác nhận không tạo lỗi mới
 
-4. **ビルドが成功するまで反復**
-   - 一度に1つのエラーを修正
-   - 各修正後に再コンパイル
-   - 進捗を追跡（X/Yエラー修正済み）
+4. **Lặp lại cho đến khi build thành công**
+   - Sửa từng lỗi một
+   - Biên dịch lại sau mỗi sửa
+   - Theo dõi tiến độ (X/Y lỗi đã sửa)
 
-### ステップ3: エラーの修正
-1. 各エラーについて最小限の修正を適用：
-   - 不足している型注釈を追加
-   - インポート文を修正
-   - nullチェックを追加
-   - 型アサーションを使用（最後の手段）
-2. 各修正後に再コンパイルして確認
-3. 新しいエラーが導入されていないことを確認
+### Bước 3: Sửa Lỗi
+1. Áp dụng sửa lỗi tối thiểu cho mỗi lỗi:
+   - Thêm annotation kiểu thiếu
+   - Sửa câu lệnh import
+   - Thêm kiểm tra null
+   - Sử dụng type assertion (biện pháp cuối)
+2. Biên dịch lại để xác nhận sau mỗi sửa
+3. Xác nhận không tạo lỗi mới
 
-### ステップ4: ビルドの確認
-1. 型チェックを再実行：
+### Bước 4: Xác nhận Build
+1. Chạy lại kiểm tra kiểu:
    ```bash
    npx tsc --noEmit
    ```
-2. ビルドを再実行（該当する場合）：
+2. Chạy lại build (nếu có):
    ```bash
    npm run build
    ```
-3. すべてのエラーが解決されたことを確認
+3. Xác nhận tất cả lỗi đã được giải quyết
 
-### ステップ5: 結果の提示
-1. 修正したエラーのリストを提示
-2. 変更内容をサマリー
-3. ビルドステータスを報告
-4. ユーザーに結果を提示
+### Bước 5: Trình bày Kết quả
+1. Trình bày danh sách lỗi đã sửa
+2. Tóm tắt nội dung thay đổi
+3. Báo cáo trạng thái build
+4. Trình bày kết quả cho người dùng
 
-## 修正戦略
+## Chiến lược Sửa lỗi
 
-### DO（実行する）:
-✅ 不足している場所に型注釈を追加
-✅ 必要な場所にnullチェックを追加
-✅ インポート/エクスポートを修正
-✅ 不足している依存関係を追加
-✅ 型定義を更新
-✅ 設定ファイルを修正
+### NÊN LÀM:
+✅ Thêm annotation kiểu ở nơi thiếu
+✅ Thêm kiểm tra null ở nơi cần
+✅ Sửa import/export
+✅ Thêm dependency thiếu
+✅ Cập nhật định nghĩa kiểu
+✅ Sửa file cấu hình
 
-### DON'T（実行しない）:
-❌ 無関係なコードをリファクタリング
-❌ アーキテクチャを変更
-❌ 変数/関数をリネーム（エラーを引き起こしていない限り）
-❌ 新機能を追加
-❌ ロジックフローを変更（エラーを修正していない限り）
-❌ パフォーマンスを最適化
-❌ コードスタイルを改善
+### KHÔNG NÊN LÀM:
+❌ Tái cấu trúc mã không liên quan
+❌ Thay đổi kiến trúc
+❌ Đổi tên biến/hàm (trừ khi gây lỗi)
+❌ Thêm tính năng mới
+❌ Thay đổi luồng logic (trừ khi sửa lỗi)
+❌ Tối ưu hiệu suất
+❌ Cải thiện code style
 
-## 一般的なエラーパターン
+## Pattern Lỗi Phổ biến
 
-### 型推論の失敗
+### Lỗi suy luận kiểu
 ```typescript
 // ❌ ERROR: Parameter 'x' implicitly has an 'any' type
 function add(x, y) {
   return x + y
 }
 
-// ✅ FIX: 型注釈を追加
+// ✅ FIX: Thêm annotation kiểu
 function add(x: number, y: number): number {
   return x + y
 }
 ```
 
-### Null/Undefinedエラー
+### Lỗi Null/Undefined
 ```typescript
 // ❌ ERROR: Object is possibly 'undefined'
 const name = user.name.toUpperCase()
@@ -141,15 +141,15 @@ const name = user.name.toUpperCase()
 const name = user?.name?.toUpperCase()
 ```
 
-## アーティファクト
+## Artifact
 
-- ビルドエラー解決レポート
-- 修正したエラーのリスト
-- 変更内容のサマリー
+- Báo cáo giải quyết lỗi build
+- Danh sách lỗi đã sửa
+- Tóm tắt nội dung thay đổi
 
-## 注意事項
+## Lưu ý
 
-- **重要**: 各ステップでユーザーの回答や承認が必要な場合は、必ずユーザーの回答を待ってから次のステップに進むこと。先に進まないこと。
-- 最小限の変更のみを行う（エラーのみを修正）
-- ビルドが成功するまで次のステップに進まない
-- アーキテクチャの変更は行わない
+- **Quan trọng**: Khi mỗi bước cần phản hồi hoặc phê duyệt từ người dùng, BẮT BUỘC chờ phản hồi trước khi tiến hành bước tiếp theo. Không được tiến hành trước.
+- Chỉ thay đổi tối thiểu (chỉ sửa lỗi)
+- Không tiến hành bước tiếp theo cho đến khi build thành công
+- Không thay đổi kiến trúc

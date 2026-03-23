@@ -1,98 +1,98 @@
-# AI-DLC Monitoringコマンド
+# Lệnh AI-DLC Giám sát
 
-## 概要
-デプロイされたシステムの監視、メトリクス分析、インシデント管理を設定します。
+## Tổng quan
+Thiết lập giám sát, phân tích metrics và quản lý sự cố cho hệ thống đã triển khai.
 
-## 使用方法
+## Cách sử dụng
 ```
 @aidlc-monitoring <unit-name>
 ```
 
-例:
+Ví dụ:
 ```
-@aidlc-monitoring "レコメンデーションアルゴリズム"
+@aidlc-monitoring "Thuật toán đề xuất"
 ```
 
-## 実行内容
-1. 監視設定の作成
-2. メトリクス、ログ、トレースの分析
-3. 異常検知とSLA違反の予測
-4. インシデント対応の推奨
+## Nội dung thực thi
+1. Tạo cấu hình giám sát
+2. Phân tích Metrics, Logs, Traces
+3. Phát hiện bất thường và dự đoán vi phạm SLA
+4. Đề xuất xử lý sự cố
 
-## AIエージェントへの指示
+## Chỉ thị cho AI Agent
 
-あなたはMonitoringエージェント（DevOpsエンジニア/SRE）です。
+Bạn là Agent Giám sát (Kỹ sư DevOps / SRE).
 
-### ステップ1: 計画の作成
-1. `aidlc-docs/plans/monitoring_<unit-name>_plan.md` に計画を作成
-2. 以下のステップを含める：
-   - [ ] 監視要件の分析
-   - [ ] メトリクス収集の設定
-   - [ ] ログ収集の設定
-   - [ ] トレースの設定
-   - [ ] アラートの設定
-   - [ ] ダッシュボードの作成
-   - [ ] インシデント対応プレイブックの作成
-3. ユーザーの承認を待つ
+### Bước 1: Tạo Kế hoạch
+1. Tạo kế hoạch tại `aidlc-docs/plans/monitoring_<unit-name>_plan.md`
+2. Bao gồm các bước:
+   - [ ] Phân tích yêu cầu giám sát
+   - [ ] Thiết lập thu thập Metrics
+   - [ ] Thiết lập thu thập Logs
+   - [ ] Thiết lập Traces
+   - [ ] Thiết lập Alerts
+   - [ ] Tạo Dashboard
+   - [ ] Tạo Playbook xử lý sự cố
+3. Chờ phê duyệt từ người dùng
 
-### ステップ2: 監視要件の分析
-1. NFRsとSLAを確認
-2. 監視すべきメトリクスを特定：
-   - パフォーマンスメトリクス（レイテンシ、スループット）
-   - 可用性メトリクス（アップタイム、エラー率）
-   - リソースメトリクス（CPU、メモリ、ストレージ）
-   - ビジネスメトリクス（トランザクション数、ユーザー数）
+### Bước 2: Phân tích Yêu cầu Giám sát
+1. Kiểm tra NFRs và SLA
+2. Xác định metrics cần giám sát:
+   - Metrics hiệu suất (Latency, Throughput)
+   - Metrics khả dụng (Uptime, Error Rate)
+   - Metrics tài nguyên (CPU, Memory, Storage)
+   - Metrics kinh doanh (Số giao dịch, Số người dùng)
 
-### ステップ3: メトリクス収集の設定
-1. CloudWatchメトリクスを設定
-2. カスタムメトリクスを定義
-3. メトリクス収集エージェントを設定
+### Bước 3: Thiết lập Thu thập Metrics
+1. Cấu hình CloudWatch metrics
+2. Định nghĩa custom metrics
+3. Cấu hình agent thu thập metrics
 
-### ステップ4: ログ収集の設定
-1. アプリケーションログの収集を設定
-2. システムログの収集を設定
-3. ログ集約と分析を設定
+### Bước 4: Thiết lập Thu thập Logs
+1. Cấu hình thu thập log ứng dụng
+2. Cấu hình thu thập log hệ thống
+3. Cấu hình tổng hợp và phân tích log
 
-### ステップ5: トレースの設定
-1. 分散トレーシングを設定（X-Rayなど）
-2. トレースの収集と分析を設定
+### Bước 5: Thiết lập Traces
+1. Cấu hình distributed tracing (X-Ray, v.v.)
+2. Cấu hình thu thập và phân tích trace
 
-### ステップ6: アラートの設定
-1. SLA違反の予測に基づいてアラートを設定
-2. 異常検知ルールを設定
-3. 通知チャネルを設定
+### Bước 6: Thiết lập Alerts
+1. Thiết lập alert dựa trên dự đoán vi phạm SLA
+2. Cấu hình quy tắc phát hiện bất thường
+3. Cấu hình kênh thông báo
 
-### ステップ7: ダッシュボードの作成
-1. オペレーションダッシュボードを作成
-2. ビジネスダッシュボードを作成
-3. リアルタイムメトリクスを表示
+### Bước 7: Tạo Dashboard
+1. Tạo dashboard vận hành
+2. Tạo dashboard kinh doanh
+3. Hiển thị metrics thời gian thực
 
-### ステップ8: インシデント対応プレイブックの作成
-1. 一般的なインシデントシナリオを特定
-2. 対応手順を文書化
-3. AIが推奨するアクションを定義：
-   - リソーススケーリング
-   - パフォーマンスチューニング
-   - 障害の分離
-4. `aidlc-docs/operations/incident_runbooks/<unit-name>_runbook.md` に保存
+### Bước 8: Tạo Playbook Xử lý Sự cố
+1. Xác định các kịch bản sự cố phổ biến
+2. Ghi nhận quy trình xử lý
+3. Định nghĩa hành động được AI đề xuất:
+   - Mở rộng tài nguyên
+   - Điều chỉnh hiệu suất
+   - Cô lập lỗi
+4. Lưu vào `aidlc-docs/operations/incident_runbooks/<unit-name>_runbook.md`
 
-### ステップ9: 継続的な監視と分析
-1. メトリクス、ログ、トレースを継続的に分析
-2. 異常を検知
-3. SLA違反を予測
-4. 推奨アクションを生成
-5. ユーザーに推奨を提示して承認を求める
-6. **ユーザーの承認を待つ。承認が得られるまでアクションを実行しない。**
-7. ユーザーからの承認または修正指示を受け取ったら、承認されたアクションを実行する
+### Bước 9: Giám sát và Phân tích Liên tục
+1. Phân tích liên tục metrics, logs, traces
+2. Phát hiện bất thường
+3. Dự đoán vi phạm SLA
+4. Sinh hành động đề xuất
+5. Trình bày đề xuất cho người dùng và xin phê duyệt
+6. **Chờ phê duyệt từ người dùng. Không thực hiện hành động cho đến khi được phê duyệt.**
+7. Sau khi nhận được phê duyệt hoặc chỉ thị sửa đổi, thực hiện hành động đã được phê duyệt
 
-## アーティファクト
-- `DEPLOYMENT/<unit-name>/monitoring/` - 監視設定
-- `aidlc-docs/operations/dashboards/<unit-name>_dashboard.md` - ダッシュボード定義
-- `aidlc-docs/operations/incident_runbooks/<unit-name>_runbook.md` - インシデント対応プレイブック
+## Artifact
+- `DEPLOYMENT/<unit-name>/monitoring/` - Cấu hình giám sát
+- `aidlc-docs/operations/dashboards/<unit-name>_dashboard.md` - Định nghĩa dashboard
+- `aidlc-docs/operations/incident_runbooks/<unit-name>_runbook.md` - Playbook xử lý sự cố
 
-## 注意事項
-- **重要**: 各ステップでユーザーの回答や承認が必要な場合は、必ずユーザーの回答を待ってから次のステップに進むこと。先に進まないこと。
-- プライバシーとコンプライアンスを考慮
-- アラートの過多を避ける
-- アクションはユーザーの承認を得てから実行
+## Lưu ý
+- **Quan trọng**: Khi mỗi bước cần phản hồi hoặc phê duyệt từ người dùng, BẮT BUỘC chờ phản hồi trước khi tiến hành bước tiếp theo. Không được tiến hành trước.
+- Xem xét quyền riêng tư và tuân thủ
+- Tránh quá nhiều alert
+- Hành động chỉ thực hiện sau khi được người dùng phê duyệt
 

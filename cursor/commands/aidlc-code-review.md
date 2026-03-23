@@ -1,106 +1,106 @@
-# AI-DLC コードレビューコマンド
+# Lệnh AI-DLC Review Mã nguồn
 
-## 概要
-生成されたコードの品質、セキュリティ、保守性をレビューします。
+## Tổng quan
+Review chất lượng, bảo mật và khả năng bảo trì của mã nguồn đã sinh.
 
-## 使用方法
+## Cách sử dụng
 ```
 /aidlc-code-review
 ```
 
-または、特定のファイルやディレクトリを指定：
+Hoặc chỉ định file hoặc thư mục cụ thể:
 ```
 /aidlc-code-review <file-path>
 ```
 
-## 実行内容
-1. 最近の変更を確認（git diff）
-2. コードレビュー専門家としてレビューを実行
-3. 品質、セキュリティ、パフォーマンスの問題を特定
-4. 修正提案を生成
-5. レビューレポートを作成
+## Nội dung thực thi
+1. Kiểm tra các thay đổi gần đây (git diff)
+2. Thực hiện review với vai trò Chuyên gia Review Mã nguồn
+3. Xác định vấn đề chất lượng, bảo mật, hiệu suất
+4. Sinh đề xuất sửa lỗi
+5. Tạo báo cáo review
 
-## AIエージェントへの指示
+## Chỉ thị cho AI Agent
 
-あなたは上級コードレビュアーとして、コード品質とセキュリティの高い基準を確保します。
+Bạn hành động với vai trò Reviewer Mã nguồn Cấp cao, đảm bảo tiêu chuẩn cao về chất lượng và bảo mật mã nguồn.
 
-### コードレビュー専門家の役割
-- 生成されたコードの品質、セキュリティ、保守性をレビュー
-- コード品質の問題を特定
-- パフォーマンスの問題を特定
-- ベストプラクティスの推奨
+### Vai trò Chuyên gia Review Mã nguồn
+- Review chất lượng, bảo mật và khả năng bảo trì của mã nguồn đã sinh
+- Xác định vấn đề chất lượng mã nguồn
+- Xác định vấn đề hiệu suất
+- Đề xuất best practice
 
-### ステップ1: 変更の確認
-1. `git diff`を実行して最近の変更を確認
-2. 変更されたファイルを特定
-3. レビュー対象を決定
-4. 変更されたファイルに焦点を当てる
-5. 即座にレビューを開始
+### Bước 1: Kiểm tra Thay đổi
+1. Chạy `git diff` để xem các thay đổi gần đây
+2. Xác định các file đã thay đổi
+3. Xác định phạm vi review
+4. Tập trung vào các file đã thay đổi
+5. Bắt đầu review ngay lập tức
 
-### ステップ2: レビューの実行
-1. レビューチェックリストに従ってレビューを実行：
-   - コードがシンプルで読みやすい
-   - 関数と変数が適切に命名されている
-   - 重複コードがない
-   - 適切なエラーハンドリング
-   - 漏洩した秘密情報やAPIキーがない
-   - 入力検証が実装されている
-   - 良好なテストカバレッジ
-   - パフォーマンスの考慮事項が対処されている
-   - アルゴリズムの時間計算量が分析されている
-   - 統合されたライブラリのライセンスが確認されている
+### Bước 2: Thực hiện Review
+1. Thực hiện review theo checklist:
+   - Mã nguồn đơn giản và dễ đọc
+   - Hàm và biến được đặt tên phù hợp
+   - Không có mã nguồn trùng lặp
+   - Xử lý lỗi phù hợp
+   - Không rò rỉ thông tin bí mật hay API key
+   - Xác thực đầu vào đã được triển khai
+   - Độ bao phủ test tốt
+   - Các vấn đề hiệu suất đã được xử lý
+   - Độ phức tạp thời gian của thuật toán đã được phân tích
+   - Giấy phép của thư viện tích hợp đã được xác nhận
 
-### ステップ3: レビュー結果の提示
-1. レビュー結果を整理：
-   - **Critical（必須修正）**: セキュリティ問題、重大なバグ
-   - **Warning（修正推奨）**: コード品質の問題、パフォーマンスの問題
-   - **Suggestion（改善検討）**: ベストプラクティス、コードスタイル
-2. 各問題について具体的な修正方法を提示
-3. ユーザーにレビュー結果を提示
+### Bước 3: Trình bày Kết quả Review
+1. Sắp xếp kết quả review:
+   - **Critical (Bắt buộc sửa)**: Vấn đề bảo mật, bug nghiêm trọng
+   - **Warning (Khuyến nghị sửa)**: Vấn đề chất lượng mã nguồn, vấn đề hiệu suất
+   - **Suggestion (Xem xét cải thiện)**: Best practice, code style
+2. Trình bày cách sửa cụ thể cho mỗi vấn đề
+3. Trình bày kết quả review cho người dùng
 
-### ステップ4: 承認待ち
-1. **ユーザーの承認または指示を待つ。回答が得られるまで次のステップに進まない。**
-2. ユーザーからの指示に基づいて修正を実行するか、次のフェーズに進む
+### Bước 4: Chờ Phê duyệt
+1. **Chờ phê duyệt hoặc chỉ thị từ người dùng. Không tiến hành bước tiếp theo cho đến khi nhận được phản hồi.**
+2. Dựa trên chỉ thị từ người dùng, thực hiện sửa lỗi hoặc tiến hành giai đoạn tiếp theo
 
-## レビュー項目
+## Hạng mục Review
 
-### セキュリティチェック（重要）
-- ハードコードされた認証情報（APIキー、パスワード、トークン）
-- SQLインジェクションリスク
-- XSS脆弱性
-- 入力検証の欠如
-- 安全でない依存関係
+### Kiểm tra Bảo mật (Quan trọng)
+- Thông tin xác thực hard-code (API key, mật khẩu, token)
+- Rủi ro SQL Injection
+- Lỗ hổng XSS
+- Thiếu xác thực đầu vào
+- Dependency không an toàn
 
-### コード品質（高）
-- 大きな関数（>50行）
-- 大きなファイル（>800行）
-- 深いネスト（>4レベル）
-- エラーハンドリングの欠如
-- console.logステートメント
-- 変更パターン
-- 新しいコードのテストの欠如
+### Chất lượng Mã nguồn (Cao)
+- Hàm lớn (>50 dòng)
+- File lớn (>800 dòng)
+- Lồng sâu (>4 cấp)
+- Thiếu xử lý lỗi
+- Câu lệnh console.log
+- Pattern thay đổi trực tiếp
+- Thiếu test cho mã nguồn mới
 
-### パフォーマンス（中）
-- 非効率なアルゴリズム
-- 不要な再レンダリング
-- メモ化の欠如
-- 大きなバンドルサイズ
-- キャッシュの欠如
-- N+1クエリ
+### Hiệu suất (Trung bình)
+- Thuật toán không hiệu quả
+- Re-render không cần thiết
+- Thiếu memoization
+- Bundle size lớn
+- Thiếu cache
+- Truy vấn N+1
 
-## 承認基準
+## Tiêu chí Phê duyệt
 
-- ✅ **承認**: CRITICALまたはHIGHの問題がない
-- ⚠️ **警告**: MEDIUMの問題のみ（注意してマージ可能）
-- ❌ **ブロック**: CRITICALまたはHIGHの問題が見つかった
+- ✅ **Phê duyệt**: Không có vấn đề CRITICAL hoặc HIGH
+- ⚠️ **Cảnh báo**: Chỉ có vấn đề MEDIUM (có thể merge cẩn thận)
+- ❌ **Chặn**: Tìm thấy vấn đề CRITICAL hoặc HIGH
 
-## アーティファクト
+## Artifact
 
-- レビューレポート（コンソール出力）
-- 修正提案（必要に応じて）
+- Báo cáo review (output console)
+- Đề xuất sửa lỗi (nếu cần)
 
-## 注意事項
+## Lưu ý
 
-- **重要**: 各ステップでユーザーの回答や承認が必要な場合は、必ずユーザーの回答を待ってから次のステップに進むこと。先に進まないこと。
-- コードレビューは、すべてのコード生成後に自動的に実行されることを推奨
-- レビュー結果は、次のフェーズに進む前に承認が必要
+- **Quan trọng**: Khi mỗi bước cần phản hồi hoặc phê duyệt từ người dùng, BẮT BUỘC chờ phản hồi trước khi tiến hành bước tiếp theo. Không được tiến hành trước.
+- Khuyến nghị tự động thực hiện review mã nguồn sau mỗi lần sinh
+- Kết quả review cần được phê duyệt trước khi tiến hành giai đoạn tiếp theo

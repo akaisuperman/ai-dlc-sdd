@@ -1,43 +1,43 @@
 ---
-description: テスト要件。80%の最小カバレッジ、TDDワークフロー、テストタイプの定義。
+description: Yêu cầu kiểm thử. Độ bao phủ tối thiểu 80%, quy trình TDD, định nghĩa các loại kiểm thử.
 globs: ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts", "**/*.spec.tsx", "**/tests/**", "**/__tests__/**"]
 alwaysApply: true
 type: always
 ---
 
-# テスト要件
+# Yêu cầu Kiểm thử
 
-## 最小テストカバレッジ: 80%
+## Độ bao phủ Kiểm thử Tối thiểu: 80%
 
-**必須テストタイプ**:
-1. **ユニットテスト** - 個別の関数、ユーティリティ、コンポーネント
-2. **統合テスト** - APIエンドポイント、データベース操作
-3. **E2Eテスト** - 重要なユーザーフロー（Playwright推奨）
+**Các loại kiểm thử bắt buộc**:
+1. **Kiểm thử Đơn vị (Unit Test)** - Hàm riêng lẻ, utility, component
+2. **Kiểm thử Tích hợp (Integration Test)** - API endpoint, thao tác database
+3. **Kiểm thử E2E** - Luồng người dùng quan trọng (khuyến nghị Playwright)
 
-## テスト駆動開発（TDD）
+## Phát triển Hướng Kiểm thử (TDD)
 
-**必須ワークフロー**:
-1. テストを先に書く（RED）
-2. テストを実行 - 失敗するはず
-3. 最小限の実装を書く（GREEN）
-4. テストを実行 - 成功するはず
-5. リファクタリング（IMPROVE）
-6. カバレッジを確認（80%以上）
+**Quy trình bắt buộc**:
+1. Viết test trước (RED)
+2. Chạy test - phải thất bại
+3. Viết triển khai tối thiểu (GREEN)
+4. Chạy test - phải thành công
+5. Tái cấu trúc (IMPROVE)
+6. Kiểm tra độ bao phủ (80% trở lên)
 
-## テスト失敗のトラブルシューティング
+## Xử lý sự cố Kiểm thử Thất bại
 
-1. **TDD専門家として行動**（`aidlc-code-generation`コマンド内、ステップ7）
-2. テストの分離を確認
-3. モックが正しいか確認
-4. テストではなく実装を修正（テストが間違っている場合を除く）
+1. **Hành động với vai trò Chuyên gia TDD** (trong lệnh `aidlc-code-generation`, Bước 7)
+2. Xác nhận tính cô lập của test
+3. Xác nhận mock đúng
+4. Sửa triển khai, không sửa test (trừ khi test sai)
 
-## 専門家の役割サポート
+## Hỗ trợ Vai trò Chuyên gia
 
-- **TDD専門家** - `aidlc-code-generation`コマンド内に統合、新機能に積極的に使用、テストファーストを強制
-- **E2Eテスト専門家** - Playwright E2Eテスト専門家（将来実装予定）
+- **Chuyên gia TDD** - Tích hợp trong lệnh `aidlc-code-generation`, sử dụng chủ động cho tính năng mới, bắt buộc test-first
+- **Chuyên gia Kiểm thử E2E** - Chuyên gia kiểm thử E2E với Playwright (dự kiến triển khai trong tương lai)
 
-## AI-DLC統合
+## Tích hợp AI-DLC
 
-- **Code Generationコマンド**: すべてのコード生成時にユニットテストを自動生成
-- **テストカバレッジ**: 80%以上のカバレッジを達成するまでコード生成を完了しない
-- **TDDワークフロー**: `aidlc-code-generation`コマンドでTDDを強制
+- **Lệnh Code Generation**: Tự động sinh unit test khi sinh mã nguồn
+- **Độ bao phủ Kiểm thử**: Không hoàn thành sinh mã nguồn cho đến khi đạt 80% bao phủ trở lên
+- **Quy trình TDD**: Bắt buộc TDD trong lệnh `aidlc-code-generation`

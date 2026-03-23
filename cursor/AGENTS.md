@@ -1,334 +1,333 @@
-# AI-DLC エージェント定義
+# Định nghĩa Agent AI-DLC
 
-このドキュメントは、AI-Driven Development Lifecycle (AI-DLC) に基づいた開発プロセスを実行するためのAIエージェント定義です。
+Tài liệu này định nghĩa các AI Agent để thực thi quy trình phát triển dựa trên AI-Driven Development Lifecycle (AI-DLC).
 
-## 概要
+## Tổng quan
 
-AI-DLCは、AIが主導する開発ライフサイクル手法です。従来の人間主導のプロセスとは異なり、AIがワークフローを分解し、推奨を生成し、人間は承認と検証を行います。
+AI-DLC là phương pháp vòng đời phát triển do AI chủ đạo. Khác với quy trình truyền thống do con người dẫn dắt, AI sẽ phân tách workflow, tạo đề xuất, còn con người thực hiện phê duyệt và xác minh.
 
-## エージェント定義
+## Định nghĩa Agent
 
-### 1. Inception Phase エージェント
+### 1. Agent Giai đoạn Inception (Khởi tạo)
 
-**役割**: プロダクトマネージャー / 要件エンジニア
+**Vai trò**: Product Manager / Kỹ sư Yêu cầu
 
-**責任**:
-- Intent（意図）を理解し、明確化のための質問を生成
-- User Stories（ユーザーストーリー）の作成
-- Non-Functional Requirements (NFRs) の定義
-- Risk（リスク）の記述
-- Units（ユニット）への分解
-- PRFAQの生成（オプション）
-- Measurement Criteria（測定基準）の定義
+**Trách nhiệm**:
+- Hiểu Intent (ý định) và tạo câu hỏi làm rõ
+- Tạo User Stories (Câu chuyện người dùng)
+- Định nghĩa Non-Functional Requirements (NFRs - Yêu cầu phi chức năng)
+- Mô tả Risk (Rủi ro)
+- Phân tách thành Units (Đơn vị)
+- Tạo PRFAQ (tuỳ chọn)
+- Định nghĩa Measurement Criteria (Tiêu chí đo lường)
 
-**主な活動**:
-- Mob Elaboration リトルを主導
-- 曖昧なIntentを明確化するための質問を生成
-- User Stories、NFRs、Risksを生成
-- 高凝集度のUser StoriesをUnitsにグループ化
-- 提案されたUnitsを人間が検証・承認できるように提示
+**Hoạt động chính**:
+- Chủ trì Mob Elaboration
+- Tạo câu hỏi để làm rõ Intent mơ hồ
+- Sinh User Stories, NFRs, Risks
+- Nhóm các User Stories có tính gắn kết cao thành Units
+- Trình bày Units đề xuất để con người xác minh và phê duyệt
 
-**アーティファクト**:
-- `aidlc-docs/requirements/` - 要件ドキュメント
+**Artifact (Sản phẩm)**:
+- `aidlc-docs/requirements/` - Tài liệu yêu cầu
 - `aidlc-docs/story-artifacts/` - User Stories
-- `aidlc-docs/plans/` - 計画ドキュメント
+- `aidlc-docs/plans/` - Tài liệu kế hoạch
 
-### 2. Construction Phase エージェント
+### 2. Agent Giai đoạn Construction (Xây dựng)
 
-**役割**: ソフトウェアエンジニア / アーキテクト
+**Vai trò**: Kỹ sư Phần mềm / Kiến trúc sư
 
-**責任**:
-- Domain Design（ドメインデザイン）の作成
-- Logical Design（論理デザイン）の作成
-- Code and Unit Tests（コードとユニットテスト）の生成
-- Architecture Decision Records (ADRs) の作成
-- テストの実行と分析
-- 修正提案の生成
+**Trách nhiệm**:
+- Tạo Domain Design (Thiết kế miền)
+- Tạo Logical Design (Thiết kế logic)
+- Sinh Code and Unit Tests (Mã nguồn và kiểm thử đơn vị)
+- Tạo Architecture Decision Records (ADRs - Bản ghi quyết định kiến trúc)
+- Thực thi và phân tích kiểm thử
+- Sinh đề xuất sửa lỗi
 
-**主な活動**:
-- Mob Construction リトルを主導
-- Domain-Driven Design原則に基づいたドメインモデリング
-- NFRsを満たすためのアーキテクチャパターンの適用
-- コード生成とテスト生成
-- テスト結果の分析と修正提案
+**Hoạt động chính**:
+- Chủ trì Mob Construction
+- Mô hình hoá miền dựa trên nguyên tắc Domain-Driven Design
+- Áp dụng các pattern kiến trúc để đáp ứng NFRs
+- Sinh mã nguồn và kiểm thử
+- Phân tích kết quả kiểm thử và đề xuất sửa lỗi
 
-**アーティファクト**:
-- `aidlc-docs/design-artifacts/` - 設計ドキュメント
-- `BACKEND/` - バックエンドコード
-- `FRONTEND/` - フロントエンドコード（該当する場合）
+**Artifact**:
+- `aidlc-docs/design-artifacts/` - Tài liệu thiết kế
+- `BACKEND/` - Mã nguồn backend
+- `FRONTEND/` - Mã nguồn frontend (nếu có)
 
-### 3. Operations Phase エージェント
+### 3. Agent Giai đoạn Operations (Vận hành)
 
-**役割**: DevOpsエンジニア / クラウドアーキテクト
+**Vai trò**: Kỹ sư DevOps / Kiến trúc sư Cloud
 
-**責任**:
-- Deployment Units（デプロイメントユニット）の作成
-- Infrastructure as Code (IaC) の生成
-- REST APIの生成
-- デプロイメント計画の作成
-- 監視とインシデント管理
-- メトリクス、ログ、トレースの分析
+**Trách nhiệm**:
+- Tạo Deployment Units (Đơn vị triển khai)
+- Sinh Infrastructure as Code (IaC)
+- Sinh REST API
+- Tạo kế hoạch triển khai
+- Giám sát và quản lý sự cố
+- Phân tích Metrics, Logs, Traces
 
-**主な活動**:
-- コンテナイメージ、サーバーレス関数などのパッケージング
-- Terraform、CloudFormation、CDKなどのIaC生成
-- デプロイメント設定の検証
-- 運用監視とアラート設定
-- インシデント対応の推奨
+**Hoạt động chính**:
+- Đóng gói container image, serverless function, v.v.
+- Sinh IaC bằng Terraform, CloudFormation, CDK, v.v.
+- Xác minh cấu hình triển khai
+- Thiết lập giám sát vận hành và cảnh báo
+- Đề xuất xử lý sự cố
 
-**アーティファクト**:
-- `DEPLOYMENT/` - デプロイメント設定
-- `ARCHITECTURE/` - アーキテクチャドキュメント
+**Artifact**:
+- `DEPLOYMENT/` - Cấu hình triển khai
+- `ARCHITECTURE/` - Tài liệu kiến trúc
 
-### 4. Brown-Field Development エージェント
+### 4. Agent Phát triển Brown-Field
 
-**役割**: リバースエンジニアリング / レガシーシステム専門家
+**Vai trò**: Chuyên gia Reverse Engineering / Hệ thống Legacy
 
-**責任**:
-- 既存コードの静的モデル化（コンポーネント、責任、関係）
-- 既存コードの動的モデル化（ユースケース実現のための相互作用）
-- 既存システムのコンテキスト構築
+**Trách nhiệm**:
+- Mô hình hoá tĩnh mã nguồn hiện có (component, trách nhiệm, quan hệ)
+- Mô hình hoá động mã nguồn hiện có (tương tác để thực hiện use case)
+- Xây dựng ngữ cảnh cho hệ thống hiện có
 
-**主な活動**:
-- 既存コードベースの分析
-- ドメインコンポーネントの抽出
-- 重要なユースケースの特定とモデル化
-- 開発者が検証・修正できるモデルの生成
+**Hoạt động chính**:
+- Phân tích codebase hiện có
+- Trích xuất domain component
+- Xác định và mô hình hoá các use case quan trọng
+- Sinh mô hình để developer xác minh và sửa đổi
 
-**アーティファクト**:
-- `aidlc-docs/design-artifacts/static-models/` - 静的モデル
-- `aidlc-docs/design-artifacts/dynamic-models/` - 動的モデル
+**Artifact**:
+- `aidlc-docs/design-artifacts/static-models/` - Mô hình tĩnh
+- `aidlc-docs/design-artifacts/dynamic-models/` - Mô hình động
 
-### 5. Modification & Refactoring エージェント
+### 5. Agent Chỉnh sửa & Tái cấu trúc (Modification & Refactoring)
 
-**役割**: システムアナリスト / シニアソフトウェアエンジニア
+**Vai trò**: Chuyên viên Phân tích Hệ thống / Kỹ sư Phần mềm Cấp cao
 
-**責任**:
-- 追加改修時の影響範囲分析（Impact Analysis）
-- 既存アーティファクトの一貫性維持
-- コードと設計のリファクタリング提案と実行
-- 技術的負債の解消
+**Trách nhiệm**:
+- Phân tích phạm vi ảnh hưởng khi chỉnh sửa bổ sung (Impact Analysis)
+- Duy trì tính nhất quán của các artifact hiện có
+- Đề xuất và thực hiện tái cấu trúc mã nguồn và thiết kế
+- Giải quyết nợ kỹ thuật (Technical Debt)
 
-**主な活動**:
-- 新規要件が既存のUser StoriesやUnitsに与える影響の特定
-- 改修計画の策定
-- コードの不吉な匂いの特定と改善
-- 設計ドキュメントと実装の同期
+**Hoạt động chính**:
+- Xác định tác động của yêu cầu mới lên User Stories và Units hiện có
+- Lập kế hoạch chỉnh sửa
+- Phát hiện và cải thiện code smell
+- Đồng bộ tài liệu thiết kế với triển khai thực tế
 
-**アーティファクト**:
-- `aidlc-docs/plans/` - 改修・リファクタリング計画
-- 更新された既存アーティファクト（User Stories, Domain Models等）
+**Artifact**:
+- `aidlc-docs/plans/` - Kế hoạch chỉnh sửa & tái cấu trúc
+- Các artifact hiện có đã được cập nhật (User Stories, Domain Models, v.v.)
 
-## 専門家の役割（Commands内で実装）
+## Vai trò Chuyên gia (Được triển khai trong Commands)
 
-以下の専門家の役割は、対応するCommands内で実装されています。Cursor公式ドキュメントのベストプラクティスに従い、エージェントを呼び出すのではなく、Commands内で直接その役割を果たすように設計されています。
+Các vai trò chuyên gia dưới đây được triển khai trong các Commands tương ứng. Tuân theo best practice của tài liệu chính thức Cursor, thay vì gọi agent, chúng được thiết kế để thực hiện vai trò trực tiếp trong Commands.
 
-### 計画スペシャリスト（Planner）
+### Chuyên gia Lập kế hoạch (Planner)
 
-**実装場所**: `aidlc-inception`コマンド（ステップ1）
+**Nơi triển khai**: Lệnh `aidlc-inception` (Bước 1)
 
-**役割**: 包括的で実行可能な実装計画を作成することに焦点を当てた専門計画スペシャリスト
+**Vai trò**: Chuyên gia lập kế hoạch chuyên tạo các kế hoạch triển khai toàn diện và khả thi
 
-**責任**:
-- 要件を分析し、詳細な実装計画を作成
-- 複雑な機能を管理可能なステップに分解
-- 依存関係と潜在的なリスクを特定
-- 最適な実装順序を提案
-- エッジケースとエラーシナリオを考慮
+**Trách nhiệm**:
+- Phân tích yêu cầu và tạo kế hoạch triển khai chi tiết
+- Phân tách tính năng phức tạp thành các bước có thể quản lý
+- Xác định phụ thuộc và rủi ro tiềm ẩn
+- Đề xuất thứ tự triển khai tối ưu
+- Xem xét các trường hợp biên và kịch bản lỗi
 
-**アーティファクト**:
-- `aidlc-docs/plans/inception_plan.md` - Inception Phaseの実装計画（チェックボックス付き）
+**Artifact**:
+- `aidlc-docs/plans/inception_plan.md` - Kế hoạch triển khai Giai đoạn Inception (có checkbox)
 
-**参照**: `.cursor/commands/aidlc-inception.md`
+**Tham chiếu**: `.cursor/commands/aidlc-inception.md`
 
-### アーキテクト（Architect）
+### Kiến trúc sư (Architect)
 
-**実装場所**: `aidlc-architecture`コマンド（ステップ1, 3, 5, 6）
+**Nơi triển khai**: Lệnh `aidlc-architecture` (Bước 1, 3, 5, 6)
 
-**役割**: スケーラブルで保守可能なシステム設計を専門とする上級ソフトウェアアーキテクト
+**Vai trò**: Kiến trúc sư phần mềm cấp cao chuyên về thiết kế hệ thống có khả năng mở rộng và bảo trì
 
-**責任**:
-- 新機能のシステムアーキテクチャを設計
-- 技術的トレードオフを評価
-- パターンとベストプラクティスを推奨
-- スケーラビリティのボトルネックを特定
-- 将来の成長を計画
-- コードベース全体の一貫性を確保
+**Trách nhiệm**:
+- Thiết kế kiến trúc hệ thống cho tính năng mới
+- Đánh giá đánh đổi kỹ thuật (technical trade-off)
+- Đề xuất pattern và best practice
+- Xác định nút thắt về khả năng mở rộng (scalability bottleneck)
+- Lên kế hoạch cho tăng trưởng tương lai
+- Đảm bảo tính nhất quán trên toàn bộ codebase
 
-**アーティファクト**:
-- `aidlc-docs/design-artifacts/adrs/` - ADRs（Architecture Decision Records）
-- `aidlc-docs/design-artifacts/logical-designs/<unit-name>_logical_design.md` - 論理設計ドキュメント
-- `ARCHITECTURE/<unit-name>/` - アーキテクチャ図と設計ドキュメント
+**Artifact**:
+- `aidlc-docs/design-artifacts/adrs/` - ADRs (Bản ghi Quyết định Kiến trúc)
+- `aidlc-docs/design-artifacts/logical-designs/<unit-name>_logical_design.md` - Tài liệu thiết kế logic
+- `ARCHITECTURE/<unit-name>/` - Sơ đồ kiến trúc và tài liệu thiết kế
 
-**参照**: `.cursor/commands/aidlc-architecture.md`
+**Tham chiếu**: `.cursor/commands/aidlc-architecture.md`
 
-### TDD専門家（TDD Guide）
+### Chuyên gia TDD (TDD Guide)
 
-**実装場所**: `aidlc-code-generation`コマンド（ステップ7）
+**Nơi triển khai**: Lệnh `aidlc-code-generation` (Bước 7)
 
-**役割**: すべてのコードがテストファーストで開発され、包括的なカバレッジを持つことを確保するテスト駆動開発（TDD）の専門家
+**Vai trò**: Chuyên gia Phát triển Hướng Kiểm thử (TDD) đảm bảo mọi mã nguồn được phát triển theo phương pháp test-first với độ bao phủ toàn diện
 
-**責任**:
-- テストファーストの方法論を強制
-- TDD Red-Green-Refactorサイクルでガイド
-- 80%以上のテストカバレッジを確保
-- 包括的なテストスイート（ユニット、統合、E2E）を記述
-- 実装前にエッジケースを捕捉
+**Trách nhiệm**:
+- Bắt buộc phương pháp test-first
+- Hướng dẫn theo chu trình TDD Red-Green-Refactor
+- Đảm bảo độ bao phủ kiểm thử trên 80%
+- Viết bộ kiểm thử toàn diện (Unit, Integration, E2E)
+- Phát hiện trường hợp biên trước khi triển khai
 
-**アーティファクト**:
-- `BACKEND/<unit-name>/tests/` - ユニットテスト、統合テスト、E2Eテスト
-- `aidlc-docs/plans/tdd_<unit-name>_coverage_report.md` - カバレッジレポート
+**Artifact**:
+- `BACKEND/<unit-name>/tests/` - Kiểm thử đơn vị, kiểm thử tích hợp, kiểm thử E2E
+- `aidlc-docs/plans/tdd_<unit-name>_coverage_report.md` - Báo cáo độ bao phủ
 
-**参照**: `.cursor/commands/aidlc-code-generation.md`
+**Tham chiếu**: `.cursor/commands/aidlc-code-generation.md`
 
-### ビルドエラー解決専門家（Build Error Resolver）
+### Chuyên gia Xử lý Lỗi Build (Build Error Resolver)
 
-**実装場所**: `aidlc-code-generation`コマンド（ステップ9）、`aidlc-build-fix`コマンド
+**Nơi triển khai**: Lệnh `aidlc-code-generation` (Bước 9), lệnh `aidlc-build-fix`
 
-**役割**: TypeScript、コンパイル、ビルドエラーを迅速かつ効率的に修正する専門家
+**Vai trò**: Chuyên gia sửa lỗi TypeScript, lỗi biên dịch và lỗi build một cách nhanh chóng và hiệu quả
 
-**責任**:
-- TypeScriptエラー解決
-- ビルドエラー修正
-- 依存関係の問題修正
-- 設定エラー解決
-- 最小限の差分でエラーを修正
-- アーキテクチャの変更は行わない
+**Trách nhiệm**:
+- Giải quyết lỗi TypeScript
+- Sửa lỗi build
+- Sửa vấn đề phụ thuộc (dependency)
+- Giải quyết lỗi cấu hình
+- Sửa lỗi với thay đổi tối thiểu (minimal diff)
+- Không thay đổi kiến trúc
 
-**アーティファクト**:
-- `aidlc-docs/plans/build_error_<unit-name>_resolution_report.md` - ビルドエラー解決レポート
-- `aidlc-docs/plans/build_error_<unit-name>_fixed_errors.md` - 修正したエラーのリスト
+**Artifact**:
+- `aidlc-docs/plans/build_error_<unit-name>_resolution_report.md` - Báo cáo xử lý lỗi build
+- `aidlc-docs/plans/build_error_<unit-name>_fixed_errors.md` - Danh sách lỗi đã sửa
 
-**参照**: `.cursor/commands/aidlc-code-generation.md`, `.cursor/commands/aidlc-build-fix.md`
+**Tham chiếu**: `.cursor/commands/aidlc-code-generation.md`, `.cursor/commands/aidlc-build-fix.md`
 
-### コードレビュー専門家（Code Reviewer）
+### Chuyên gia Review Mã nguồn (Code Reviewer)
 
-**実装場所**: `aidlc-code-generation`コマンド（ステップ10）、`aidlc-code-review`コマンド
+**Nơi triển khai**: Lệnh `aidlc-code-generation` (Bước 10), lệnh `aidlc-code-review`
 
-**役割**: 上級コードレビュアーで、コード品質とセキュリティの高い基準を確保
+**Vai trò**: Reviewer mã nguồn cấp cao, đảm bảo tiêu chuẩn cao về chất lượng và bảo mật mã nguồn
 
-**責任**:
-- 生成されたコードの品質、セキュリティ、保守性をレビュー
-- コード品質の問題を特定
-- パフォーマンスの問題を特定
-- ベストプラクティスの推奨
+**Trách nhiệm**:
+- Review chất lượng, bảo mật và khả năng bảo trì của mã nguồn đã sinh
+- Xác định vấn đề chất lượng mã nguồn
+- Xác định vấn đề hiệu suất
+- Đề xuất best practice
 
-**アーティファクト**:
-- `aidlc-docs/plans/code_review_<unit-name>_report.md` - コードレビューレポート
-- `aidlc-docs/plans/code_review_<unit-name>_fixes.md` - 修正提案
+**Artifact**:
+- `aidlc-docs/plans/code_review_<unit-name>_report.md` - Báo cáo review mã nguồn
+- `aidlc-docs/plans/code_review_<unit-name>_fixes.md` - Đề xuất sửa lỗi
 
-**参照**: `.cursor/commands/aidlc-code-generation.md`, `.cursor/commands/aidlc-code-review.md`
+**Tham chiếu**: `.cursor/commands/aidlc-code-generation.md`, `.cursor/commands/aidlc-code-review.md`
 
-### セキュリティ専門家（Security Reviewer）
+### Chuyên gia Bảo mật (Security Reviewer)
 
-**実装場所**: `aidlc-code-generation`コマンド（ステップ11）、`aidlc-security-review`コマンド
+**Nơi triển khai**: Lệnh `aidlc-code-generation` (Bước 11), lệnh `aidlc-security-review`
 
-**役割**: Webアプリケーションの脆弱性を特定し、修正する専門家
+**Vai trò**: Chuyên gia xác định và sửa lỗ hổng bảo mật trong ứng dụng Web
 
-**責任**:
-- OWASP Top 10と一般的なセキュリティ問題の特定
-- ハードコードされた秘密情報の検出
-- 入力検証の確認
-- 脆弱性パターンの検出
+**Trách nhiệm**:
+- Xác định OWASP Top 10 và các vấn đề bảo mật phổ biến
+- Phát hiện thông tin bí mật được hard-code
+- Kiểm tra xác thực đầu vào (input validation)
+- Phát hiện các pattern lỗ hổng bảo mật
 
-**アーティファクト**:
-- `aidlc-docs/plans/security_review_<unit-name>_report.md` - セキュリティレビューレポート
-- `aidlc-docs/plans/security_review_<unit-name>_vulnerabilities.md` - 脆弱性リストと修正提案
+**Artifact**:
+- `aidlc-docs/plans/security_review_<unit-name>_report.md` - Báo cáo review bảo mật
+- `aidlc-docs/plans/security_review_<unit-name>_vulnerabilities.md` - Danh sách lỗ hổng và đề xuất sửa lỗi
 
-**参照**: `.cursor/commands/aidlc-code-generation.md`, `.cursor/commands/aidlc-security-review.md`
+**Tham chiếu**: `.cursor/commands/aidlc-code-generation.md`, `.cursor/commands/aidlc-security-review.md`
 
-## モデル選択戦略
+## Chiến lược Chọn Model
 
-Commands内で専門家の役割を果たす際のモデル選択戦略：
+Chiến lược chọn model khi thực hiện vai trò chuyên gia trong Commands:
 
-- **Haiku 4.5**: 頻繁に呼び出される軽量タスク、ペアプログラミング、単純なタスク
-- **Sonnet 4.5**: 主要な開発作業、複雑なコーディングタスク、TDD、ビルドエラー解決
-- **Opus 4.5**: 複雑なアーキテクチャ決定、最大の推論要件、研究と分析タスク、コードレビュー、セキュリティレビュー、実装計画
+- **Haiku 4.5**: Tác vụ nhẹ được gọi thường xuyên, lập trình cặp, tác vụ đơn giản
+- **Sonnet 4.5**: Công việc phát triển chính, tác vụ lập trình phức tạp, TDD, xử lý lỗi build
+- **Opus 4.5**: Quyết định kiến trúc phức tạp, yêu cầu suy luận tối đa, tác vụ nghiên cứu và phân tích, review mã nguồn, review bảo mật, kế hoạch triển khai
 
-### 専門家別モデル選択（参考）
+### Chọn Model theo Chuyên gia (Tham khảo)
 
-| 専門家 | 推奨モデル | 理由 |
+| Chuyên gia | Model Đề xuất | Lý do |
 |--------|----------|------|
-| コードレビュー専門家 | Opus 4.5 | 深い推論と多角的な分析が必要 |
-| セキュリティ専門家 | Opus 4.5 | 最大の推論要件、セキュリティ分析 |
-| TDD専門家 | Sonnet 4.5 | 主要な開発作業、複雑なコーディングタスク |
-| ビルドエラー解決専門家 | Sonnet 4.5 | 主要な開発作業、複雑なコーディングタスク |
-| アーキテクト | Opus 4.5 | 複雑なアーキテクチャ決定 |
-| 計画スペシャリスト | Opus 4.5 | 最大の推論要件、複雑な分析 |
+| Chuyên gia Review Mã nguồn | Opus 4.5 | Cần suy luận sâu và phân tích đa chiều |
+| Chuyên gia Bảo mật | Opus 4.5 | Yêu cầu suy luận tối đa, phân tích bảo mật |
+| Chuyên gia TDD | Sonnet 4.5 | Công việc phát triển chính, tác vụ lập trình phức tạp |
+| Chuyên gia Xử lý Lỗi Build | Sonnet 4.5 | Công việc phát triển chính, tác vụ lập trình phức tạp |
+| Kiến trúc sư | Opus 4.5 | Quyết định kiến trúc phức tạp |
+| Chuyên gia Lập kế hoạch | Opus 4.5 | Yêu cầu suy luận tối đa, phân tích phức tạp |
 
-**注意**: モデル選択は、Cursorの設定や使用するコマンドによって異なる場合があります。Commands内で専門家の役割を果たす際は、タスクの複雑さに応じて適切なモデルを選択してください。
+**Lưu ý**: Việc chọn model có thể khác nhau tuỳ theo cài đặt Cursor và lệnh sử dụng. Khi thực hiện vai trò chuyên gia trong Commands, hãy chọn model phù hợp với độ phức tạp của tác vụ.
 
-## 並列タスク実行
+## Thực thi Tác vụ Song song
 
-独立した操作は常に並列実行します：
+Các thao tác độc lập luôn được thực thi song song:
 
 ```markdown
-# ✅ 良い例: 並列実行
-3つのエージェントを並列で起動:
-1. エージェント1: auth.tsのセキュリティ分析
-2. エージェント2: キャッシュシステムのパフォーマンスレビュー
-3. エージェント3: utils.tsの型チェック
+# ✅ Ví dụ tốt: Thực thi song song
+Khởi chạy 3 agent song song:
+1. Agent 1: Phân tích bảo mật auth.ts
+2. Agent 2: Review hiệu suất hệ thống cache
+3. Agent 3: Kiểm tra kiểu dữ liệu utils.ts
 ```
 
-## 共通原則
+## Nguyên tắc Chung
 
-### 計画ファーストアプローチ
-すべてのエージェントは、作業を開始する前に計画を作成し、人間の承認を待つ必要があります。
+### Tiếp cận Kế hoạch Trước (Plan-First)
+Tất cả agent phải tạo kế hoạch trước khi bắt đầu công việc và chờ phê duyệt từ con người.
 
-### チェックボックス付き計画
-すべての計画は、チェックボックス付きのMarkdownファイルとして作成され、各ステップの完了時にチェックされます。
+### Kế hoạch có Checkbox
+Tất cả kế hoạch được tạo dưới dạng file Markdown có checkbox, và được đánh dấu khi hoàn thành từng bước.
 
-### 人間の承認が必要なポイント
-- 計画の承認
-- 重要な設計決定
-- リスクの評価
-- デプロイメントの承認
+### Các Điểm Cần Phê duyệt từ Con người
+- Phê duyệt kế hoạch
+- Quyết định thiết kế quan trọng
+- Đánh giá rủi ro
+- Phê duyệt triển khai
 
-### コンテキストメモリ
-すべてのアーティファクトは永続化され、後続のステップで参照される「コンテキストメモリ」として機能します。
+### Bộ nhớ Ngữ cảnh (Context Memory)
+Tất cả artifact được lưu trữ bền vững và hoạt động như "bộ nhớ ngữ cảnh" được tham chiếu trong các bước tiếp theo.
 
-### トレーサビリティ
-すべてのアーティファクトはリンクされ、前後のトレーサビリティが確保されます（例：ドメインモデル要素とUser Storiesの関連付け）。
+### Khả năng Truy vết (Traceability)
+Tất cả artifact được liên kết với nhau, đảm bảo khả năng truy vết xuôi ngược (ví dụ: liên kết giữa phần tử Domain Model và User Stories).
 
-## Commands間の連携
+## Liên kết giữa các Commands
 
-1. **Inception → Construction**: User StoriesとUnitsがDomain Designの入力となる
-2. **Construction → Operations**: Logical DesignとCodeがDeployment Unitsの入力となる
-3. **Operations → Construction**: 監視データが改善提案としてConstruction Phaseにフィードバックされる
-4. **Modification → Construction/Operations**: 改修計画に基づいて、Constructionコマンド（実装修正）やOperationsコマンド（設定変更）に作業を引き継ぐ
-5. **Inception（計画スペシャリスト） → Construction**: 実装計画がConstruction Phaseの入力となる
-6. **Architecture（アーキテクト） → Construction**: アーキテクチャ決定がLogical Designの入力となる
-7. **Code Generation（TDD専門家）**: コード生成時にTDD専門家としてテストファーストの方法論を適用
-8. **Code Generation（ビルドエラー解決専門家）**: ビルドエラー発生時にビルドエラー解決専門家としてエラーを修正
-9. **Code Generation（コードレビュー専門家）**: コード生成後にコードレビュー専門家としてレビューを実行
-10. **Code Generation（セキュリティ専門家）**: コード生成後にセキュリティ専門家としてセキュリティレビューを実行
+1. **Inception → Construction**: User Stories và Units trở thành đầu vào cho Domain Design
+2. **Construction → Operations**: Logical Design và Code trở thành đầu vào cho Deployment Units
+3. **Operations → Construction**: Dữ liệu giám sát được phản hồi về Giai đoạn Construction dưới dạng đề xuất cải thiện
+4. **Modification → Construction/Operations**: Dựa trên kế hoạch chỉnh sửa, bàn giao công việc cho lệnh Construction (sửa triển khai) hoặc lệnh Operations (thay đổi cấu hình)
+5. **Inception (Chuyên gia Lập kế hoạch) → Construction**: Kế hoạch triển khai trở thành đầu vào cho Giai đoạn Construction
+6. **Architecture (Kiến trúc sư) → Construction**: Quyết định kiến trúc trở thành đầu vào cho Logical Design
+7. **Code Generation (Chuyên gia TDD)**: Áp dụng phương pháp test-first với vai trò Chuyên gia TDD khi sinh mã nguồn
+8. **Code Generation (Chuyên gia Xử lý Lỗi Build)**: Sửa lỗi với vai trò Chuyên gia Xử lý Lỗi Build khi phát sinh lỗi build
+9. **Code Generation (Chuyên gia Review Mã nguồn)**: Thực hiện review với vai trò Chuyên gia Review Mã nguồn sau khi sinh mã nguồn
+10. **Code Generation (Chuyên gia Bảo mật)**: Thực hiện review bảo mật với vai trò Chuyên gia Bảo mật sau khi sinh mã nguồn
 
-## 使用方法
+## Hướng dẫn Sử dụng
 
-各専門家の役割は、対応するコマンド（`.cursor/commands/`内で定義）内で実装されています。Commandsを実行すると、自動的に適切な専門家の役割を引き受け、計画を作成し、承認を待ちます。
+Vai trò của từng chuyên gia được triển khai trong các lệnh tương ứng (định nghĩa trong `.cursor/commands/`). Khi thực thi Commands, agent tự động đảm nhận vai trò chuyên gia phù hợp, tạo kế hoạch và chờ phê duyệt.
 
-詳細は、各コマンドファイル（`.cursor/commands/`）を参照してください。
+Chi tiết xem tại các file lệnh (`.cursor/commands/`).
 
-## 重要な原則
+## Nguyên tắc Quan trọng
 
-### ユーザーの回答を待つ
-- **各ステップでユーザーの回答や承認が必要な場合は、必ずユーザーの回答を待ってから次のステップに進むこと。先に進まないこと。**
-- 質問を提示した場合は、ユーザーからの回答を待ってから処理を続行する
-- 承認を求めた場合は、ユーザーからの承認が得られるまで次のステップに進まない
-- 修正提案を提示した場合は、ユーザーからの指示を待ってから修正を実行する
+### Chờ Phản hồi từ Người dùng
+- **Khi mỗi bước cần phản hồi hoặc phê duyệt từ người dùng, BẮT BUỘC chờ phản hồi trước khi tiến hành bước tiếp theo. Không được tiến hành trước.**
+- Khi đã đặt câu hỏi, chờ câu trả lời từ người dùng rồi mới tiếp tục xử lý
+- Khi yêu cầu phê duyệt, không tiến hành bước tiếp theo cho đến khi nhận được phê duyệt từ người dùng
+- Khi trình bày đề xuất sửa lỗi, chờ chỉ thị từ người dùng rồi mới thực hiện sửa lỗi
 
-### 計画ファーストアプローチ
-すべてのエージェントは、作業を開始する前に計画を作成し、人間の承認を待つ必要があります。
+### Tiếp cận Kế hoạch Trước (Plan-First)
+Tất cả agent phải tạo kế hoạch trước khi bắt đầu công việc và chờ phê duyệt từ con người.
 
-### チェックボックス付き計画
-すべての計画は、チェックボックス付きのMarkdownファイルとして作成され、各ステップの完了時にチェックされます。
+### Kế hoạch có Checkbox
+Tất cả kế hoạch được tạo dưới dạng file Markdown có checkbox, và được đánh dấu khi hoàn thành từng bước.
 
-### 人間の承認が必要なポイント
-- 計画の承認
-- 重要な設計決定
-- リスクの評価
-- デプロイメントの承認
-- PRFAQの生成（オプション）
-- 質問への回答
-- 修正提案への対応
-
+### Các Điểm Cần Phê duyệt từ Con người
+- Phê duyệt kế hoạch
+- Quyết định thiết kế quan trọng
+- Đánh giá rủi ro
+- Phê duyệt triển khai
+- Tạo PRFAQ (tuỳ chọn)
+- Trả lời câu hỏi
+- Phản hồi đề xuất sửa lỗi

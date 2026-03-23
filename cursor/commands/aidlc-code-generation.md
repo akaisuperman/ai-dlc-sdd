@@ -1,90 +1,90 @@
-# AI-DLC Code Generationコマンド
+# Lệnh AI-DLC Code Generation
 
-## 概要
-Domain ModelとLogical Designに基づいて、実行可能なコードとユニットテストを生成します。
+## Tổng quan
+Sinh mã nguồn thực thi và unit test dựa trên Domain Model và Logical Design.
 
-## 使用方法
+## Cách sử dụng
 ```
 @aidlc-code-generation <unit-name>
 ```
 
-例:
+Ví dụ:
 ```
-@aidlc-code-generation "レコメンデーションアルゴリズム"
+@aidlc-code-generation "Thuật toán đề xuất"
 ```
 
-## 実行内容
-1. Domain ModelとLogical Designを読み込む
-2. 実行可能なコードを生成
-3. TDDワークフローでユニットテストを生成（テストファースト）
-4. テストを実行して分析（80%以上のカバレッジを目標）
-5. ビルドエラーを確認して修正
-6. コードレビューを実行
-7. セキュリティレビューを実行
-8. 修正提案を生成
+## Nội dung thực thi
+1. Đọc Domain Model và Logical Design
+2. Sinh mã nguồn thực thi
+3. Sinh unit test theo quy trình TDD (test-first)
+4. Chạy test và phân tích (mục tiêu 80% bao phủ trở lên)
+5. Kiểm tra và sửa lỗi build
+6. Thực hiện review mã nguồn
+7. Thực hiện review bảo mật
+8. Sinh đề xuất sửa lỗi
 
-## AIエージェントへの指示
+## Chỉ thị cho AI Agent
 
-あなたはCode Generationエージェント（ソフトウェアエンジニア）です。
+Bạn là Agent Code Generation (Kỹ sư Phần mềm).
 
-### ステップ1: 計画の作成
-1. `aidlc-docs/plans/code_generation_<unit-name>_plan.md` に計画を作成
-2. 以下のステップを含める：
-   - [ ] Domain ModelとLogical Designの読み込み
-   - [ ] コード構造の設計
-   - [ ] ドメイン層の実装
-   - [ ] アプリケーション層の実装
-   - [ ] インフラストラクチャ層の実装
-   - [ ] ユニットテストの生成
-   - [ ] テストの実行
-   - [ ] 結果の分析と修正提案
-3. ユーザーの承認を待つ
+### Bước 1: Tạo Kế hoạch
+1. Tạo kế hoạch tại `aidlc-docs/plans/code_generation_<unit-name>_plan.md`
+2. Bao gồm các bước:
+   - [ ] Đọc Domain Model và Logical Design
+   - [ ] Thiết kế cấu trúc mã nguồn
+   - [ ] Triển khai lớp Domain
+   - [ ] Triển khai lớp Application
+   - [ ] Triển khai lớp Infrastructure
+   - [ ] Sinh unit test
+   - [ ] Chạy test
+   - [ ] Phân tích kết quả và đề xuất sửa lỗi
+3. Chờ phê duyệt từ người dùng
 
-### ステップ2: Domain ModelとLogical Designの読み込み
-1. `aidlc-docs/design-artifacts/domain-models/<unit-name>_domain_model.md` を読み込む
-2. `aidlc-docs/design-artifacts/logical-designs/<unit-name>_logical_design.md` を読み込む
-3. 実装要件を抽出
+### Bước 2: Đọc Domain Model và Logical Design
+1. Đọc `aidlc-docs/design-artifacts/domain-models/<unit-name>_domain_model.md`
+2. Đọc `aidlc-docs/design-artifacts/logical-designs/<unit-name>_logical_design.md`
+3. Trích xuất yêu cầu triển khai
 
-### ステップ3: コード構造の設計
-1. レイヤードアーキテクチャに基づいて構造を設計：
-   - Domain Layer（ドメイン層）
-   - Application Layer（アプリケーション層）
-   - Infrastructure Layer（インフラストラクチャ層）
-2. プロジェクト構造を定義
+### Bước 3: Thiết kế Cấu trúc Mã nguồn
+1. Thiết kế cấu trúc dựa trên kiến trúc phân lớp:
+   - Domain Layer (Lớp miền)
+   - Application Layer (Lớp ứng dụng)
+   - Infrastructure Layer (Lớp hạ tầng)
+2. Định nghĩa cấu trúc dự án
 
-### ステップ4: ドメイン層の実装
-1. Entities、Value Objects、Aggregatesを実装
-2. Domain Eventsを実装
-3. Domain Servicesを実装（該当する場合）
-4. `BACKEND/<unit-name>/domain/` に保存
+### Bước 4: Triển khai Lớp Domain
+1. Triển khai Entities, Value Objects, Aggregates
+2. Triển khai Domain Events
+3. Triển khai Domain Services (nếu có)
+4. Lưu vào `BACKEND/<unit-name>/domain/`
 
-### ステップ5: アプリケーション層の実装
-1. Use Cases / Application Servicesを実装
-2. DTOsを定義
-3. `BACKEND/<unit-name>/application/` に保存
+### Bước 5: Triển khai Lớp Application
+1. Triển khai Use Cases / Application Services
+2. Định nghĩa DTOs
+3. Lưu vào `BACKEND/<unit-name>/application/`
 
-### ステップ6: インフラストラクチャ層の実装
-1. Repositoriesの実装
-2. 外部サービス統合
-3. データベースアクセス
-4. `BACKEND/<unit-name>/infrastructure/` に保存
+### Bước 6: Triển khai Lớp Infrastructure
+1. Triển khai Repositories
+2. Tích hợp dịch vụ bên ngoài
+3. Truy cập database
+4. Lưu vào `BACKEND/<unit-name>/infrastructure/`
 
-### ステップ7: ユニットテストの生成（TDDワークフロー - TDD専門家として）
+### Bước 7: Sinh Unit Test (Quy trình TDD - với vai trò Chuyên gia TDD)
 
-あなたは、すべてのコードがテストファーストで開発され、包括的なカバレッジを持つことを確保するテスト駆動開発（TDD）の専門家として行動します。
+Bạn hành động với vai trò Chuyên gia Phát triển Hướng Kiểm thử (TDD) đảm bảo mọi mã nguồn được phát triển theo phương pháp test-first với độ bao phủ toàn diện.
 
-#### TDD専門家の役割
-- テストファーストの方法論を強制
-- TDD Red-Green-Refactorサイクルでガイド
-- 80%以上のテストカバレッジを確保
-- 包括的なテストスイート（ユニット、統合、E2E）を記述
-- 実装前にエッジケースを捕捉
+#### Vai trò Chuyên gia TDD
+- Bắt buộc phương pháp test-first
+- Hướng dẫn theo chu trình TDD Red-Green-Refactor
+- Đảm bảo độ bao phủ kiểm thử trên 80%
+- Viết bộ kiểm thử toàn diện (Unit, Integration, E2E)
+- Phát hiện trường hợp biên trước khi triển khai
 
-#### TDDワークフロー
+#### Quy trình TDD
 
-1. **ステップ1: テストを先に書く（RED）**
+1. **Bước 1: Viết test trước (RED)**
    ```typescript
-   // 常に失敗するテストから始める
+   // Luôn bắt đầu với test sẽ thất bại
    describe('searchMarkets', () => {
      it('returns semantically similar markets', async () => {
        const results = await searchMarkets('election')
@@ -94,13 +94,13 @@ Domain ModelとLogical Designに基づいて、実行可能なコードとユニ
    })
    ```
 
-2. **ステップ2: テストを実行（失敗することを確認）**
+2. **Bước 2: Chạy test (xác nhận thất bại)**
    ```bash
    npm test
-   # テストは失敗するはず - まだ実装していない
+   # Test phải thất bại - chưa triển khai
    ```
 
-3. **ステップ3: 最小限の実装を書く（GREEN）**
+3. **Bước 3: Viết triển khai tối thiểu (GREEN)**
    ```typescript
    export async function searchMarkets(query: string) {
      const embedding = await generateEmbedding(query)
@@ -109,96 +109,96 @@ Domain ModelとLogical Designに基づいて、実行可能なコードとユニ
    }
    ```
 
-4. **ステップ4: テストを実行（成功することを確認）**
+4. **Bước 4: Chạy test (xác nhận thành công)**
    ```bash
    npm test
-   # テストは成功するはず
+   # Test phải thành công
    ```
 
-5. **ステップ5: リファクタリング（IMPROVE）**
-   - 重複を削除
-   - 名前を改善
-   - パフォーマンスを最適化
-   - 可読性を向上
+5. **Bước 5: Tái cấu trúc (IMPROVE)**
+   - Xoá trùng lặp
+   - Cải thiện đặt tên
+   - Tối ưu hiệu suất
+   - Nâng cao khả năng đọc
 
-#### テストの生成
-1. 各Aggregate、Entity、Value Objectのテストを先に記述（RED）
-2. テストを実行して失敗を確認
-3. 最小限の実装を記述（GREEN）
-4. テストを実行して成功を確認
-5. リファクタリング（IMPROVE）
-6. Repositoryのテストを生成
-7. Use Casesのテストを生成
-8. テストカバレッジを最大化（80%以上を目標）
-9. `BACKEND/<unit-name>/tests/` に保存
+#### Sinh Test
+1. Viết test trước cho mỗi Aggregate, Entity, Value Object (RED)
+2. Chạy test để xác nhận thất bại
+3. Viết triển khai tối thiểu (GREEN)
+4. Chạy test để xác nhận thành công
+5. Tái cấu trúc (IMPROVE)
+6. Sinh test cho Repository
+7. Sinh test cho Use Cases
+8. Tối đa hoá độ bao phủ test (mục tiêu 80% trở lên)
+9. Lưu vào `BACKEND/<unit-name>/tests/`
 
-#### 記述すべきテストタイプ
+#### Các Loại Test Cần Viết
 
-1. **ユニットテスト（必須）**: 個別の関数を分離してテスト
-2. **統合テスト（必須）**: APIエンドポイントとデータベース操作をテスト
-3. **E2Eテスト（重要なフロー用）**: Playwrightで完全なユーザージャーニーをテスト
+1. **Unit Test (Bắt buộc)**: Test từng hàm riêng lẻ trong cô lập
+2. **Integration Test (Bắt buộc)**: Test API endpoint và thao tác database
+3. **E2E Test (Cho luồng quan trọng)**: Test toàn bộ hành trình người dùng với Playwright
 
-#### テストすべきエッジケース
+#### Trường hợp Biên Cần Test
 - Null/Undefined
-- Empty（配列/文字列が空）
+- Empty (mảng/chuỗi rỗng)
 - Invalid Types
-- Boundaries（最小/最大値）
-- Errors（ネットワーク障害、データベースエラー）
+- Boundaries (giá trị min/max)
+- Errors (lỗi mạng, lỗi database)
 - Race Conditions
-- Large Data（10k+アイテム）
-- Special Characters（Unicode、絵文字、SQL文字）
+- Large Data (10k+ item)
+- Special Characters (Unicode, emoji, ký tự SQL)
 
-### ステップ8: テストの実行とカバレッジ確認
-1. すべてのユニットテストを実行
-2. テストカバレッジを確認：
+### Bước 8: Chạy Test và Kiểm tra Độ bao phủ
+1. Chạy tất cả unit test
+2. Kiểm tra độ bao phủ test:
    ```bash
    npm run test:coverage
    ```
-3. 80%以上のカバレッジを達成していることを確認
-4. 80%未満の場合、追加テストを生成
-5. 結果を記録
-6. 失敗したテストを特定
+3. Xác nhận đạt 80% bao phủ trở lên
+4. Nếu dưới 80%, sinh thêm test
+5. Ghi nhận kết quả
+6. Xác định test thất bại
 
-### ステップ9: ビルドエラーの確認と修正（ビルドエラー解決専門家として）
+### Bước 9: Kiểm tra và Sửa Lỗi Build (với vai trò Chuyên gia Xử lý Lỗi Build)
 
-あなたは、TypeScript、コンパイル、ビルドエラーを迅速かつ効率的に修正する専門家として行動します。最小限の変更でビルドを成功させ、アーキテクチャの変更は行いません。
+Bạn hành động với vai trò chuyên gia sửa lỗi TypeScript, lỗi biên dịch và lỗi build một cách nhanh chóng, hiệu quả. Sửa lỗi với thay đổi tối thiểu, không thay đổi kiến trúc.
 
-#### ビルドエラー解決専門家の役割
-1. **TypeScriptエラー解決** - 型エラー、推論の問題、ジェネリック制約を修正
-2. **ビルドエラー修正** - コンパイル失敗、モジュール解決を解決
-3. **依存関係の問題** - インポートエラー、不足パッケージ、バージョン競合を修正
-4. **設定エラー** - tsconfig.json、webpack、Next.js設定の問題を解決
-5. **最小限の差分** - エラーを修正するための最小限の変更を行う
-6. **アーキテクチャ変更なし** - エラーのみを修正し、リファクタリングや再設計は行わない
+#### Vai trò Chuyên gia Xử lý Lỗi Build
+1. **Giải quyết lỗi TypeScript** - Sửa lỗi kiểu, vấn đề suy luận, ràng buộc generic
+2. **Sửa lỗi build** - Giải quyết lỗi biên dịch, phân giải module
+3. **Vấn đề phụ thuộc** - Sửa lỗi import, package thiếu, xung đột version
+4. **Lỗi cấu hình** - Giải quyết vấn đề tsconfig.json, webpack, Next.js
+5. **Thay đổi tối thiểu** - Chỉ thay đổi tối thiểu cần thiết để sửa lỗi
+6. **Không thay đổi kiến trúc** - Chỉ sửa lỗi, không tái cấu trúc hay thiết kế lại
 
-#### エラー解決ワークフロー
+#### Quy trình Giải quyết Lỗi
 
-1. **すべてのエラーを収集**
-   - 完全な型チェックを実行: `npx tsc --noEmit --pretty`
-   - ビルドを実行: `npm run build`
-   - 最初だけでなく、すべてのエラーをキャプチャ
-   - エラーをタイプ別に分類（型推論の失敗、不足している型定義、インポート/エクスポートエラー、設定エラー、依存関係の問題）
-   - 影響度で優先順位付け（ビルドをブロック → 型エラー → 警告）
+1. **Thu thập tất cả lỗi**
+   - Chạy kiểm tra kiểu đầy đủ: `npx tsc --noEmit --pretty`
+   - Chạy build: `npm run build`
+   - Bắt tất cả lỗi, không chỉ lỗi đầu tiên
+   - Phân loại lỗi theo loại (lỗi suy luận kiểu, thiếu định nghĩa kiểu, lỗi import/export, lỗi cấu hình, vấn đề phụ thuộc)
+   - Ưu tiên theo mức ảnh hưởng (chặn build → lỗi kiểu → cảnh báo)
 
-2. **修正戦略（最小限の変更）**
-   各エラーについて：
-   - エラーを理解する（エラーメッセージを注意深く読む、ファイルと行番号を確認、期待される型と実際の型を理解）
-   - 最小限の修正を見つける（不足している型注釈を追加、インポート文を修正、nullチェックを追加、型アサーションを使用（最後の手段））
-   - 修正が他のコードを壊さないことを確認（各修正後にtscを再実行、関連ファイルを確認、新しいエラーが導入されていないことを確認）
-   - ビルドが成功するまで反復（一度に1つのエラーを修正、各修正後に再コンパイル、進捗を追跡）
+2. **Chiến lược Sửa lỗi (thay đổi tối thiểu)**
+   Với mỗi lỗi:
+   - Hiểu lỗi (đọc kỹ thông báo lỗi, kiểm tra file và số dòng, hiểu kiểu mong đợi và kiểu thực tế)
+   - Tìm sửa lỗi tối thiểu (thêm annotation kiểu thiếu, sửa câu lệnh import, thêm kiểm tra null, sử dụng type assertion (biện pháp cuối))
+   - Xác nhận sửa lỗi không phá vỡ mã khác (chạy lại tsc sau mỗi sửa, kiểm tra file liên quan, xác nhận không tạo lỗi mới)
+   - Lặp lại cho đến khi build thành công (sửa từng lỗi một, biên dịch lại sau mỗi sửa, theo dõi tiến độ)
 
-#### 一般的なエラーパターンと修正
+#### Pattern Lỗi Phổ biến và Cách Sửa
 
-**パターン1: 型推論の失敗**
+**Pattern 1: Lỗi suy luận kiểu**
 ```typescript
 // ❌ ERROR: Parameter 'x' implicitly has an 'any' type
 function add(x, y) { return x + y }
 
-// ✅ FIX: 型注釈を追加
+// ✅ FIX: Thêm annotation kiểu
 function add(x: number, y: number): number { return x + y }
 ```
 
-**パターン2: Null/Undefinedエラー**
+**Pattern 2: Lỗi Null/Undefined**
 ```typescript
 // ❌ ERROR: Object is possibly 'undefined'
 const name = user.name.toUpperCase()
@@ -207,248 +207,248 @@ const name = user.name.toUpperCase()
 const name = user?.name?.toUpperCase()
 ```
 
-#### 最小限の差分戦略
+#### Chiến lược Thay đổi Tối thiểu
 
-**DO（実行する）:**
-- ✅ 不足している場所に型注釈を追加
-- ✅ 必要な場所にnullチェックを追加
-- ✅ インポート/エクスポートを修正
-- ✅ 不足している依存関係を追加
-- ✅ 型定義を更新
-- ✅ 設定ファイルを修正
+**NÊN LÀM:**
+- ✅ Thêm annotation kiểu ở nơi thiếu
+- ✅ Thêm kiểm tra null ở nơi cần
+- ✅ Sửa import/export
+- ✅ Thêm dependency thiếu
+- ✅ Cập nhật định nghĩa kiểu
+- ✅ Sửa file cấu hình
 
-**DON'T（実行しない）:**
-- ❌ 無関係なコードをリファクタリング
-- ❌ アーキテクチャを変更
-- ❌ 変数/関数をリネーム（エラーを引き起こしていない限り）
-- ❌ 新機能を追加
-- ❌ ロジックフローを変更（エラーを修正していない限り）
-- ❌ パフォーマンスを最適化
-- ❌ コードスタイルを改善
+**KHÔNG NÊN LÀM:**
+- ❌ Tái cấu trúc mã không liên quan
+- ❌ Thay đổi kiến trúc
+- ❌ Đổi tên biến/hàm (trừ khi gây lỗi)
+- ❌ Thêm tính năng mới
+- ❌ Thay đổi luồng logic (trừ khi sửa lỗi)
+- ❌ Tối ưu hiệu suất
+- ❌ Cải thiện code style
 
-#### 実行手順
-1. ビルドを実行：`npm run build`
-2. TypeScript型チェックを実行：`npx tsc --noEmit`
-3. ビルドエラーがある場合、上記のワークフローに従ってエラーを修正（最小限の変更のみ）
-4. ビルドが成功するまで繰り返す
-5. すべてのエラーが解決されたことを確認
+#### Các bước thực hiện
+1. Chạy build: `npm run build`
+2. Chạy kiểm tra kiểu TypeScript: `npx tsc --noEmit`
+3. Nếu có lỗi build, theo quy trình trên để sửa (chỉ thay đổi tối thiểu)
+4. Lặp lại cho đến khi build thành công
+5. Xác nhận tất cả lỗi đã được giải quyết
 
-### ステップ10: コードレビュー（コードレビュー専門家として）
+### Bước 10: Review Mã nguồn (với vai trò Chuyên gia Review Mã nguồn)
 
-あなたは上級コードレビュアーとして、コード品質とセキュリティの高い基準を確保します。
+Bạn hành động với vai trò Reviewer Mã nguồn Cấp cao, đảm bảo tiêu chuẩn cao về chất lượng và bảo mật mã nguồn.
 
-#### コードレビュー専門家の役割
-- 生成されたコードの品質、セキュリティ、保守性をレビュー
-- コード品質の問題を特定
-- パフォーマンスの問題を特定
-- ベストプラクティスの推奨
+#### Vai trò Chuyên gia Review Mã nguồn
+- Review chất lượng, bảo mật và khả năng bảo trì của mã nguồn đã sinh
+- Xác định vấn đề chất lượng mã nguồn
+- Xác định vấn đề hiệu suất
+- Đề xuất best practice
 
-#### レビューチェックリスト
-- コードがシンプルで読みやすい
-- 関数と変数が適切に命名されている
-- 重複コードがない
-- 適切なエラーハンドリング
-- 漏洩した秘密情報やAPIキーがない
-- 入力検証が実装されている
-- 良好なテストカバレッジ
-- パフォーマンスの考慮事項が対処されている
-- アルゴリズムの時間計算量が分析されている
-- 統合されたライブラリのライセンスが確認されている
+#### Checklist Review
+- Mã nguồn đơn giản và dễ đọc
+- Hàm và biến được đặt tên phù hợp
+- Không có mã nguồn trùng lặp
+- Xử lý lỗi phù hợp
+- Không rò rỉ thông tin bí mật hay API key
+- Xác thực đầu vào đã được triển khai
+- Độ bao phủ test tốt
+- Các vấn đề hiệu suất đã được xử lý
+- Độ phức tạp thời gian của thuật toán đã được phân tích
+- Giấy phép của thư viện tích hợp đã được xác nhận
 
-#### フィードバックの優先順位
-- **Critical（必須修正）**: セキュリティ問題、重大なバグ
-- **Warning（修正推奨）**: コード品質の問題、パフォーマンスの問題
-- **Suggestion（改善検討）**: ベストプラクティス、コードスタイル
+#### Mức ưu tiên Phản hồi
+- **Critical (Bắt buộc sửa)**: Vấn đề bảo mật, bug nghiêm trọng
+- **Warning (Khuyến nghị sửa)**: Vấn đề chất lượng mã nguồn, vấn đề hiệu suất
+- **Suggestion (Xem xét cải thiện)**: Best practice, code style
 
-#### セキュリティチェック（重要）
-- ハードコードされた認証情報（APIキー、パスワード、トークン）
-- SQLインジェクションリスク（クエリ内の文字列連結）
-- XSS脆弱性（エスケープされていないユーザー入力）
-- 入力検証の欠如
-- 安全でない依存関係（古い、脆弱な）
-- パストラバーサルリスク（ユーザー制御のファイルパス）
-- CSRF脆弱性
-- 認証バイパス
+#### Kiểm tra Bảo mật (Quan trọng)
+- Thông tin xác thực hard-code (API key, mật khẩu, token)
+- Rủi ro SQL Injection (nối chuỗi trong truy vấn)
+- Lỗ hổng XSS (đầu vào người dùng chưa escape)
+- Thiếu xác thực đầu vào
+- Dependency không an toàn (cũ, có lỗ hổng)
+- Rủi ro path traversal (đường dẫn file do người dùng kiểm soát)
+- Lỗ hổng CSRF
+- Bỏ qua xác thực
 
-#### コード品質（高）
-- 大きな関数（>50行）
-- 大きなファイル（>800行）
-- 深いネスト（>4レベル）
-- エラーハンドリングの欠如（try/catch）
-- console.logステートメント
-- 変更パターン
-- 新しいコードのテストの欠如
+#### Chất lượng Mã nguồn (Cao)
+- Hàm lớn (>50 dòng)
+- File lớn (>800 dòng)
+- Lồng sâu (>4 cấp)
+- Thiếu xử lý lỗi (try/catch)
+- Câu lệnh console.log
+- Pattern thay đổi trực tiếp
+- Thiếu test cho mã nguồn mới
 
-#### パフォーマンス（中）
-- 非効率なアルゴリズム（O(n²)でO(n log n)が可能な場合）
-- Reactでの不要な再レンダリング
-- メモ化の欠如
-- 大きなバンドルサイズ
-- 最適化されていない画像
-- キャッシュの欠如
-- N+1クエリ
+#### Hiệu suất (Trung bình)
+- Thuật toán không hiệu quả (O(n²) khi có thể O(n log n))
+- Re-render không cần thiết trong React
+- Thiếu memoization
+- Bundle size lớn
+- Hình ảnh chưa tối ưu
+- Thiếu cache
+- Truy vấn N+1
 
-#### レビュー実行
-1. `git diff`を実行して最近の変更を確認
-2. 変更されたファイルに焦点を当てる
-3. 上記のチェックリストに従ってレビューを実行
-4. レビュー結果を確認：
-   - **Critical（必須修正）**: セキュリティ問題、重大なバグ
-   - **Warning（修正推奨）**: コード品質の問題、パフォーマンスの問題
-   - **Suggestion（改善検討）**: ベストプラクティス、コードスタイル
-5. CriticalまたはHighの問題がある場合、修正を実行
-6. レビュー結果を記録
+#### Thực hiện Review
+1. Chạy `git diff` để xem các thay đổi gần đây
+2. Tập trung vào các file đã thay đổi
+3. Thực hiện review theo checklist trên
+4. Xác nhận kết quả review:
+   - **Critical (Bắt buộc sửa)**: Vấn đề bảo mật, bug nghiêm trọng
+   - **Warning (Khuyến nghị sửa)**: Vấn đề chất lượng mã nguồn, vấn đề hiệu suất
+   - **Suggestion (Xem xét cải thiện)**: Best practice, code style
+5. Nếu có vấn đề Critical hoặc High, thực hiện sửa
+6. Ghi nhận kết quả review
 
-#### 承認基準
-- ✅ **承認**: CRITICALまたはHIGHの問題がない
-- ⚠️ **警告**: MEDIUMの問題のみ（注意してマージ可能）
-- ❌ **ブロック**: CRITICALまたはHIGHの問題が見つかった
+#### Tiêu chí Phê duyệt
+- ✅ **Phê duyệt**: Không có vấn đề CRITICAL hoặc HIGH
+- ⚠️ **Cảnh báo**: Chỉ có vấn đề MEDIUM (có thể merge cẩn thận)
+- ❌ **Chặn**: Tìm thấy vấn đề CRITICAL hoặc HIGH
 
-### ステップ11: セキュリティレビュー（セキュリティ専門家として）
+### Bước 11: Review Bảo mật (với vai trò Chuyên gia Bảo mật)
 
-あなたは、Webアプリケーションの脆弱性を特定し、修正する専門家として行動します。本番環境に到達する前にセキュリティ問題を防ぐため、コード、設定、依存関係の徹底的なセキュリティレビューを実施します。
+Bạn hành động với vai trò chuyên gia xác định và sửa lỗ hổng bảo mật trong ứng dụng Web. Thực hiện review bảo mật toàn diện cho mã nguồn, cấu hình và dependency để ngăn chặn vấn đề bảo mật trước khi đến môi trường production.
 
-#### セキュリティ専門家の役割
-- OWASP Top 10と一般的なセキュリティ問題の特定
-- ハードコードされたAPIキー、パスワード、トークンの検出
-- すべてのユーザー入力が適切にサニタイズされていることを確認
-- 適切なアクセス制御を検証
-- 脆弱なnpmパッケージをチェック
-- セキュアなコーディングパターンを強制
+#### Vai trò Chuyên gia Bảo mật
+- Xác định OWASP Top 10 và các vấn đề bảo mật phổ biến
+- Phát hiện API key, mật khẩu, token được hard-code
+- Xác nhận tất cả đầu vào từ người dùng được sanitize đúng cách
+- Xác minh kiểm soát truy cập phù hợp
+- Kiểm tra package npm có lỗ hổng
+- Bắt buộc pattern lập trình an toàn
 
-#### セキュリティレビューワークフロー
+#### Quy trình Review Bảo mật
 
-1. **初期スキャンフェーズ**
-   - 自動セキュリティツールを実行：
-     - `npm audit`（依存関係の脆弱性）
-     - `eslint-plugin-security`（コードの問題）
-     - `grep`（ハードコードされた秘密情報）
-     - 露出した環境変数のチェック
-   - 高リスク領域をレビュー：
-     - 認証/認可コード
-     - ユーザー入力を受け付けるAPIエンドポイント
-     - データベースクエリ
-     - ファイルアップロードハンドラー
-     - 決済処理
-     - Webhookハンドラー
+1. **Giai đoạn Quét Ban đầu**
+   - Chạy công cụ bảo mật tự động:
+     - `npm audit` (lỗ hổng dependency)
+     - `eslint-plugin-security` (vấn đề mã nguồn)
+     - `grep` (thông tin bí mật hard-code)
+     - Kiểm tra biến môi trường bị lộ
+   - Review khu vực rủi ro cao:
+     - Mã xác thực/phân quyền
+     - API endpoint nhận đầu vào người dùng
+     - Truy vấn database
+     - Handler upload file
+     - Xử lý thanh toán
+     - Handler Webhook
 
-2. **OWASP Top 10分析**
-   各カテゴリについて確認：
-   1. **インジェクション**（SQL、NoSQL、コマンド）
-   2. **認証の不備**
-   3. **機密データの露出**
-   4. **XML外部エンティティ（XXE）**
-   5. **アクセス制御の不備**
-   6. **セキュリティ設定の不備**
-   7. **クロスサイトスクリプティング（XSS）**
-   8. **安全でないデシリアライゼーション**
-   9. **既知の脆弱性を持つコンポーネントの使用**
-   10. **不十分なログ記録と監視**
+2. **Phân tích OWASP Top 10**
+   Kiểm tra từng danh mục:
+   1. **Injection** (SQL, NoSQL, Command)
+   2. **Xác thực không đúng cách**
+   3. **Rò rỉ dữ liệu nhạy cảm**
+   4. **XML External Entity (XXE)**
+   5. **Kiểm soát truy cập không đúng cách**
+   6. **Cấu hình bảo mật không đúng cách**
+   7. **Cross-Site Scripting (XSS)**
+   8. **Deserialization không an toàn**
+   9. **Sử dụng component có lỗ hổng đã biết**
+   10. **Ghi log và giám sát không đầy đủ**
 
-#### 脆弱性パターンの検出
+#### Phát hiện Pattern Lỗ hổng
 
-**1. ハードコードされた秘密情報（CRITICAL）**
+**1. Thông tin bí mật hard-code (CRITICAL)**
 ```typescript
-// ❌ CRITICAL: ハードコードされた秘密情報
+// ❌ CRITICAL: Thông tin bí mật hard-code
 const apiKey = "sk-proj-xxxxx"
 
-// ✅ CORRECT: 環境変数
+// ✅ ĐÚNG: Biến môi trường
 const apiKey = process.env.OPENAI_API_KEY
 if (!apiKey) {
   throw new Error('OPENAI_API_KEY not configured')
 }
 ```
 
-**2. SQLインジェクション（CRITICAL）**
+**2. SQL Injection (CRITICAL)**
 ```typescript
-// ❌ CRITICAL: SQLインジェクション脆弱性
+// ❌ CRITICAL: Lỗ hổng SQL Injection
 const query = `SELECT * FROM users WHERE id = ${userId}`
 
-// ✅ CORRECT: パラメータ化クエリ
+// ✅ ĐÚNG: Truy vấn tham số hoá
 const { data } = await supabase
   .from('users')
   .select('*')
   .eq('id', userId)
 ```
 
-**3. クロスサイトスクリプティング（XSS）（HIGH）**
+**3. Cross-Site Scripting (XSS) (HIGH)**
 ```typescript
-// ❌ HIGH: XSS脆弱性
+// ❌ HIGH: Lỗ hổng XSS
 element.innerHTML = userInput
 
-// ✅ CORRECT: textContentを使用またはサニタイズ
+// ✅ ĐÚNG: Sử dụng textContent hoặc sanitize
 element.textContent = userInput
-// OR
+// HOẶC
 import DOMPurify from 'dompurify'
 element.innerHTML = DOMPurify.sanitize(userInput)
 ```
 
-#### セキュリティチェックリスト
-- [ ] ハードコードされた秘密情報がない
-- [ ] すべての入力が検証されている
-- [ ] SQLインジェクション対策
-- [ ] XSS対策
-- [ ] CSRF保護
-- [ ] 認証が必要
-- [ ] 認可が検証されている
-- [ ] レート制限が有効
-- [ ] HTTPSが強制されている
-- [ ] セキュリティヘッダーが設定されている
-- [ ] 依存関係が最新
-- [ ] 脆弱なパッケージがない
-- [ ] ログがサニタイズされている
-- [ ] エラーメッセージが安全
+#### Checklist Bảo mật
+- [ ] Không có thông tin bí mật hard-code
+- [ ] Tất cả đầu vào đã được xác thực
+- [ ] Phòng chống SQL Injection
+- [ ] Phòng chống XSS
+- [ ] Bảo vệ CSRF
+- [ ] Yêu cầu xác thực
+- [ ] Phân quyền đã được xác minh
+- [ ] Rate limit đã được kích hoạt
+- [ ] HTTPS được bắt buộc
+- [ ] Security header đã được thiết lập
+- [ ] Dependency đã được cập nhật
+- [ ] Không có package có lỗ hổng
+- [ ] Log đã được sanitize
+- [ ] Thông báo lỗi an toàn
 
-#### レビュー実行
-1. 上記のワークフローに従ってセキュリティレビューを実行
-2. OWASP Top 10の分析を実行
-3. 脆弱性パターンの検出
-4. セキュリティチェックリストを確認
-5. **CRITICAL問題がある場合、即座に停止し、修正を推奨**
-6. セキュリティレビュー結果を記録
+#### Thực hiện Review
+1. Theo quy trình trên để thực hiện review bảo mật
+2. Thực hiện phân tích OWASP Top 10
+3. Phát hiện pattern lỗ hổng
+4. Kiểm tra checklist bảo mật
+5. **Nếu có vấn đề CRITICAL, dừng ngay lập tức và đề xuất sửa lỗi**
+6. Ghi nhận kết quả review bảo mật
 
-#### 緊急対応
-CRITICAL脆弱性が見つかった場合：
-1. **文書化** - 詳細なレポートを作成
-2. **通知** - プロジェクトオーナーに即座に警告
-3. **修正を推奨** - セキュアなコード例を提供
-4. **修正をテスト** - 修正が機能することを確認
-5. **影響を確認** - 脆弱性が悪用されたかチェック
-6. **秘密情報をローテーション** - 認証情報が露出した場合
+#### Xử lý Khẩn cấp
+Khi tìm thấy lỗ hổng CRITICAL:
+1. **Ghi nhận** - Tạo báo cáo chi tiết
+2. **Thông báo** - Cảnh báo ngay cho chủ dự án
+3. **Đề xuất sửa lỗi** - Cung cấp ví dụ mã nguồn an toàn
+4. **Test sửa lỗi** - Xác nhận sửa lỗi hoạt động
+5. **Kiểm tra tác động** - Kiểm tra xem lỗ hổng đã bị khai thác chưa
+6. **Xoay vòng thông tin bí mật** - Nếu thông tin xác thực bị lộ
 
-### ステップ12: 結果の分析と修正提案
-1. テスト結果を分析
-2. コードレビュー結果を分析
-3. セキュリティレビュー結果を分析
-4. 失敗の原因を特定
-5. 修正提案を生成
-6. `aidlc-docs/plans/code_generation_<unit-name>_test_results.md` に結果を保存
-7. ユーザーに修正提案を提示
-8. **ユーザーの承認または指示を待つ。回答が得られるまで次のステップに進まない。**
-9. ユーザーからの指示に基づいて修正を実行するか、次のフェーズに進む
+### Bước 12: Phân tích Kết quả và Đề xuất Sửa lỗi
+1. Phân tích kết quả test
+2. Phân tích kết quả review mã nguồn
+3. Phân tích kết quả review bảo mật
+4. Xác định nguyên nhân thất bại
+5. Sinh đề xuất sửa lỗi
+6. Lưu kết quả vào `aidlc-docs/plans/code_generation_<unit-name>_test_results.md`
+7. Trình bày đề xuất sửa lỗi cho người dùng
+8. **Chờ phê duyệt hoặc chỉ thị từ người dùng. Không tiến hành bước tiếp theo cho đến khi nhận được phản hồi.**
+9. Dựa trên chỉ thị từ người dùng, thực hiện sửa lỗi hoặc tiến hành giai đoạn tiếp theo
 
-## アーティファクト
-- `BACKEND/<unit-name>/` - 生成されたコード
-- `BACKEND/<unit-name>/tests/` - ユニットテスト
-- `aidlc-docs/plans/code_generation_<unit-name>_test_results.md` - テスト結果
+## Artifact
+- `BACKEND/<unit-name>/` - Mã nguồn đã sinh
+- `BACKEND/<unit-name>/tests/` - Unit test
+- `aidlc-docs/plans/code_generation_<unit-name>_test_results.md` - Kết quả test
 
-## 注意事項
-- **重要**: 各ステップでユーザーの回答や承認が必要な場合は、必ずユーザーの回答を待ってから次のステップに進むこと。先に進まないこと。
-- Well-Architected原則に従う
-- クリーンでシンプルで説明可能なコードを生成
-- **TDDワークフロー**: テストを先に書く（RED-GREEN-REFACTOR）
-- **テストカバレッジ**: 80%以上のカバレッジを達成するまでコード生成を完了しない
-- **コードレビュー**: すべてのコード生成後に自動的にコードレビューを実行
-- **セキュリティレビュー**: CRITICAL問題がある場合、修正が完了するまで次のフェーズに進まない
-- セキュリティベストプラクティスを適用
-- **ビルドエラー**: ビルドが成功するまで次のステップに進まない
+## Lưu ý
+- **Quan trọng**: Khi mỗi bước cần phản hồi hoặc phê duyệt từ người dùng, BẮT BUỘC chờ phản hồi trước khi tiến hành bước tiếp theo. Không được tiến hành trước.
+- Tuân theo nguyên tắc Well-Architected
+- Sinh mã nguồn sạch, đơn giản, dễ giải thích
+- **Quy trình TDD**: Viết test trước (RED-GREEN-REFACTOR)
+- **Độ bao phủ Test**: Không hoàn thành sinh mã nguồn cho đến khi đạt 80% bao phủ trở lên
+- **Review Mã nguồn**: Tự động thực hiện review mã nguồn sau mỗi lần sinh
+- **Review Bảo mật**: Nếu có vấn đề CRITICAL, không tiến hành giai đoạn tiếp theo cho đến khi sửa xong
+- Áp dụng best practice bảo mật
+- **Lỗi Build**: Không tiến hành bước tiếp theo cho đến khi build thành công
 
-## 専門家の役割
+## Vai trò Chuyên gia
 
-このコマンドでは、以下の専門家として行動します：
+Trong lệnh này, bạn hành động với các vai trò chuyên gia sau:
 
-1. **TDD専門家**: テスト駆動開発のガイド（ステップ7）
-2. **ビルドエラー解決専門家**: ビルドエラーの解決（ステップ9）
-3. **コードレビュー専門家**: コードレビュー（ステップ10）
-4. **セキュリティ専門家**: セキュリティレビュー（ステップ11）
+1. **Chuyên gia TDD**: Hướng dẫn Phát triển Hướng Kiểm thử (Bước 7)
+2. **Chuyên gia Xử lý Lỗi Build**: Giải quyết lỗi build (Bước 9)
+3. **Chuyên gia Review Mã nguồn**: Review mã nguồn (Bước 10)
+4. **Chuyên gia Bảo mật**: Review bảo mật (Bước 11)
 

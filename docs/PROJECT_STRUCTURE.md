@@ -1,38 +1,38 @@
-# AI-DLC プロジェクト構造
+# Cấu trúc Dự án AI-DLC
 
-このドキュメントは、AI-DLCフレームワークで使用されるプロジェクト構造の説明です。
+Tài liệu này mô tả cấu trúc dự án được sử dụng trong framework AI-DLC.
 
-## ディレクトリ構造
+## Cấu trúc Thư mục
 
 ```
 aidlc-docs/
-├── requirements/          # 要件ドキュメント
-│   ├── nfrs.md           # 非機能要件
-│   ├── risks.md          # リスク記述
-│   ├── prfaq.md          # PRFAQ（オプション）
-│   └── measurement_criteria.md  # 測定基準
+├── requirements/          # Tài liệu yêu cầu
+│   ├── nfrs.md           # Yêu cầu phi chức năng
+│   ├── risks.md          # Mô tả rủi ro
+│   ├── prfaq.md          # PRFAQ (tuỳ chọn)
+│   └── measurement_criteria.md  # Tiêu chí đo lường
 │
 ├── story-artifacts/       # User Stories
-│   └── user_stories.md    # ユーザーストーリー
+│   └── user_stories.md    # Câu chuyện người dùng
 │
-├── design-artifacts/      # 設計ドキュメント
-│   ├── domain-models/    # ドメインモデル
+├── design-artifacts/      # Tài liệu thiết kế
+│   ├── domain-models/    # Domain model
 │   │   └── <unit-name>_domain_model.md
-│   ├── logical-designs/  # 論理設計
+│   ├── logical-designs/  # Thiết kế logic
 │   │   └── <unit-name>_logical_design.md
-│   ├── static-models/    # 静的モデル（Brown-Field用）
+│   ├── static-models/    # Mô hình tĩnh (cho Brown-Field)
 │   │   └── <system-name>_static_model.md
-│   ├── dynamic-models/   # 動的モデル（Brown-Field用）
+│   ├── dynamic-models/   # Mô hình động (cho Brown-Field)
 │   │   └── <system-name>_dynamic_model.md
 │   ├── adrs/             # Architecture Decision Records
 │   │   └── <unit-name>_<decision>.md
-│   ├── units/            # Units定義
+│   ├── units/            # Định nghĩa Units
 │   │   ├── <unit-name>.md
 │   │   └── integration_specs.md
-│   └── brownfield-context/  # Brown-Fieldコンテキスト
+│   └── brownfield-context/  # Ngữ cảnh Brown-Field
 │       └── <system-name>_context.md
 │
-├── plans/                # 計画ドキュメント
+├── plans/                # Tài liệu kế hoạch
 │   ├── setup_plan.md
 │   ├── inception_plan.md
 │   ├── units_plan.md
@@ -44,137 +44,137 @@ aidlc-docs/
 │   ├── monitoring_<unit-name>_plan.md
 │   └── suggested_bolts.md
 │
-└── prompts.md           # プロンプト履歴
+└── prompts.md           # Lịch sử prompt
 
-BACKEND/                  # バックエンドコード
+BACKEND/                  # Mã nguồn backend
 ├── <unit-name>/
-│   ├── domain/          # ドメイン層
-│   ├── application/     # アプリケーション層
-│   ├── infrastructure/  # インフラストラクチャ層
+│   ├── domain/          # Lớp domain
+│   ├── application/     # Lớp application
+│   ├── infrastructure/  # Lớp infrastructure
 │   ├── api/             # REST API
-│   └── tests/           # ユニットテスト
+│   └── tests/           # Unit test
 
-FRONTEND/                # フロントエンドコード（該当する場合）
+FRONTEND/                # Mã nguồn frontend (nếu có)
 └── <unit-name>/
 
-DEPLOYMENT/              # デプロイメント設定
+DEPLOYMENT/              # Cấu hình triển khai
 ├── <unit-name>/
-│   ├── terraform/       # Terraformコード
-│   ├── cdk/             # AWS CDKコード
-│   ├── cloudformation/  # CloudFormationテンプレート
-│   ├── packages/        # デプロイメントパッケージ
-│   └── monitoring/      # 監視設定
+│   ├── terraform/       # Mã Terraform
+│   ├── cdk/             # Mã AWS CDK
+│   ├── cloudformation/  # Template CloudFormation
+│   ├── packages/        # Deployment package
+│   └── monitoring/      # Cấu hình giám sát
 
-ARCHITECTURE/            # アーキテクチャドキュメント
+ARCHITECTURE/            # Tài liệu kiến trúc
 └── <unit-name>/
 
-UNITS/                   # Units定義（オプション）
+UNITS/                   # Định nghĩa Units (tuỳ chọn)
 └── <unit-name>/
 ```
 
-## ディレクトリの説明
+## Mô tả Thư mục
 
 ### `aidlc-docs/`
 
-すべてのドキュメントとアーティファクトが保存されるルートディレクトリです。
+Thư mục gốc lưu trữ tất cả tài liệu và artifact.
 
 #### `requirements/`
 
-要件関連のドキュメントを保存します：
-- **nfrs.md**: 非機能要件（パフォーマンス、スケーラビリティ、セキュリティなど）
-- **risks.md**: リスクの記述（技術的、ビジネス、運用、コンプライアンス）
-- **prfaq.md**: PRFAQ（Press Release / FAQ）- ビジネス意図の要約（オプション）
-- **measurement_criteria.md**: 測定基準 - ビジネス意図にトレース可能な測定基準
+Lưu trữ tài liệu liên quan đến yêu cầu:
+- **nfrs.md**: Yêu cầu phi chức năng (hiệu suất, khả năng mở rộng, bảo mật, v.v.)
+- **risks.md**: Mô tả rủi ro (kỹ thuật, kinh doanh, vận hành, tuân thủ)
+- **prfaq.md**: PRFAQ (Press Release / FAQ) - Tóm tắt ý định kinh doanh (tuỳ chọn)
+- **measurement_criteria.md**: Tiêu chí đo lường - Tiêu chí có thể truy vết đến ý định kinh doanh
 
 #### `story-artifacts/`
 
-User Storiesを保存します：
-- **user_stories.md**: すべてのUser Storiesと受け入れ基準
+Lưu trữ User Stories:
+- **user_stories.md**: Tất cả User Stories và tiêu chí chấp nhận
 
 #### `design-artifacts/`
 
-設計関連のドキュメントを保存します：
+Lưu trữ tài liệu liên quan đến thiết kế:
 
-- **domain-models/**: Domain-Driven Design原則に基づいたドメインモデル
-- **logical-designs/**: NFRsを満たすためのアーキテクチャパターンを適用した論理設計
-- **static-models/**: Brown-Field開発用の静的モデル（コンポーネント、責任、関係）
-- **dynamic-models/**: Brown-Field開発用の動的モデル（ユースケース実現のための相互作用）
-- **adrs/**: Architecture Decision Records - 重要なアーキテクチャ決定の記録
-- **units/**: Units定義と統合仕様
-- **brownfield-context/**: Brown-Field開発用のコンテキストドキュメント
+- **domain-models/**: Domain model dựa trên nguyên tắc Domain-Driven Design
+- **logical-designs/**: Thiết kế logic áp dụng pattern kiến trúc để đáp ứng NFRs
+- **static-models/**: Mô hình tĩnh cho phát triển Brown-Field (component, trách nhiệm, quan hệ)
+- **dynamic-models/**: Mô hình động cho phát triển Brown-Field (tương tác để thực hiện use case)
+- **adrs/**: Architecture Decision Records - Ghi nhận các quyết định kiến trúc quan trọng
+- **units/**: Định nghĩa Units và đặc tả tích hợp
+- **brownfield-context/**: Tài liệu ngữ cảnh cho phát triển Brown-Field
 
 #### `plans/`
 
-すべての計画ドキュメントを保存します。各計画はチェックボックス付きのMarkdownファイルとして作成され、各ステップの完了時にチェックされます。
+Lưu trữ tất cả tài liệu kế hoạch. Mỗi kế hoạch được tạo dưới dạng file Markdown có checkbox, và được đánh dấu khi hoàn thành từng bước.
 
 ### `BACKEND/`
 
-バックエンドコードを保存します。各Unitごとにサブディレクトリが作成されます。
+Lưu trữ mã nguồn backend. Thư mục con được tạo cho mỗi Unit.
 
-- **domain/**: ドメイン層（Entities、Value Objects、Aggregates、Domain Events）
-- **application/**: アプリケーション層（Use Cases、Application Services、DTOs）
-- **infrastructure/**: インフラストラクチャ層（Repositories実装、外部サービス統合）
-- **api/**: REST API実装
-- **tests/**: ユニットテスト
+- **domain/**: Lớp domain (Entities, Value Objects, Aggregates, Domain Events)
+- **application/**: Lớp application (Use Cases, Application Services, DTOs)
+- **infrastructure/**: Lớp infrastructure (triển khai Repositories, tích hợp dịch vụ bên ngoài)
+- **api/**: Triển khai REST API
+- **tests/**: Unit test
 
 ### `FRONTEND/`
 
-フロントエンドコードを保存します（該当する場合）。
+Lưu trữ mã nguồn frontend (nếu có).
 
 ### `DEPLOYMENT/`
 
-デプロイメント関連のファイルを保存します：
+Lưu trữ file liên quan đến triển khai:
 
-- **terraform/**: Terraformコード
-- **cdk/**: AWS CDKコード
-- **cloudformation/**: CloudFormationテンプレート
-- **packages/**: デプロイメントパッケージ（コンテナイメージ、サーバーレス関数など）
-- **monitoring/**: 監視設定
+- **terraform/**: Mã Terraform
+- **cdk/**: Mã AWS CDK
+- **cloudformation/**: Template CloudFormation
+- **packages/**: Deployment package (container image, serverless function, v.v.)
+- **monitoring/**: Cấu hình giám sát
 
 ### `ARCHITECTURE/`
 
-アーキテクチャ関連のドキュメントを保存します。
+Lưu trữ tài liệu liên quan đến kiến trúc.
 
 ### `UNITS/`
 
-Units定義を保存します（オプション）。
+Lưu trữ định nghĩa Units (tuỳ chọn).
 
-## ファイル命名規則
+## Quy tắc Đặt tên File
 
-### 計画ファイル
-- `*_plan.md`: 計画ファイル
-- `*_validation_plan.md`: 検証計画
-- `*_validation_report.md`: 検証レポート
-- `*_test_results.md`: テスト結果
+### File Kế hoạch
+- `*_plan.md`: File kế hoạch
+- `*_validation_plan.md`: Kế hoạch xác minh
+- `*_validation_report.md`: Báo cáo xác minh
+- `*_test_results.md`: Kết quả test
 
-### 設計ファイル
-- `<unit-name>_domain_model.md`: ドメインモデル
-- `<unit-name>_logical_design.md`: 論理設計
-- `<unit-name>_static_model.md`: 静的モデル
-- `<unit-name>_dynamic_model.md`: 動的モデル
+### File Thiết kế
+- `<unit-name>_domain_model.md`: Domain model
+- `<unit-name>_logical_design.md`: Thiết kế logic
+- `<unit-name>_static_model.md`: Mô hình tĩnh
+- `<unit-name>_dynamic_model.md`: Mô hình động
 - `<unit-name>_<decision>.md`: ADR
 
-### コードディレクトリ
-- `<unit-name>/`: Unit名に基づくディレクトリ名
+### Thư mục Mã nguồn
+- `<unit-name>/`: Tên thư mục dựa trên tên Unit
 
-## 初期化
+## Khởi tạo
 
-プロジェクト構造は `@aidlc-setup` コマンドで自動的に作成されます。
+Cấu trúc dự án được tự động tạo bằng lệnh `@aidlc-setup`.
 
-手動で作成する場合：
+Nếu tạo thủ công:
 
 ```bash
 mkdir -p aidlc-docs/{requirements,story-artifacts,design-artifacts/{domain-models,logical-designs,static-models,dynamic-models,adrs,units,brownfield-context},plans}
 mkdir -p BACKEND FRONTEND DEPLOYMENT ARCHITECTURE UNITS
 ```
 
-各空ディレクトリには `.gitkeep` ファイルを配置して、Gitに含めることができます。
+Đặt file `.gitkeep` trong mỗi thư mục rỗng để bao gồm trong Git.
 
-## ベストプラクティス
+## Best Practice
 
-1. **一貫性**: ファイル名とディレクトリ名は一貫した命名規則に従う
-2. **トレーサビリティ**: すべてのアーティファクトはリンクされ、前後のトレーサビリティを確保
-3. **バージョン管理**: すべてのアーティファクトはGitで管理
-4. **ドキュメント**: 各アーティファクトには適切な説明を含める
-5. **構造化**: アーティファクトは構造化された形式（Markdown）で保存
+1. **Tính nhất quán**: Tên file và thư mục tuân theo quy tắc đặt tên nhất quán
+2. **Khả năng truy vết**: Tất cả artifact được liên kết, đảm bảo khả năng truy vết xuôi ngược
+3. **Quản lý phiên bản**: Tất cả artifact được quản lý bằng Git
+4. **Tài liệu**: Mỗi artifact chứa mô tả phù hợp
+5. **Cấu trúc hoá**: Artifact được lưu ở định dạng có cấu trúc (Markdown)
 

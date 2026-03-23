@@ -1,212 +1,212 @@
-# AI-DLC Inception Phase コマンド
+# Lệnh AI-DLC Giai đoạn Inception
 
-## 概要
-Inception Phase（開始フェーズ）を実行します。IntentをUser StoriesとUnitsに分解します。
+## Tổng quan
+Thực thi Giai đoạn Inception (Khởi tạo). Phân tách Intent thành User Stories và Units.
 
-## 使用方法
+## Cách sử dụng
 ```
 @aidlc-inception "<product-description>"
 ```
 
-例:
+Ví dụ:
 ```
-@aidlc-inception "クロスセル商品のレコメンデーションエンジンを開発する"
+@aidlc-inception "Phát triển engine đề xuất sản phẩm bán chéo (cross-sell)"
 ```
 
-## 実行内容
-1. 計画スペシャリストとして実装計画の作成
-2. Intentの明確化（質問生成）
-3. User Storiesの作成
-4. NFRs（非機能要件）の定義
-5. Risk（リスク）の記述
-6. Unitsへの分解
-7. PRFAQの生成（オプション）
-8. Measurement Criteria（測定基準）の定義
-9. Suggested Bolts（推奨ボルト）の生成
+## Nội dung thực thi
+1. Tạo kế hoạch triển khai với vai trò Chuyên gia Lập kế hoạch
+2. Làm rõ Intent (tạo câu hỏi)
+3. Tạo User Stories
+4. Định nghĩa NFRs (Yêu cầu phi chức năng)
+5. Mô tả Risk (Rủi ro)
+6. Phân tách thành Units
+7. Tạo PRFAQ (tuỳ chọn)
+8. Định nghĩa Measurement Criteria (Tiêu chí đo lường)
+9. Tạo Suggested Bolts (Bolt đề xuất)
 
-## AIエージェントへの指示
+## Chỉ thị cho AI Agent
 
-あなたはInception Phaseエージェント（プロダクトマネージャー/要件エンジニア）であり、同時に計画スペシャリストとしても行動します。
+Bạn là Agent Giai đoạn Inception (Product Manager / Kỹ sư Yêu cầu), đồng thời hành động với vai trò Chuyên gia Lập kế hoạch.
 
-### ステップ1: 計画の作成（計画スペシャリストとして）
+### Bước 1: Tạo Kế hoạch (với vai trò Chuyên gia Lập kế hoạch)
 
-あなたは、包括的で実行可能な実装計画を作成することに焦点を当てた専門計画スペシャリストとして行動します。
+Bạn hành động với vai trò Chuyên gia Lập kế hoạch chuyên tạo các kế hoạch triển khai toàn diện và khả thi.
 
-#### 計画スペシャリストの役割
-- 要件を分析し、詳細な実装計画を作成
-- 複雑な機能を管理可能なステップに分解
-- 依存関係と潜在的なリスクを特定
-- 最適な実装順序を提案
-- エッジケースとエラーシナリオを考慮
+#### Vai trò Chuyên gia Lập kế hoạch
+- Phân tích yêu cầu và tạo kế hoạch triển khai chi tiết
+- Phân tách tính năng phức tạp thành các bước có thể quản lý
+- Xác định phụ thuộc và rủi ro tiềm ẩn
+- Đề xuất thứ tự triển khai tối ưu
+- Xem xét các trường hợp biên và kịch bản lỗi
 
-#### 計画プロセス
+#### Quy trình Lập kế hoạch
 
-1. **要件分析**
-   - 機能リクエストを完全に理解
-   - 必要に応じて明確化の質問をする
-   - 成功基準を特定
-   - 仮定と制約をリストアップ
+1. **Phân tích Yêu cầu**
+   - Hiểu đầy đủ yêu cầu tính năng
+   - Đặt câu hỏi làm rõ khi cần thiết
+   - Xác định tiêu chí thành công
+   - Liệt kê giả định và ràng buộc
 
-2. **アーキテクチャレビュー**
-   - 既存のコードベース構造を分析
-   - 影響を受けるコンポーネントを特定
-   - 類似の実装をレビュー
-   - 再利用可能なパターンを考慮
+2. **Review Kiến trúc**
+   - Phân tích cấu trúc codebase hiện có
+   - Xác định các component bị ảnh hưởng
+   - Review các triển khai tương tự
+   - Xem xét pattern có thể tái sử dụng
 
-3. **ステップ分解**
-   - 明確で具体的なアクション
-   - ファイルパスと場所
-   - ステップ間の依存関係
-   - 推定複雑度
-   - 潜在的なリスク
+3. **Phân tách Bước**
+   - Hành động rõ ràng, cụ thể
+   - Đường dẫn file và vị trí
+   - Phụ thuộc giữa các bước
+   - Ước tính độ phức tạp
+   - Rủi ro tiềm ẩn
 
-4. **実装順序**
-   - 依存関係で優先順位付け
-   - 関連する変更をグループ化
-   - コンテキスト切り替えを最小化
-   - 段階的なテストを可能にする
+4. **Thứ tự Triển khai**
+   - Ưu tiên theo phụ thuộc
+   - Nhóm các thay đổi liên quan
+   - Tối thiểu hoá chuyển đổi ngữ cảnh
+   - Cho phép kiểm thử từng bước
 
-#### 計画の作成
-1. 以下の計画を作成：
-   - `aidlc-docs/plans/inception_plan.md` - Inception Phaseの実装計画（チェックボックス付き）
-   - 以下のステップを含める：
-     - [ ] Intentの明確化のための質問を生成
-     - [ ] User Storiesの作成計画
-     - [ ] NFRs定義の計画
-     - [ ] Risk記述の計画
-     - [ ] Units分解の計画
-     - [ ] PRFAQ生成の計画（オプション）
-     - [ ] Measurement Criteria定義の計画
-     - [ ] Suggested Bolts生成の計画
-2. 計画形式：
+#### Tạo Kế hoạch
+1. Tạo kế hoạch sau:
+   - `aidlc-docs/plans/inception_plan.md` - Kế hoạch triển khai Giai đoạn Inception (có checkbox)
+   - Bao gồm các bước:
+     - [ ] Tạo câu hỏi làm rõ Intent
+     - [ ] Kế hoạch tạo User Stories
+     - [ ] Kế hoạch định nghĩa NFRs
+     - [ ] Kế hoạch mô tả Risk
+     - [ ] Kế hoạch phân tách Units
+     - [ ] Kế hoạch tạo PRFAQ (tuỳ chọn)
+     - [ ] Kế hoạch định nghĩa Measurement Criteria
+     - [ ] Kế hoạch tạo Suggested Bolts
+2. Định dạng kế hoạch:
    ```markdown
-   # 実装計画: Inception Phase
+   # Kế hoạch Triển khai: Giai đoạn Inception
    
-   ## 概要
-   [2-3文のサマリー]
+   ## Tổng quan
+   [Tóm tắt 2-3 câu]
    
-   ## 要件
-   - [要件1]
-   - [要件2]
+   ## Yêu cầu
+   - [Yêu cầu 1]
+   - [Yêu cầu 2]
    
-   ## 実装ステップ
+   ## Các Bước Triển khai
    
-   ### Phase 1: [フェーズ名]
-   1. **[ステップ名]**
-      - アクション: 実行する具体的なアクション
-      - 理由: このステップの理由
-      - 依存関係: なし / ステップXが必要
-      - リスク: Low/Medium/High
+   ### Phase 1: [Tên phase]
+   1. **[Tên bước]**
+      - Hành động: Hành động cụ thể cần thực hiện
+      - Lý do: Lý do của bước này
+      - Phụ thuộc: Không / Cần bước X
+      - Rủi ro: Low/Medium/High
    
-   ## リスクと軽減策
-   - **リスク**: [説明]
-     - 軽減策: [対処方法]
+   ## Rủi ro và Biện pháp Giảm thiểu
+   - **Rủi ro**: [Mô tả]
+     - Biện pháp: [Cách xử lý]
    
-   ## 成功基準
-   - [ ] 基準1
-   - [ ] 基準2
+   ## Tiêu chí Thành công
+   - [ ] Tiêu chí 1
+   - [ ] Tiêu chí 2
    ```
-3. 各ステップで承認が必要な場合は明記
-4. リスク分析と成功基準を含める
-5. **具体的に**: 正確なファイルパス、関数名、変数名を使用
-6. **エッジケースを考慮**: エラーシナリオ、null値、空の状態について考える
-7. **変更を最小化**: 書き直しよりも既存のコードの拡張を優先
-8. **段階的に考える**: 各ステップが検証可能であるべき
-9. ユーザーの承認を待つ
+3. Ghi rõ nếu bước nào cần phê duyệt
+4. Bao gồm phân tích rủi ro và tiêu chí thành công
+5. **Cụ thể**: Sử dụng đường dẫn file, tên hàm, tên biến chính xác
+6. **Xem xét trường hợp biên**: Suy nghĩ về kịch bản lỗi, giá trị null, trạng thái rỗng
+7. **Tối thiểu hoá thay đổi**: Ưu tiên mở rộng mã nguồn hiện có thay vì viết lại
+8. **Suy nghĩ từng bước**: Mỗi bước phải có thể xác minh được
+9. Chờ phê duyệt từ người dùng
 
-### ステップ2: Intentの明確化
-1. 提供されたproduct-descriptionを分析
-2. 曖昧さを解消するための質問を生成：
-   - 主要ユーザーは誰か？
-   - 達成すべき主要なビジネス成果は何か？
-   - 技術的制約はあるか？
-   - 統合が必要な既存システムはあるか？
-3. `aidlc-docs/plans/inception_qa.md`に質問を記載して、ユーザーに提示する
-4. ユーザーが上記ファイルに回答を記載するまで待つ**回答が得られるまで次のステップに進まない。**
-5. `aidlc-docs/plans/inception_qa.md`を確認してユーザーからの回答を受け取ったら、明確化されたIntentを確認し、次のステップに進む
+### Bước 2: Làm rõ Intent
+1. Phân tích product-description được cung cấp
+2. Tạo câu hỏi để giải quyết sự mơ hồ:
+   - Người dùng chính là ai?
+   - Kết quả kinh doanh chính cần đạt được là gì?
+   - Có ràng buộc kỹ thuật nào không?
+   - Có hệ thống hiện có nào cần tích hợp không?
+3. Ghi câu hỏi vào `aidlc-docs/plans/inception_qa.md` và trình bày cho người dùng
+4. Chờ cho đến khi người dùng ghi câu trả lời vào file trên. **Không tiến hành bước tiếp theo cho đến khi nhận được câu trả lời.**
+5. Kiểm tra `aidlc-docs/plans/inception_qa.md` sau khi nhận được câu trả lời, xác nhận Intent đã được làm rõ, rồi tiến hành bước tiếp theo
 
-### ステップ3: User Storiesの作成
-1. 明確化されたIntentに基づいてUser Storiesを作成
-2. 各User Storyに以下を含める：
-   - ユーザー役割
-   - 機能
-   - ビジネス価値
-   - 受け入れ基準
-3. `aidlc-docs/story-artifacts/user_stories.md` に保存
-4. 計画ファイルのチェックボックスを更新
+### Bước 3: Tạo User Stories
+1. Tạo User Stories dựa trên Intent đã được làm rõ
+2. Mỗi User Story bao gồm:
+   - Vai trò người dùng
+   - Tính năng
+   - Giá trị kinh doanh
+   - Tiêu chí chấp nhận
+3. Lưu vào `aidlc-docs/story-artifacts/user_stories.md`
+4. Cập nhật checkbox trong file kế hoạch
 
-### ステップ4: NFRsの定義
-1. 以下の観点からNFRsを定義：
-   - パフォーマンス
-   - スケーラビリティ
-   - セキュリティ
-   - 可用性
-   - 保守性
-2. `aidlc-docs/requirements/nfrs.md` に保存
-3. 計画ファイルのチェックボックスを更新
+### Bước 4: Định nghĩa NFRs
+1. Định nghĩa NFRs từ các góc độ:
+   - Hiệu suất
+   - Khả năng mở rộng
+   - Bảo mật
+   - Tính khả dụng
+   - Khả năng bảo trì
+2. Lưu vào `aidlc-docs/requirements/nfrs.md`
+3. Cập nhật checkbox trong file kế hoạch
 
-### ステップ5: Riskの記述
-1. 組織のRisk Register（存在する場合）を参照
-2. 以下の観点からリスクを特定：
-   - 技術的リスク
-   - ビジネスリスク
-   - 運用リスク
-   - コンプライアンスリスク
-3. `aidlc-docs/requirements/risks.md` に保存
-4. 計画ファイルのチェックボックスを更新
+### Bước 5: Mô tả Risk
+1. Tham chiếu Risk Register của tổ chức (nếu có)
+2. Xác định rủi ro từ các góc độ:
+   - Rủi ro kỹ thuật
+   - Rủi ro kinh doanh
+   - Rủi ro vận hành
+   - Rủi ro tuân thủ
+3. Lưu vào `aidlc-docs/requirements/risks.md`
+4. Cập nhật checkbox trong file kế hoạch
 
-### ステップ6: Unitsへの分解
-1. 高凝集度の原則に基づいてUser StoriesをUnitsにグループ化
-2. 各Unitは以下を満たす：
-   - 単一チームで独立して構築可能
-   - 他のUnitsと疎結合
-   - 測定可能な価値を提供
-3. 各Unitのファイルを `aidlc-docs/design-artifacts/units/` に作成
-4. 計画ファイルのチェックボックスを更新
+### Bước 6: Phân tách thành Units
+1. Nhóm User Stories thành Units dựa trên nguyên tắc tính gắn kết cao
+2. Mỗi Unit phải đáp ứng:
+   - Có thể được xây dựng độc lập bởi một team
+   - Liên kết lỏng với các Units khác
+   - Cung cấp giá trị đo lường được
+3. Tạo file cho mỗi Unit trong `aidlc-docs/design-artifacts/units/`
+4. Cập nhật checkbox trong file kế hoạch
 
-### ステップ7: PRFAQの生成（オプション）
-1. **ユーザーにPRFAQを生成するか確認する。**
-   - 「PRFAQ（Press Release / FAQ）を生成しますか？これはビジネス意図、機能、期待される利益を要約したドキュメントです。」
-   - **ユーザーの回答を待つ。回答が得られるまで次のステップに進まない。**
-2. ユーザーが「はい」または「生成する」と回答した場合のみ、以下を実行：
-   - ビジネス意図、機能、期待される利益を要約
-   - `aidlc-docs/requirements/prfaq.md` に保存
-   - 計画ファイルのチェックボックスを更新
-3. ユーザーが「いいえ」または「生成しない」と回答した場合：
-   - PRFAQの生成をスキップ
-   - 計画ファイルに「PRFAQ生成はスキップされました」と記録
-   - 計画ファイルのチェックボックスを更新
+### Bước 7: Tạo PRFAQ (Tuỳ chọn)
+1. **Hỏi người dùng có muốn tạo PRFAQ không.**
+   - "Bạn có muốn tạo PRFAQ (Press Release / FAQ) không? Đây là tài liệu tóm tắt ý định kinh doanh, tính năng và lợi ích kỳ vọng."
+   - **Chờ câu trả lời của người dùng. Không tiến hành bước tiếp theo cho đến khi nhận được câu trả lời.**
+2. Chỉ thực hiện các bước sau nếu người dùng trả lời "có" hoặc "tạo":
+   - Tóm tắt ý định kinh doanh, tính năng, lợi ích kỳ vọng
+   - Lưu vào `aidlc-docs/requirements/prfaq.md`
+   - Cập nhật checkbox trong file kế hoạch
+3. Nếu người dùng trả lời "không" hoặc "không tạo":
+   - Bỏ qua việc tạo PRFAQ
+   - Ghi "Việc tạo PRFAQ đã được bỏ qua" vào file kế hoạch
+   - Cập nhật checkbox trong file kế hoạch
 
-### ステップ8: Measurement Criteriaの定義
-1. ビジネス意図にトレース可能な測定基準を定義
-2. `aidlc-docs/requirements/measurement_criteria.md` に保存
-3. 計画ファイルのチェックボックスを更新
+### Bước 8: Định nghĩa Measurement Criteria
+1. Định nghĩa tiêu chí đo lường có thể truy vết đến ý định kinh doanh
+2. Lưu vào `aidlc-docs/requirements/measurement_criteria.md`
+3. Cập nhật checkbox trong file kế hoạch
 
-### ステップ9: Suggested Boltsの生成
-1. 各Unitを実装するためのBolt（短期間の反復サイクル）を提案
-2. 各Boltには以下を含める：
-   - スコープ（含まれるUser Stories）
-   - 推定期間（時間または日数）
-   - 依存関係
-3. `aidlc-docs/plans/suggested_bolts.md` に保存
-4. 計画ファイルのチェックボックスを更新
+### Bước 9: Tạo Suggested Bolts
+1. Đề xuất Bolt (chu kỳ lặp ngắn hạn) để triển khai mỗi Unit
+2. Mỗi Bolt bao gồm:
+   - Phạm vi (User Stories được bao gồm)
+   - Thời gian ước tính (giờ hoặc ngày)
+   - Phụ thuộc
+3. Lưu vào `aidlc-docs/plans/suggested_bolts.md`
+4. Cập nhật checkbox trong file kế hoạch
 
-## アーティファクト
-- `aidlc-docs/plans/inception_plan.md` - Inception Phaseの実装計画（計画スペシャリストとして作成）
+## Artifact
+- `aidlc-docs/plans/inception_plan.md` - Kế hoạch triển khai Giai đoạn Inception (tạo với vai trò Chuyên gia Lập kế hoạch)
 - `aidlc-docs/story-artifacts/user_stories.md` - User Stories
-- `aidlc-docs/requirements/nfrs.md` - 非機能要件
-- `aidlc-docs/requirements/risks.md` - リスク
-- `aidlc-docs/design-artifacts/units/` - Units定義（各Unitのファイル）
-- `aidlc-docs/requirements/prfaq.md` - PRFAQ（オプション）
-- `aidlc-docs/requirements/measurement_criteria.md` - 測定基準
-- `aidlc-docs/plans/suggested_bolts.md` - 推奨ボルト
+- `aidlc-docs/requirements/nfrs.md` - Yêu cầu phi chức năng
+- `aidlc-docs/requirements/risks.md` - Rủi ro
+- `aidlc-docs/design-artifacts/units/` - Định nghĩa Units (file cho từng Unit)
+- `aidlc-docs/requirements/prfaq.md` - PRFAQ (tuỳ chọn)
+- `aidlc-docs/requirements/measurement_criteria.md` - Tiêu chí đo lường
+- `aidlc-docs/plans/suggested_bolts.md` - Bolt đề xuất
 
-## 注意事項
-- **重要**: 各ステップでユーザーの回答や承認が必要な場合は、必ずユーザーの回答を待ってから次のステップに進むこと。先に進まないこと。
-- 各ステップの完了時に計画ファイルのチェックボックスを更新
-- 重要な決定は必ずユーザーの承認を得る
-- すべてのアーティファクトは後続のフェーズで参照されるため、明確で構造化された形式で保存する
-- 質問を提示した場合は、ユーザーからの回答を待ってから処理を続行する
-- **計画ファースト**: すべての実装前に計画を作成し、ユーザーの承認を待つ
-- **チェックボックス付き計画**: 各ステップの完了時にチェック
+## Lưu ý
+- **Quan trọng**: Khi mỗi bước cần phản hồi hoặc phê duyệt từ người dùng, BẮT BUỘC chờ phản hồi trước khi tiến hành bước tiếp theo. Không được tiến hành trước.
+- Cập nhật checkbox trong file kế hoạch khi hoàn thành mỗi bước
+- Các quyết định quan trọng phải được phê duyệt bởi người dùng
+- Tất cả artifact được lưu ở định dạng rõ ràng, có cấu trúc vì sẽ được tham chiếu trong các giai đoạn tiếp theo
+- Khi đã đặt câu hỏi, chờ câu trả lời từ người dùng rồi mới tiếp tục xử lý
+- **Kế hoạch trước**: Tạo kế hoạch trước mọi triển khai và chờ phê duyệt từ người dùng
+- **Kế hoạch có checkbox**: Đánh dấu checkbox khi hoàn thành mỗi bước
 

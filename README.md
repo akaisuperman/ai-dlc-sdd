@@ -1,32 +1,32 @@
-# AI-Driven Development Lifecycle (AI-DLC) フレームワーク
+# Framework AI-Driven Development Lifecycle (AI-DLC)
 
-このプロジェクトは、AI-DLC（AI-Driven Development Lifecycle）に基づいた開発プロセスを実行するためのフレームワークです。
+Dự án này là framework để thực thi quy trình phát triển dựa trên AI-DLC (AI-Driven Development Lifecycle).
 
-## 概要
+## Tổng quan
 
-AI-DLCは、AIが主導する開発ライフサイクル手法です。従来の人間主導のプロセスとは異なり、AIがワークフローを分解し、推奨を生成し、人間は承認と検証を行います。
+AI-DLC là phương pháp vòng đời phát triển do AI chủ đạo. Khác với quy trình truyền thống do con người dẫn dắt, AI sẽ phân tách workflow, tạo đề xuất, còn con người thực hiện phê duyệt và xác minh.
 
-### 主な特徴
+### Đặc điểm Chính
 
-- **AI主導**: AIがワークフローを分解し、計画を生成
-- **人間の承認**: 重要な決定ポイントで人間が承認・検証
-- **高速な反復**: 時間単位または日単位の高速なサイクル（Bolts）
-- **設計手法の統合**: DDD、BDD、TDDなどの設計手法をコアに統合
-- **トレーサビリティ**: すべてのアーティファクトがリンクされ、前後のトレーサビリティを確保
+- **AI chủ đạo**: AI phân tách workflow và tạo kế hoạch
+- **Con người phê duyệt**: Con người phê duyệt và xác minh tại các điểm quyết định quan trọng
+- **Lặp nhanh**: Chu kỳ nhanh theo giờ hoặc ngày (Bolts)
+- **Tích hợp phương pháp thiết kế**: Tích hợp DDD, BDD, TDD và các phương pháp thiết kế khác vào lõi
+- **Khả năng truy vết**: Tất cả artifact được liên kết, đảm bảo khả năng truy vết xuôi ngược
 
-## インストール・導入
+## Cài đặt & Triển khai
 
-自分のプロジェクトにAI-DLCフレームワークを導入する手順です。
+Hướng dẫn triển khai framework AI-DLC vào dự án của bạn.
 
-### 前提条件
+### Yêu cầu Trước
 
-以下のいずれかのツールがインストールされていること：
-- [Cursor](https://cursor.sh/) エディタ
+Cần cài đặt một trong các công cụ sau:
+- [Cursor](https://cursor.sh/) editor
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI
 
-### 導入ステップ（Cursor）
+### Các Bước Triển khai (Cursor)
 
-#### 1. フレームワークファイルのコピー
+#### 1. Sao chép File Framework
 
 ```bash
 cd /path/to/your/project
@@ -38,198 +38,198 @@ mkdir -p .cursor/commands/aidlc
 cp /path/to/ai-dlc-sdd/cursor/commands/*.md .cursor/commands/aidlc/
 ```
 
-#### 2. 使用方法
+#### 2. Cách Sử dụng
 
-Cursorエディタのチャットで `@` に続けてコマンド名を入力：
+Nhập `@` theo sau tên lệnh trong chat của Cursor editor:
 
 ```
 @aidlc-setup
-@aidlc-inception "プロダクトの説明"
+@aidlc-inception "Mô tả sản phẩm"
 ```
 
-### 導入ステップ（Claude Code）
+### Các Bước Triển khai (Claude Code)
 
-#### 1. フレームワークファイルのコピー
+#### 1. Sao chép File Framework
 
 ```bash
 cd /path/to/your/project
 
-# コマンドをコピー
+# Sao chép commands
 mkdir -p .claude/commands
 cp /path/to/ai-dlc-sdd/claude-code/commands/*.md .claude/commands/
 
-# ルールをコピー
+# Sao chép rules
 mkdir -p .claude/rules
 cp /path/to/ai-dlc-sdd/claude-code/rules/*.md .claude/rules/
 
-# CLAUDE.md をプロジェクトルートにコピー
+# Sao chép CLAUDE.md vào thư mục gốc dự án
 cp /path/to/ai-dlc-sdd/claude-code/CLAUDE.md ./CLAUDE.md
 ```
 
-#### 2. 使用方法
+#### 2. Cách Sử dụng
 
-Claude Codeのチャットで `/` に続けてコマンド名を入力：
+Nhập `/` theo sau tên lệnh trong chat của Claude Code:
 
 ```
 /aidlc-setup
-/aidlc-inception "プロダクトの説明"
+/aidlc-inception "Mô tả sản phẩm"
 ```
 
-### Cursor / Claude Code 互換性
+### Tương thích Cursor / Claude Code
 
-両ツールで**同じプロジェクト**を扱えます。生成されるアーティファクト（`aidlc-docs/`、`BACKEND/`等）はすべて共通です。
+Có thể làm việc trên **cùng một dự án** với cả hai công cụ. Tất cả artifact được tạo ra (`aidlc-docs/`, `BACKEND/`, v.v.) đều chung.
 
-| 項目 | Cursor | Claude Code |
+| Hạng mục | Cursor | Claude Code |
 |------|--------|-------------|
-| コマンド呼び出し | `@aidlc-*` | `/aidlc-*` |
-| コマンド配置先 | `.cursor/commands/` | `.claude/commands/` |
-| ルール配置先 | `.cursor/rules/*.mdc` | `.claude/rules/*.md` |
-| プロジェクト設定 | `.cursorrules` 等 | `CLAUDE.md` |
-| 生成アーティファクト | 同一 | 同一 |
+| Gọi lệnh | `@aidlc-*` | `/aidlc-*` |
+| Nơi đặt lệnh | `.cursor/commands/` | `.claude/commands/` |
+| Nơi đặt rules | `.cursor/rules/*.mdc` | `.claude/rules/*.md` |
+| Cấu hình dự án | `.cursorrules`, v.v. | `CLAUDE.md` |
+| Artifact tạo ra | Giống nhau | Giống nhau |
 
-### プロジェクト構造の初期化
+### Khởi tạo Cấu trúc Dự án
 
-フレームワーク導入後、最初に以下を実行してプロジェクト構造を初期化してください：
+Sau khi triển khai framework, chạy lệnh sau đầu tiên để khởi tạo cấu trúc dự án:
 
 ```
 /aidlc-setup
 ```
 
-### カスタマイズ
+### Tuỳ chỉnh
 
-- Cursor: `.cursor/commands/aidlc/*.md` を編集
-- Claude Code: `.claude/commands/*.md` を編集
+- Cursor: Chỉnh sửa `.cursor/commands/aidlc/*.md`
+- Claude Code: Chỉnh sửa `.claude/commands/*.md`
 
-## プロジェクト構造
+## Cấu trúc Dự án
 
 ```
 aidlc-docs/
-├── requirements/          # 要件ドキュメント
+├── requirements/          # Tài liệu yêu cầu
 ├── story-artifacts/       # User Stories
-├── design-artifacts/      # 設計ドキュメント
-│   ├── domain-models/    # ドメインモデル
-│   ├── logical-designs/  # 論理設計
-│   ├── static-models/    # 静的モデル（Brown-Field用）
-│   ├── dynamic-models/   # 動的モデル（Brown-Field用）
+├── design-artifacts/      # Tài liệu thiết kế
+│   ├── domain-models/    # Domain model
+│   ├── logical-designs/  # Thiết kế logic
+│   ├── static-models/    # Mô hình tĩnh (cho Brown-Field)
+│   ├── dynamic-models/   # Mô hình động (cho Brown-Field)
 │   ├── adrs/             # Architecture Decision Records
-│   └── units/            # Units定義
-├── plans/                # 計画ドキュメント
-└── prompts.md           # プロンプト履歴
+│   └── units/            # Định nghĩa Units
+├── plans/                # Tài liệu kế hoạch
+└── prompts.md           # Lịch sử prompt
 
-BACKEND/                  # バックエンドコード
-FRONTEND/                # フロントエンドコード（該当する場合）
-DEPLOYMENT/              # デプロイメント設定
-ARCHITECTURE/            # アーキテクチャドキュメント
-UNITS/                   # Units定義
+BACKEND/                  # Mã nguồn backend
+FRONTEND/                # Mã nguồn frontend (nếu có)
+DEPLOYMENT/              # Cấu hình triển khai
+ARCHITECTURE/            # Tài liệu kiến trúc
+UNITS/                   # Định nghĩa Units
 ```
 
-## クイックスタート
+## Bắt đầu Nhanh
 
-### 1. セットアップ
+### 1. Thiết lập
 
-プロジェクトの初期セットアップを行います：
+Thực hiện thiết lập ban đầu cho dự án:
 
 ```
 /aidlc-setup
 ```
 
-このコマンドは、必要なディレクトリ構造とファイルを作成します。
+Lệnh này tạo cấu trúc thư mục và file cần thiết.
 
-### 2. Inception Phase（開始フェーズ）
+### 2. Giai đoạn Inception (Khởi tạo)
 
-プロダクトの説明からUser StoriesとUnitsを作成します：
-
-```
-/aidlc-inception "クロスセル商品のレコメンデーションエンジンを開発する"
-```
-
-このコマンドは以下を実行します：
-- Intentの明確化（質問生成）
-- User Storiesの作成
-- NFRs（非機能要件）の定義
-- Risk（リスク）の記述
-- Unitsへの分解
-- PRFAQの生成（オプション）
-- Measurement Criteria（測定基準）の定義
-- Suggested Bolts（推奨ボルト）の生成
-
-### 3. Construction Phase（構築フェーズ）
-
-#### Domain Model作成
-
-指定されたUnitのDomain Designを作成します：
+Tạo User Stories và Units từ mô tả sản phẩm:
 
 ```
-/aidlc-domain-model "レコメンデーションアルゴリズム"
+/aidlc-inception "Phát triển engine đề xuất sản phẩm bán chéo (cross-sell)"
 ```
 
-#### Architecture設計
+Lệnh này thực hiện:
+- Làm rõ Intent (tạo câu hỏi)
+- Tạo User Stories
+- Định nghĩa NFRs (Yêu cầu phi chức năng)
+- Mô tả Risk (Rủi ro)
+- Phân tách thành Units
+- Tạo PRFAQ (tuỳ chọn)
+- Định nghĩa Measurement Criteria (Tiêu chí đo lường)
+- Tạo Suggested Bolts (Bolt đề xuất)
 
-Domain DesignをLogical Designに変換し、NFRsを満たすためのアーキテクチャパターンを適用します：
+### 3. Giai đoạn Construction (Xây dựng)
 
-```
-/aidlc-architecture "レコメンデーションアルゴリズム"
-```
+#### Tạo Domain Model
 
-#### コード生成
-
-Domain ModelとLogical Designに基づいて、実行可能なコードとユニットテストを生成します：
-
-```
-/aidlc-code-generation "レコメンデーションアルゴリズム"
-```
-
-#### IaC/REST APIs生成
-
-Infrastructure as CodeとREST APIを生成します：
+Tạo Domain Design cho Unit được chỉ định:
 
 ```
-/aidlc-iac-apis "レコメンデーションアルゴリズム" terraform
+/aidlc-domain-model "Thuật toán đề xuất"
 ```
 
-### 4. Operations Phase（運用フェーズ）
+#### Thiết kế Architecture
 
-#### デプロイメント
-
-Deployment Unitsをパッケージ化し、環境にデプロイします：
+Chuyển đổi Domain Design thành Logical Design và áp dụng pattern kiến trúc để đáp ứng NFRs:
 
 ```
-/aidlc-deployment "レコメンデーションアルゴリズム" staging
+/aidlc-architecture "Thuật toán đề xuất"
 ```
 
-#### 監視
+#### Sinh Mã nguồn
 
-デプロイされたシステムの監視、メトリクス分析、インシデント管理を設定します：
+Sinh mã nguồn thực thi và unit test dựa trên Domain Model và Logical Design:
 
 ```
-/aidlc-monitoring "レコメンデーションアルゴリズム"
+/aidlc-code-generation "Thuật toán đề xuất"
 ```
 
-## Brown-Field開発
+#### Sinh IaC/REST APIs
 
-既存システムに対して新機能を追加する場合：
+Sinh Infrastructure as Code và REST API:
 
-### 1. 既存コードの分析
+```
+/aidlc-iac-apis "Thuật toán đề xuất" terraform
+```
 
-既存コードを高レベルなモデリング表現に変換します：
+### 4. Giai đoạn Operations (Vận hành)
+
+#### Triển khai
+
+Đóng gói Deployment Units và triển khai đến môi trường:
+
+```
+/aidlc-deployment "Thuật toán đề xuất" staging
+```
+
+#### Giám sát
+
+Thiết lập giám sát, phân tích metrics và quản lý sự cố cho hệ thống đã triển khai:
+
+```
+/aidlc-monitoring "Thuật toán đề xuất"
+```
+
+## Phát triển Brown-Field
+
+Khi thêm tính năng mới vào hệ thống hiện có:
+
+### 1. Phân tích Mã nguồn Hiện có
+
+Chuyển đổi mã nguồn hiện có thành biểu diễn mô hình hoá cấp cao:
 
 ```
 /aidlc-brownfield "BACKEND/legacy-system"
 ```
 
-このコマンドは以下を実行します：
-- 既存コードの分析
-- 静的モデル（コンポーネント、責任、関係）の作成
-- 動的モデル（ユースケース実現のための相互作用）の作成
-- コンテキストの構築
+Lệnh này thực hiện:
+- Phân tích mã nguồn hiện có
+- Tạo mô hình tĩnh (component, trách nhiệm, quan hệ)
+- Tạo mô hình động (tương tác để thực hiện use case)
+- Xây dựng ngữ cảnh
 
-### 2. 通常のConstruction Phase
+### 2. Giai đoạn Construction Thông thường
 
-Brown-Field分析後、通常のConstruction Phaseを実行します。
+Sau khi phân tích Brown-Field, thực hiện Giai đoạn Construction thông thường.
 
-## 開発フロー
+## Luồng Phát triển
 
-### Green-Field開発フロー
+### Luồng Phát triển Green-Field
 
 ```
 1. /aidlc-setup
@@ -249,7 +249,7 @@ Brown-Field分析後、通常のConstruction Phaseを実行します。
 8. /aidlc-monitoring <unit-name>
 ```
 
-### Brown-Field開発フロー
+### Luồng Phát triển Brown-Field
 
 ```
 1. /aidlc-setup
@@ -258,102 +258,99 @@ Brown-Field分析後、通常のConstruction Phaseを実行します。
    ↓
 3. /aidlc-inception "<product-description>"
    ↓
-4. (Construction PhaseはGreen-Fieldと同じ)
+4. (Giai đoạn Construction giống Green-Field)
 ```
 
-## コマンド一覧
+## Danh sách Lệnh
 
-| コマンド | 説明 | フェーズ |
+| Lệnh | Mô tả | Giai đoạn |
 |---------|------|---------|
-| `/aidlc-setup` | プロジェクトの初期セットアップ | Setup |
-| `/aidlc-inception` | IntentをUser StoriesとUnitsに分解 | Inception |
-| `/aidlc-brownfield` | 既存コードの分析とモデル化 | Construction (Brown-Field) |
-| `/aidlc-domain-model` | Domain Designの作成 | Construction |
-| `/aidlc-architecture` | Logical Designの作成 | Construction |
-| `/aidlc-code-generation` | コードとユニットテストの生成 | Construction |
-| `/aidlc-iac-apis` | IaCとREST APIの生成 | Construction |
-| `/aidlc-deployment` | デプロイメントの実行 | Operations |
-| `/aidlc-monitoring` | 監視とインシデント管理の設定 | Operations |
-| `/aidlc-modification` | 追加改修の影響分析と計画 | Modification |
-| `/aidlc-refactor` | コードと設計のリファクタリング | Improvement |
+| `/aidlc-setup` | Thiết lập ban đầu cho dự án | Setup |
+| `/aidlc-inception` | Phân tách Intent thành User Stories và Units | Inception |
+| `/aidlc-brownfield` | Phân tích và mô hình hoá mã nguồn hiện có | Construction (Brown-Field) |
+| `/aidlc-domain-model` | Tạo Domain Design | Construction |
+| `/aidlc-architecture` | Tạo Logical Design | Construction |
+| `/aidlc-code-generation` | Sinh mã nguồn và unit test | Construction |
+| `/aidlc-iac-apis` | Sinh IaC và REST API | Construction |
+| `/aidlc-deployment` | Thực hiện triển khai | Operations |
+| `/aidlc-monitoring` | Thiết lập giám sát và quản lý sự cố | Operations |
+| `/aidlc-modification` | Phân tích tác động và lập kế hoạch chỉnh sửa bổ sung | Modification |
+| `/aidlc-refactor` | Tái cấu trúc mã nguồn và thiết kế | Improvement |
 
-## アーティファクト
+## Artifact
 
-### Inception Phase
+### Giai đoạn Inception
 
-- **Intent**: 高レベルの目的の記述
-- **User Stories**: 機能要件の記述
-- **NFRs**: 非機能要件の定義
-- **Risks**: リスクの記述
-- **Units**: 独立して構築可能な作業単位
-- **PRFAQ**: ビジネス意図の要約（オプション）
-- **Measurement Criteria**: 測定基準の定義
-- **Suggested Bolts**: 推奨される短期間の反復サイクル
+- **Intent**: Mô tả mục đích cấp cao
+- **User Stories**: Mô tả yêu cầu chức năng
+- **NFRs**: Định nghĩa yêu cầu phi chức năng
+- **Risks**: Mô tả rủi ro
+- **Units**: Đơn vị công việc có thể xây dựng độc lập
+- **PRFAQ**: Tóm tắt ý định kinh doanh (tuỳ chọn)
+- **Measurement Criteria**: Định nghĩa tiêu chí đo lường
+- **Suggested Bolts**: Chu kỳ lặp ngắn hạn được đề xuất
 
-### Construction Phase
+### Giai đoạn Construction
 
-- **Domain Design**: ビジネスロジックのモデル（インフラストラクチャから独立）
-- **Logical Design**: NFRsを満たすためのアーキテクチャパターンを適用した設計
-- **Code and Unit Tests**: 実行可能なコードとユニットテスト
-- **ADRs**: Architecture Decision Records
+- **Domain Design**: Mô hình logic nghiệp vụ (độc lập với hạ tầng)
+- **Logical Design**: Thiết kế áp dụng pattern kiến trúc để đáp ứng NFRs
+- **Code and Unit Tests**: Mã nguồn thực thi và unit test
+- **ADRs**: Bản ghi Quyết định Kiến trúc
 
-### Operations Phase
+### Giai đoạn Operations
 
-- **Deployment Units**: パッケージ化された実行可能コード、設定、インフラストラクチャ
-- **Monitoring Dashboards**: 監視ダッシュボード
-- **Incident Runbooks**: インシデント対応プレイブック
+- **Deployment Units**: Mã nguồn thực thi đã đóng gói, cấu hình, hạ tầng
+- **Monitoring Dashboards**: Dashboard giám sát
+- **Incident Runbooks**: Playbook xử lý sự cố
 
-## 原則
+## Nguyên tắc
 
-### 計画ファーストアプローチ
+### Tiếp cận Kế hoạch Trước (Plan-First)
 
-すべてのエージェントは、作業を開始する前に計画を作成し、人間の承認を待ちます。
+Tất cả agent phải tạo kế hoạch trước khi bắt đầu công việc và chờ phê duyệt từ con người.
 
-### チェックボックス付き計画
+### Kế hoạch có Checkbox
 
-すべての計画は、チェックボックス付きのMarkdownファイルとして作成され、各ステップの完了時にチェックされます。
+Tất cả kế hoạch được tạo dưới dạng file Markdown có checkbox, và được đánh dấu khi hoàn thành từng bước.
 
-### 人間の承認が必要なポイント
+### Các Điểm Cần Phê duyệt từ Con người
 
-- 計画の承認
-- 重要な設計決定
-- リスクの評価
-- デプロイメントの承認
+- Phê duyệt kế hoạch
+- Quyết định thiết kế quan trọng
+- Đánh giá rủi ro
+- Phê duyệt triển khai
 
-### コンテキストメモリ
+### Bộ nhớ Ngữ cảnh (Context Memory)
 
-すべてのアーティファクトは永続化され、後続のステップで参照される「コンテキストメモリ」として機能します。
+Tất cả artifact được lưu trữ bền vững và hoạt động như "bộ nhớ ngữ cảnh" được tham chiếu trong các bước tiếp theo.
 
-### トレーサビリティ
+### Khả năng Truy vết (Traceability)
 
-すべてのアーティファクトはリンクされ、前後のトレーサビリティが確保されます（例：ドメインモデル要素とUser Storiesの関連付け）。
+Tất cả artifact được liên kết với nhau, đảm bảo khả năng truy vết xuôi ngược (ví dụ: liên kết giữa phần tử Domain Model và User Stories).
 
-## 専門家の役割
+## Vai trò Chuyên gia
 
-詳細な専門家の役割定義については、以下を参照してください：
-- Cursor版: [cursor/AGENTS.md](cursor/AGENTS.md)
-- Claude Code版: [claude-code/AGENTS.md](claude-code/AGENTS.md)
+Chi tiết định nghĩa vai trò chuyên gia, xem tại:
+- Phiên bản Cursor: [cursor/AGENTS.md](cursor/AGENTS.md)
+- Phiên bản Claude Code: [claude-code/AGENTS.md](claude-code/AGENTS.md)
 
-専門家の役割は、各コマンド内で実装されています。
+Vai trò chuyên gia được triển khai trong mỗi lệnh.
 
-## 参考資料
+## Tài liệu Tham khảo
 
-- [AI-DLC Method Definition](docs/AI-DLC.md) - AI-DLC手法の完全な定義
-- [Everything Claude Code統合提案](docs/INTEGRATION_PROPOSAL.md) - Everything Claude Codeのテクニック統合提案
+- [Định nghĩa Phương pháp AI-DLC](docs/AI-DLC.md) - Định nghĩa đầy đủ phương pháp AI-DLC
+- [Đề xuất Tích hợp Everything Claude Code](docs/INTEGRATION_PROPOSAL.md) - Đề xuất tích hợp kỹ thuật Everything Claude Code
 
-## Everything Claude Code統合
+## Tích hợp Everything Claude Code
 
-このフレームワークは、[Everything Claude Code](https://github.com/affaan-m/everything-claude-code)の実践的なテクニックを統合しています：
+Framework này tích hợp các kỹ thuật thực tiễn từ [Everything Claude Code](https://github.com/affaan-m/everything-claude-code):
 
-- **Rules（ルール）**: セキュリティ、テスト、パフォーマンス、コーディングスタイルのガイドライン
-- **専門家の役割**: コードレビュー、セキュリティレビュー、TDDガイドなどの専門家の役割（Commands内に統合）
-- **パフォーマンス最適化**: モデル選択戦略、コンテキストウィンドウ管理
+- **Rules (Quy tắc)**: Hướng dẫn về bảo mật, kiểm thử, hiệu suất, phong cách lập trình
+- **Vai trò Chuyên gia**: Vai trò chuyên gia review mã nguồn, review bảo mật, hướng dẫn TDD, v.v. (tích hợp trong Commands)
+- **Tối ưu Hiệu suất**: Chiến lược chọn model, quản lý cửa sổ ngữ cảnh
 
-詳細は[統合提案ドキュメント](docs/INTEGRATION_PROPOSAL.md)を参照してください。
+Chi tiết xem tại [Tài liệu Đề xuất Tích hợp](docs/INTEGRATION_PROPOSAL.md).
 
-## ライセンス
+## Giấy phép
 
-このプロジェクトは、AI-DLC手法に基づいて実装されています。
-
-
-
+Dự án này được triển khai dựa trên phương pháp AI-DLC.

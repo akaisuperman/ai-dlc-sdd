@@ -1,19 +1,19 @@
-# Everything Claude Code テクニック統合提案
+# Đề xuất Tích hợp Kỹ thuật Everything Claude Code
 
-## 概要
+## Tổng quan
 
-`affaan-m/everything-claude-code`リポジトリで公開されている実践的なテクニックを、AI-DLCフレームワークに統合する提案です。
+Đây là đề xuất tích hợp các kỹ thuật thực tiễn được công bố trong repository `affaan-m/everything-claude-code` vào framework AI-DLC.
 
-## 分析結果
+## Kết quả Phân tích
 
-### 現在のAI-DLCフレームワークの構造
+### Cấu trúc Hiện tại của Framework AI-DLC
 
 ```
 ai-dlc-sdd/
 ├── cursor/
-│   ├── AGENTS.md          # 専門家の役割定義（Commands内に統合済み）
-│   ├── agents/            # （廃止）エージェント定義はCommands内に統合
-│   └── commands/          # AI-DLCコマンド（専門家の役割を含む）
+│   ├── AGENTS.md          # Định nghĩa vai trò chuyên gia (đã tích hợp vào Commands)
+│   ├── agents/            # (Đã loại bỏ) Định nghĩa agent đã tích hợp vào Commands
+│   └── commands/          # Lệnh AI-DLC (bao gồm vai trò chuyên gia)
 │       ├── aidlc-setup.md
 │       ├── aidlc-inception.md
 │       ├── aidlc-domain-model.md
@@ -24,238 +24,238 @@ ai-dlc-sdd/
     └── PROJECT_STRUCTURE.md
 ```
 
-### Everything Claude Codeの主要テクニック
+### Kỹ thuật Chính của Everything Claude Code
 
-1. **専門家の役割（Commands内に統合）**: 特定タスクに特化した専門家の役割（Cursor公式ドキュメントのベストプラクティスに基づき、Commands内で実装）
-2. **Rules（ルール）**: 常に従うべきガイドライン
-3. **Skills（スキル）**: ワークフロー定義とドメイン知識
-4. **Commands（コマンド）**: スラッシュコマンド
-5. **Hooks（フック）**: ツール使用時の自動化
-6. **Performance最適化**: モデル選択、コンテキスト管理
-7. **並列タスク実行**: 独立操作の並列実行
+1. **Vai trò Chuyên gia (Tích hợp trong Commands)**: Vai trò chuyên gia chuyên biệt cho tác vụ cụ thể (triển khai trong Commands theo best practice tài liệu chính thức Cursor)
+2. **Rules (Quy tắc)**: Hướng dẫn phải luôn tuân thủ
+3. **Skills (Kỹ năng)**: Định nghĩa workflow và kiến thức domain
+4. **Commands (Lệnh)**: Slash command
+5. **Hooks**: Tự động hoá khi sử dụng công cụ
+6. **Tối ưu Hiệu suất**: Chọn model, quản lý ngữ cảnh
+7. **Thực thi Tác vụ Song song**: Thực thi song song các thao tác độc lập
 
-## 統合提案
+## Đề xuất Tích hợp
 
-### 1. Rules（ルール）の追加
+### 1. Thêm Rules (Quy tắc)
 
-**目的**: コード品質、セキュリティ、テスト、パフォーマンスの一貫性を保つ
+**Mục đích**: Đảm bảo tính nhất quán về chất lượng mã nguồn, bảo mật, kiểm thử và hiệu suất
 
-**提案するルールファイル**:
+**File quy tắc đề xuất**:
 
 ```
 cursor/rules/
-├── security.md          # セキュリティガイドライン
-├── coding-style.md      # コーディングスタイル
-├── testing.md          # テスト要件（80%カバレッジ、TDD）
-├── performance.md       # パフォーマンス最適化（モデル選択、コンテキスト管理）
-├── git-workflow.md      # Gitワークフロー
-└── agents.md            # エージェント使用ガイドライン
+├── security.md          # Hướng dẫn bảo mật
+├── coding-style.md      # Phong cách lập trình
+├── testing.md          # Yêu cầu kiểm thử (80% bao phủ, TDD)
+├── performance.md       # Tối ưu hiệu suất (chọn model, quản lý ngữ cảnh)
+├── git-workflow.md      # Quy trình Git
+└── agents.md            # Hướng dẫn sử dụng agent
 ```
 
-**優先度**: 高
-**理由**: AI-DLCのコード生成フェーズで品質を保証するため
+**Mức ưu tiên**: Cao
+**Lý do**: Để đảm bảo chất lượng trong giai đoạn sinh mã nguồn của AI-DLC
 
-### 2. Skills（スキル）の追加
+### 2. Thêm Skills (Kỹ năng)
 
-**目的**: ドメイン知識とベストプラクティスを共有
+**Mục đích**: Chia sẻ kiến thức domain và best practice
 
-**提案するスキルファイル**:
+**File kỹ năng đề xuất**:
 
 ```
 cursor/skills/
-├── backend-patterns.md      # バックエンドパターン（API、DB、キャッシュ）
-├── frontend-patterns.md      # フロントエンドパターン（React、Next.js）
-├── ddd-patterns.md          # DDDパターン（AI-DLC固有）
-├── tdd-workflow/            # TDDワークフロー
+├── backend-patterns.md      # Pattern backend (API, DB, Cache)
+├── frontend-patterns.md      # Pattern frontend (React, Next.js)
+├── ddd-patterns.md          # Pattern DDD (riêng cho AI-DLC)
+├── tdd-workflow/            # Quy trình TDD
 │   ├── README.md
 │   └── workflow.md
-└── security-review/         # セキュリティレビューチェックリスト
+└── security-review/         # Checklist review bảo mật
     ├── README.md
     └── checklist.md
 ```
 
-**優先度**: 中
-**理由**: AI-DLCのConstruction Phaseでパターンを適用するため
+**Mức ưu tiên**: Trung bình
+**Lý do**: Để áp dụng pattern trong Giai đoạn Construction của AI-DLC
 
-### 3. 専門家の役割の追加（Commands内に統合）✅ 完了
+### 3. Thêm Vai trò Chuyên gia (Tích hợp trong Commands) ✅ Hoàn thành
 
-**目的**: 特定タスクに特化した専門家の役割で品質向上
+**Mục đích**: Nâng cao chất lượng với vai trò chuyên gia chuyên biệt cho tác vụ cụ thể
 
-**実装状況**: Cursor公式ドキュメントのベストプラクティスに基づき、エージェントを廃止し、Commands内で専門家の役割として実装しました。
+**Trạng thái triển khai**: Đã loại bỏ agent và triển khai dưới dạng vai trò chuyên gia trong Commands, dựa trên best practice của tài liệu chính thức Cursor.
 
-**実装された専門家の役割**:
+**Vai trò chuyên gia đã triển khai**:
 
 ```
-Commands内に統合:
-├── 計画スペシャリスト      # aidlc-inceptionコマンド内（ステップ1）
-├── アーキテクト            # aidlc-architectureコマンド内（ステップ1, 3, 5, 6）
-├── コードレビュー専門家    # aidlc-code-generation（ステップ10）、aidlc-code-review
-├── セキュリティ専門家      # aidlc-code-generation（ステップ11）、aidlc-security-review
-├── TDD専門家               # aidlc-code-generationコマンド内（ステップ7）
-└── ビルドエラー解決専門家  # aidlc-code-generation（ステップ9）、aidlc-build-fix
+Tích hợp trong Commands:
+├── Chuyên gia Lập kế hoạch   # Trong lệnh aidlc-inception (Bước 1)
+├── Kiến trúc sư              # Trong lệnh aidlc-architecture (Bước 1, 3, 5, 6)
+├── Chuyên gia Review Mã nguồn # aidlc-code-generation (Bước 10), aidlc-code-review
+├── Chuyên gia Bảo mật        # aidlc-code-generation (Bước 11), aidlc-security-review
+├── Chuyên gia TDD            # Trong lệnh aidlc-code-generation (Bước 7)
+└── Chuyên gia Xử lý Lỗi Build # aidlc-code-generation (Bước 9), aidlc-build-fix
 ```
 
-**優先度**: 高 ✅ 完了
-**理由**: AI-DLCの各フェーズで品質を保証するため
+**Mức ưu tiên**: Cao ✅ Hoàn thành
+**Lý do**: Để đảm bảo chất lượng trong mỗi giai đoạn của AI-DLC
 
-### 4. Hooks（フック）の追加
+### 4. Thêm Hooks
 
-**目的**: 自動化による品質向上と開発効率化
+**Mục đích**: Nâng cao chất lượng và hiệu quả phát triển thông qua tự động hoá
 
-**提案するフック**:
+**Hook đề xuất**:
 
 ```json
 cursor/hooks/hooks.json
 ```
 
-**主要なフック**:
-- PreToolUse: 開発サーバーをtmuxで実行するよう促す
-- PostToolUse: コード編集後の自動フォーマット、TypeScriptチェック
-- Stop: セッション終了時のconsole.log検出
+**Hook chính**:
+- PreToolUse: Nhắc chạy development server trong tmux
+- PostToolUse: Tự động format, kiểm tra TypeScript sau khi chỉnh sửa mã nguồn
+- Stop: Phát hiện console.log khi kết thúc phiên
 
-**優先度**: 中
-**理由**: 開発体験の向上
+**Mức ưu tiên**: Trung bình
+**Lý do**: Cải thiện trải nghiệm phát triển
 
-### 5. コマンドの拡張
+### 5. Mở rộng Lệnh
 
-**目的**: 既存のAI-DLCコマンドを拡張
+**Mục đích**: Mở rộng các lệnh AI-DLC hiện có
 
-**提案する追加コマンド**:
+**Lệnh bổ sung đề xuất**:
 
 ```
 cursor/commands/
-├── aidlc-code-review.md    # コードレビュー（/aidlc-code-review）
-├── aidlc-security-review.md # セキュリティレビュー（/aidlc-security-review）
-└── aidlc-build-fix.md      # ビルドエラー修正（/aidlc-build-fix）
+├── aidlc-code-review.md    # Review mã nguồn (/aidlc-code-review)
+├── aidlc-security-review.md # Review bảo mật (/aidlc-security-review)
+└── aidlc-build-fix.md      # Sửa lỗi build (/aidlc-build-fix)
 ```
 
-**優先度**: 中
-**理由**: 既存コマンドの補完
+**Mức ưu tiên**: Trung bình
+**Lý do**: Bổ sung cho các lệnh hiện có
 
-### 6. Performance最適化の統合
+### 6. Tích hợp Tối ưu Hiệu suất
 
-**目的**: コンテキストウィンドウとモデル選択の最適化
+**Mục đích**: Tối ưu hoá cửa sổ ngữ cảnh và chọn model
 
-**提案**:
-- `cursor/rules/performance.md`に以下を追加:
-  - モデル選択戦略（Haiku/Sonnet/Opus）
-  - コンテキストウィンドウ管理
-  - 並列タスク実行ガイドライン
+**Đề xuất**:
+- Thêm vào `cursor/rules/performance.md`:
+  - Chiến lược chọn model (Haiku/Sonnet/Opus)
+  - Quản lý cửa sổ ngữ cảnh
+  - Hướng dẫn thực thi tác vụ song song
 
-**優先度**: 高
-**理由**: コストとパフォーマンスの最適化
+**Mức ưu tiên**: Cao
+**Lý do**: Tối ưu chi phí và hiệu suất
 
-## 実装計画
+## Kế hoạch Triển khai
 
-### Phase 1: 基盤の構築（優先度: 高）
+### Phase 1: Xây dựng Nền tảng (Mức ưu tiên: Cao)
 
-1. **Rulesの追加**
+1. **Thêm Rules**
    - `cursor/rules/security.md`
    - `cursor/rules/testing.md`
    - `cursor/rules/performance.md`
    - `cursor/rules/coding-style.md`
 
-2. **Performance最適化の統合**
-   - `cursor/rules/performance.md`にモデル選択戦略を追加
-   - `cursor/AGENTS.md`にモデル指定を追加
+2. **Tích hợp Tối ưu Hiệu suất**
+   - Thêm chiến lược chọn model vào `cursor/rules/performance.md`
+   - Thêm chỉ định model vào `cursor/AGENTS.md`
 
-### Phase 2: 専門家の役割の追加（優先度: 高）✅ 完了
+### Phase 2: Thêm Vai trò Chuyên gia (Mức ưu tiên: Cao) ✅ Hoàn thành
 
-**注意**: Cursor公式ドキュメントのベストプラクティスに基づき、エージェントを廃止し、Commands内で専門家の役割として実装しました。
+**Lưu ý**: Đã loại bỏ agent và triển khai dưới dạng vai trò chuyên gia trong Commands, dựa trên best practice của tài liệu chính thức Cursor.
 
-1. **コードレビュー専門家**
-   - `aidlc-code-generation`コマンド内に統合（ステップ10）
-   - `aidlc-code-review`コマンド内に実装
+1. **Chuyên gia Review Mã nguồn**
+   - Tích hợp trong lệnh `aidlc-code-generation` (Bước 10)
+   - Triển khai trong lệnh `aidlc-code-review`
 
-2. **セキュリティ専門家**
-   - `aidlc-code-generation`コマンド内に統合（ステップ11）
-   - `aidlc-security-review`コマンド内に実装
+2. **Chuyên gia Bảo mật**
+   - Tích hợp trong lệnh `aidlc-code-generation` (Bước 11)
+   - Triển khai trong lệnh `aidlc-security-review`
 
-3. **TDD専門家**
-   - `aidlc-code-generation`コマンド内に統合（ステップ7）
+3. **Chuyên gia TDD**
+   - Tích hợp trong lệnh `aidlc-code-generation` (Bước 7)
 
-4. **ビルドエラー解決専門家**
-   - `aidlc-code-generation`コマンド内に統合（ステップ9）
-   - `aidlc-build-fix`コマンド内に実装
+4. **Chuyên gia Xử lý Lỗi Build**
+   - Tích hợp trong lệnh `aidlc-code-generation` (Bước 9)
+   - Triển khai trong lệnh `aidlc-build-fix`
 
-5. **計画スペシャリスト**
-   - `aidlc-inception`コマンド内に統合（ステップ1）
+5. **Chuyên gia Lập kế hoạch**
+   - Tích hợp trong lệnh `aidlc-inception` (Bước 1)
 
-6. **アーキテクト**
-   - `aidlc-architecture`コマンド内に統合（ステップ1, 3, 5, 6）
+6. **Kiến trúc sư**
+   - Tích hợp trong lệnh `aidlc-architecture` (Bước 1, 3, 5, 6)
 
-### Phase 3: Skillsの追加（優先度: 中）
+### Phase 3: Thêm Skills (Mức ưu tiên: Trung bình)
 
-1. **バックエンドパターン**
+1. **Pattern Backend**
    - `cursor/skills/backend-patterns.md`
 
-2. **TDDワークフロー**
+2. **Quy trình TDD**
    - `cursor/skills/tdd-workflow/`
 
-3. **セキュリティレビュー**
+3. **Review Bảo mật**
    - `cursor/skills/security-review/`
 
-### Phase 4: Hooksとコマンドの追加（優先度: 中）
+### Phase 4: Thêm Hooks và Lệnh (Mức ưu tiên: Trung bình)
 
-1. **Hooksの追加**
+1. **Thêm Hooks**
    - `cursor/hooks/hooks.json`
 
-2. **追加コマンド**
+2. **Lệnh bổ sung**
    - `aidlc-code-review.md`
    - `aidlc-security-review.md`
 
-## 統合のメリット
+## Lợi ích của Tích hợp
 
-1. **品質向上**
-   - 自動化されたセキュリティチェック
-   - 80%テストカバレッジの強制
-   - コードレビューの自動化
+1. **Nâng cao Chất lượng**
+   - Kiểm tra bảo mật tự động
+   - Bắt buộc 80% bao phủ kiểm thử
+   - Tự động hoá review mã nguồn
 
-2. **開発効率化**
-   - 並列タスク実行
-   - 自動フォーマットとリント
-   - ビルドエラーの自動解決
+2. **Tăng Hiệu quả Phát triển**
+   - Thực thi tác vụ song song
+   - Tự động format và lint
+   - Tự động giải quyết lỗi build
 
-3. **コスト最適化**
-   - モデル選択戦略によるコスト削減
-   - コンテキストウィンドウの最適化
+3. **Tối ưu Chi phí**
+   - Giảm chi phí qua chiến lược chọn model
+   - Tối ưu hoá cửa sổ ngữ cảnh
 
-4. **一貫性の確保**
-   - 統一されたコーディングスタイル
-   - 標準化されたワークフロー
+4. **Đảm bảo Tính nhất quán**
+   - Phong cách lập trình thống nhất
+   - Workflow được chuẩn hoá
 
-## 注意事項
+## Lưu ý
 
-1. **AI-DLCフレームワークとの整合性**
-   - 既存のAI-DLCコマンドとの統合を優先
-   - 新しい概念を追加する際は、AI-DLCの原則と整合性を保つ
+1. **Tính nhất quán với Framework AI-DLC**
+   - Ưu tiên tích hợp với các lệnh AI-DLC hiện có
+   - Khi thêm khái niệm mới, đảm bảo tính nhất quán với nguyên tắc AI-DLC
 
-2. **段階的な導入**
-   - 一度にすべてを導入せず、Phaseごとに実装
-   - 各Phaseで効果を検証
+2. **Triển khai Từng bước**
+   - Không triển khai tất cả cùng lúc, triển khai theo từng Phase
+   - Kiểm chứng hiệu quả ở mỗi Phase
 
-3. **カスタマイズ**
-   - プロジェクト固有の要件に合わせて調整
-   - 不要な機能は削除
+3. **Tuỳ chỉnh**
+   - Điều chỉnh theo yêu cầu riêng của dự án
+   - Xoá tính năng không cần thiết
 
-## 次のステップ
+## Bước Tiếp theo
 
-1. この提案をレビュー
-2. Phase 1から実装を開始
-3. 各Phaseで効果を測定
-4. フィードバックに基づいて調整
+1. Review đề xuất này
+2. Bắt đầu triển khai từ Phase 1
+3. Đo lường hiệu quả ở mỗi Phase
+4. Điều chỉnh dựa trên phản hồi
 
-## Cursor公式ドキュメント準拠
+## Tuân thủ Tài liệu Chính thức Cursor
 
-この統合は、Cursor公式ドキュメントのベストプラクティスに準拠しています：
+Tích hợp này tuân thủ best practice của tài liệu chính thức Cursor:
 
-- **Rules**: `.mdc` 形式（Markdown with frontmatter）を使用
-- **Commands**: `.md` 形式（プレーンマークダウン）を使用
-- **Agents**: `.md` 形式（YAML frontmatter付き）を使用
+- **Rules**: Sử dụng định dạng `.mdc` (Markdown with frontmatter)
+- **Commands**: Sử dụng định dạng `.md` (plain Markdown)
+- **Agents**: Sử dụng định dạng `.md` (với YAML frontmatter)
 
-詳細は [Cursor準拠チェックドキュメント](CURSOR_COMPLIANCE_CHECK.md) を参照してください。
+Chi tiết xem tại [Tài liệu Kiểm tra Tuân thủ Cursor](CURSOR_COMPLIANCE_CHECK.md).
 
-## 参考資料
+## Tài liệu Tham khảo
 
 - [Everything Claude Code](https://github.com/affaan-m/everything-claude-code)
 - [The Shorthand Guide to Everything Claude Code](https://x.com/affaanmustafa/status/2012378465664745795)

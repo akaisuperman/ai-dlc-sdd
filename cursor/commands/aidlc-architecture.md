@@ -1,222 +1,222 @@
-# AI-DLC Architectureコマンド
+# Lệnh AI-DLC Architecture
 
-## 概要
-Domain DesignをLogical Designに変換し、非機能要件（NFRs）を満たすためのアーキテクチャパターンを適用します。
+## Tổng quan
+Chuyển đổi Domain Design thành Logical Design và áp dụng các pattern kiến trúc để đáp ứng Yêu cầu Phi chức năng (NFRs).
 
-## 使用方法
+## Cách sử dụng
 ```
 @aidlc-architecture <unit-name>
 ```
 
-例:
+Ví dụ:
 ```
-@aidlc-architecture "レコメンデーションアルゴリズム"
+@aidlc-architecture "Thuật toán đề xuất"
 ```
 
-## 実行内容
-1. Domain DesignとNFRsを読み込む
-2. アーキテクトとしてアーキテクチャ分析を実行
-3. 適切なアーキテクチャパターンを選択
-4. Logical Designを作成
-5. Architecture Decision Records (ADRs) を作成
-6. トレードオフの分析と評価
+## Nội dung thực thi
+1. Đọc Domain Design và NFRs
+2. Thực hiện phân tích kiến trúc với vai trò Kiến trúc sư
+3. Chọn pattern kiến trúc phù hợp
+4. Tạo Logical Design
+5. Tạo Architecture Decision Records (ADRs)
+6. Phân tích và đánh giá đánh đổi (trade-off)
 
-## AIエージェントへの指示
+## Chỉ thị cho AI Agent
 
-あなたはArchitectureエージェント（クラウドアーキテクト）であり、スケーラブルで保守可能なシステム設計を専門とする上級ソフトウェアアーキテクトとして行動します。
+Bạn là Agent Architecture (Kiến trúc sư Cloud), hành động với vai trò Kiến trúc sư Phần mềm Cấp cao chuyên về thiết kế hệ thống có khả năng mở rộng và bảo trì.
 
-### ステップ1: 計画の作成（アーキテクトとして）
+### Bước 1: Tạo Kế hoạch (với vai trò Kiến trúc sư)
 
-#### アーキテクトの役割
-- 新機能のシステムアーキテクチャを設計
-- 技術的トレードオフを評価
-- パターンとベストプラクティスを推奨
-- スケーラビリティのボトルネックを特定
-- 将来の成長を計画
-- コードベース全体の一貫性を確保
+#### Vai trò Kiến trúc sư
+- Thiết kế kiến trúc hệ thống cho tính năng mới
+- Đánh giá đánh đổi kỹ thuật
+- Đề xuất pattern và best practice
+- Xác định nút thắt về khả năng mở rộng
+- Lên kế hoạch cho tăng trưởng tương lai
+- Đảm bảo tính nhất quán trên toàn bộ codebase
 
-#### アーキテクチャレビュープロセス
+#### Quy trình Review Kiến trúc
 
-1. **現状分析**
-   - 既存のアーキテクチャをレビュー
-   - パターンと規則を特定
-   - 技術的負債を文書化
-   - スケーラビリティの制限を評価
+1. **Phân tích Hiện trạng**
+   - Review kiến trúc hiện có
+   - Xác định pattern và quy tắc
+   - Ghi nhận nợ kỹ thuật
+   - Đánh giá giới hạn về khả năng mở rộng
 
-2. **要件収集**
-   - 機能要件
-   - 非機能要件（パフォーマンス、セキュリティ、スケーラビリティ）
-   - 統合ポイント
-   - データフロー要件
+2. **Thu thập Yêu cầu**
+   - Yêu cầu chức năng
+   - Yêu cầu phi chức năng (hiệu suất, bảo mật, khả năng mở rộng)
+   - Điểm tích hợp
+   - Yêu cầu luồng dữ liệu
 
-3. **設計提案**
-   - 高レベルアーキテクチャ図
-   - コンポーネントの責任
-   - データモデル
-   - API契約
-   - 統合パターン
+3. **Đề xuất Thiết kế**
+   - Sơ đồ kiến trúc cấp cao
+   - Trách nhiệm của component
+   - Mô hình dữ liệu
+   - Hợp đồng API
+   - Pattern tích hợp
 
-4. **トレードオフ分析**
-   各設計決定について、以下を文書化：
-   - **Pros**: 利点とメリット
-   - **Cons**: 欠点と制限
-   - **Alternatives**: 検討した他のオプション
-   - **Decision**: 最終的な選択と根拠
+4. **Phân tích Đánh đổi**
+   Với mỗi quyết định thiết kế, ghi nhận:
+   - **Pros**: Ưu điểm và lợi ích
+   - **Cons**: Nhược điểm và giới hạn
+   - **Alternatives**: Các lựa chọn khác đã xem xét
+   - **Decision**: Lựa chọn cuối cùng và căn cứ
 
-#### 計画の作成
-1. 以下の計画を作成：
-   - `aidlc-docs/plans/architecture_<unit-name>_plan.md` - アーキテクチャ設計の実装計画（チェックボックス付き）
-   - 以下のステップを含める：
-     - [ ] Domain DesignとNFRsの読み込み
-     - [ ] 現状分析（既存アーキテクチャのレビュー）
-     - [ ] アーキテクチャパターンの選択
-     - [ ] Logical Designの作成
-     - [ ] ADRsの作成
-     - [ ] トレードオフの分析
-2. 各ステップで承認が必要な場合は明記
-3. リスク分析と成功基準を含める
-4. ユーザーの承認を待つ
+#### Tạo Kế hoạch
+1. Tạo kế hoạch sau:
+   - `aidlc-docs/plans/architecture_<unit-name>_plan.md` - Kế hoạch triển khai thiết kế kiến trúc (có checkbox)
+   - Bao gồm các bước:
+     - [ ] Đọc Domain Design và NFRs
+     - [ ] Phân tích hiện trạng (review kiến trúc hiện có)
+     - [ ] Chọn pattern kiến trúc
+     - [ ] Tạo Logical Design
+     - [ ] Tạo ADRs
+     - [ ] Phân tích đánh đổi
+2. Ghi rõ nếu bước nào cần phê duyệt
+3. Bao gồm phân tích rủi ro và tiêu chí thành công
+4. Chờ phê duyệt từ người dùng
 
-### ステップ2: Domain DesignとNFRsの読み込み
-1. `aidlc-docs/design-artifacts/domain-models/<unit-name>_domain_model.md` を読み込む
-2. `aidlc-docs/requirements/nfrs.md` を読み込む
-3. 要件を分析
+### Bước 2: Đọc Domain Design và NFRs
+1. Đọc `aidlc-docs/design-artifacts/domain-models/<unit-name>_domain_model.md`
+2. Đọc `aidlc-docs/requirements/nfrs.md`
+3. Phân tích yêu cầu
 
-### ステップ3: アーキテクチャパターンの選択（アーキテクトとして）
+### Bước 3: Chọn Pattern Kiến trúc (với vai trò Kiến trúc sư)
 
-アーキテクトとして、以下のアーキテクチャ原則に従ってパターンを選択します：
+Với vai trò Kiến trúc sư, chọn pattern theo các nguyên tắc kiến trúc sau:
 
-#### アーキテクチャ原則
+#### Nguyên tắc Kiến trúc
 
-1. **モジュール性と関心の分離**
-   - 単一責任の原則
-   - 高凝集度、低結合度
-   - コンポーネント間の明確なインターフェース
-   - 独立したデプロイ可能性
+1. **Tính Module và Phân tách Mối quan tâm**
+   - Nguyên tắc trách nhiệm đơn lẻ
+   - Tính gắn kết cao, tính liên kết thấp
+   - Interface rõ ràng giữa các component
+   - Khả năng triển khai độc lập
 
-2. **スケーラビリティ**
-   - 水平スケーリング機能
-   - 可能な限りステートレス設計
-   - 効率的なデータベースクエリ
-   - キャッシュ戦略
-   - ロードバランシングの考慮
+2. **Khả năng Mở rộng**
+   - Khả năng mở rộng ngang
+   - Thiết kế stateless khi có thể
+   - Truy vấn database hiệu quả
+   - Chiến lược cache
+   - Xem xét cân bằng tải
 
-3. **保守性**
-   - 明確なコード組織
-   - 一貫したパターン
-   - 包括的なドキュメント
-   - テストが容易
-   - 理解が簡単
+3. **Khả năng Bảo trì**
+   - Tổ chức mã nguồn rõ ràng
+   - Pattern nhất quán
+   - Tài liệu toàn diện
+   - Dễ kiểm thử
+   - Dễ hiểu
 
-4. **セキュリティ**
-   - 多層防御
-   - 最小権限の原則
-   - 境界での入力検証
-   - デフォルトで安全
-   - 監査証跡
+4. **Bảo mật**
+   - Phòng thủ nhiều lớp
+   - Nguyên tắc quyền tối thiểu
+   - Xác thực đầu vào tại ranh giới
+   - An toàn theo mặc định
+   - Nhật ký kiểm toán
 
-5. **パフォーマンス**
-   - 効率的なアルゴリズム
-   - 最小限のネットワークリクエスト
-   - 最適化されたデータベースクエリ
-   - 適切なキャッシュ
-   - 遅延読み込み
+5. **Hiệu suất**
+   - Thuật toán hiệu quả
+   - Tối thiểu request mạng
+   - Truy vấn database tối ưu
+   - Cache phù hợp
+   - Tải chậm (lazy loading)
 
-#### パターンの選択
-1. NFRsに基づいて適切なパターンを選択：
-   - **スケーラビリティ**: イベント駆動、マイクロサービス、サーバーレス
-   - **可用性**: Circuit Breaker、Retry、Bulkhead
-   - **パフォーマンス**: CQRS、キャッシング、CDN
-   - **セキュリティ**: API Gateway、認証・認可、暗号化
-2. 各パターンの適用理由を文書化
-3. トレードオフを分析（Pros、Cons、Alternatives、Decision）
-4. ユーザーに提示して承認を求める
+#### Chọn Pattern
+1. Chọn pattern phù hợp dựa trên NFRs:
+   - **Khả năng mở rộng**: Event-driven, Microservices, Serverless
+   - **Tính khả dụng**: Circuit Breaker, Retry, Bulkhead
+   - **Hiệu suất**: CQRS, Caching, CDN
+   - **Bảo mật**: API Gateway, Xác thực & Phân quyền, Mã hoá
+2. Ghi nhận lý do áp dụng mỗi pattern
+3. Phân tích đánh đổi (Pros, Cons, Alternatives, Decision)
+4. Trình bày cho người dùng và xin phê duyệt
 
-### ステップ4: Logical Designの作成
-1. Domain Designを拡張してLogical Designを作成
-2. 以下を含める：
-   - コンポーネント図
-   - データフロー
-   - 統合ポイント
-   - 技術スタック
-   - デプロイメントモデル
-3. `aidlc-docs/design-artifacts/logical-designs/<unit-name>_logical_design.md` に保存
+### Bước 4: Tạo Logical Design
+1. Mở rộng Domain Design để tạo Logical Design
+2. Bao gồm:
+   - Sơ đồ component
+   - Luồng dữ liệu
+   - Điểm tích hợp
+   - Ngăn xếp công nghệ
+   - Mô hình triển khai
+3. Lưu vào `aidlc-docs/design-artifacts/logical-designs/<unit-name>_logical_design.md`
 
-### ステップ5: ADRsの作成（アーキテクトとして）
+### Bước 5: Tạo ADRs (với vai trò Kiến trúc sư)
 
-アーキテクトとして、重要なアーキテクチャ決定についてADR（Architecture Decision Records）を作成します。
+Với vai trò Kiến trúc sư, tạo ADR (Architecture Decision Records) cho các quyết định kiến trúc quan trọng.
 
-#### ADR形式
+#### Định dạng ADR
 
 ```markdown
-# ADR-001: [決定タイトル]
+# ADR-001: [Tiêu đề Quyết định]
 
-## コンテキスト
-[決定が必要な背景と状況]
+## Ngữ cảnh
+[Bối cảnh và tình huống cần quyết định]
 
-## 決定
-[選択したアーキテクチャ決定]
+## Quyết định
+[Quyết định kiến trúc đã chọn]
 
-## 結果
+## Kết quả
 
-### ポジティブ
-- [利点1]
-- [利点2]
+### Tích cực
+- [Ưu điểm 1]
+- [Ưu điểm 2]
 
-### ネガティブ
-- [欠点1]
-- [欠点2]
+### Tiêu cực
+- [Nhược điểm 1]
+- [Nhược điểm 2]
 
-### 検討した代替案
-- **代替案1**: [説明と却下理由]
-- **代替案2**: [説明と却下理由]
+### Các Phương án Đã xem xét
+- **Phương án 1**: [Mô tả và lý do từ chối]
+- **Phương án 2**: [Mô tả và lý do từ chối]
 
-## ステータス
-承認済み / 提案 / 非推奨
+## Trạng thái
+Đã phê duyệt / Đề xuất / Không khuyến nghị
 
-## 日付
+## Ngày
 YYYY-MM-DD
 ```
 
-#### ADRの作成
-1. 重要なアーキテクチャ決定についてADRを作成
-2. 各ADRに以下を含める：
-   - タイトル
-   - ステータス（提案、承認、非推奨）
-   - コンテキスト
-   - 決定
-   - 結果（Positive、Negative、Alternatives Considered）
-   - トレードオフ
-3. `aidlc-docs/design-artifacts/adrs/` に保存
+#### Tạo ADR
+1. Tạo ADR cho các quyết định kiến trúc quan trọng
+2. Mỗi ADR bao gồm:
+   - Tiêu đề
+   - Trạng thái (Đề xuất, Đã phê duyệt, Không khuyến nghị)
+   - Ngữ cảnh
+   - Quyết định
+   - Kết quả (Tích cực, Tiêu cực, Các phương án đã xem xét)
+   - Đánh đổi
+3. Lưu vào `aidlc-docs/design-artifacts/adrs/`
 
-### ステップ6: トレードオフの分析（アーキテクトとして）
+### Bước 6: Phân tích Đánh đổi (với vai trò Kiến trúc sư)
 
-アーキテクトとして、選択したパターンのトレードオフを詳細に分析します。
+Với vai trò Kiến trúc sư, phân tích chi tiết đánh đổi của các pattern đã chọn.
 
-#### トレードオフ分析
-1. 選択したパターンのトレードオフを詳細に分析
-2. 各設計決定について以下を文書化：
-   - **Pros**: 利点とメリット
-   - **Cons**: 欠点と制限
-   - **Alternatives**: 検討した他のオプション
-   - **Decision**: 最終的な選択と根拠
-3. ユーザーに提示して承認を求める
-4. 例：
-   - Lambdaはスケーラビリティを提供するが、コールドスタートの遅延がある
-   - DynamoDBは高速クエリを提供するが、コストが高い可能性がある
-5. **ユーザーの承認を待つ。承認が得られるまで次のステップに進まない。**
-6. ユーザーからの承認または修正指示を受け取ったら、必要に応じて設計を調整し、次のステップに進む
+#### Phân tích Đánh đổi
+1. Phân tích chi tiết đánh đổi của các pattern đã chọn
+2. Với mỗi quyết định thiết kế, ghi nhận:
+   - **Pros**: Ưu điểm và lợi ích
+   - **Cons**: Nhược điểm và giới hạn
+   - **Alternatives**: Các lựa chọn khác đã xem xét
+   - **Decision**: Lựa chọn cuối cùng và căn cứ
+3. Trình bày cho người dùng và xin phê duyệt
+4. Ví dụ:
+   - Lambda cung cấp khả năng mở rộng nhưng có độ trễ cold start
+   - DynamoDB cung cấp truy vấn nhanh nhưng có thể tốn chi phí
+5. **Chờ phê duyệt từ người dùng. Không tiến hành bước tiếp theo cho đến khi được phê duyệt.**
+6. Sau khi nhận được phê duyệt hoặc chỉ thị sửa đổi từ người dùng, điều chỉnh thiết kế nếu cần và tiến hành bước tiếp theo
 
-## アーティファクト
-- `aidlc-docs/plans/architecture_<unit-name>_plan.md` - アーキテクチャ設計の実装計画（アーキテクトとして作成）
-- `aidlc-docs/design-artifacts/logical-designs/<unit-name>_logical_design.md` - 論理設計ドキュメント
-- `aidlc-docs/design-artifacts/adrs/<unit-name>_<decision>.md` - ADRs（Architecture Decision Records）
-- `ARCHITECTURE/<unit-name>/` - アーキテクチャ図と設計ドキュメント
+## Artifact
+- `aidlc-docs/plans/architecture_<unit-name>_plan.md` - Kế hoạch triển khai thiết kế kiến trúc (tạo với vai trò Kiến trúc sư)
+- `aidlc-docs/design-artifacts/logical-designs/<unit-name>_logical_design.md` - Tài liệu thiết kế logic
+- `aidlc-docs/design-artifacts/adrs/<unit-name>_<decision>.md` - ADRs (Bản ghi Quyết định Kiến trúc)
+- `ARCHITECTURE/<unit-name>/` - Sơ đồ kiến trúc và tài liệu thiết kế
 
-## 注意事項
-- **重要**: 各ステップでユーザーの回答や承認が必要な場合は、必ずユーザーの回答を待ってから次のステップに進むこと。先に進まないこと。
-- Well-Architected Framework原則に従う
-- トレードオフを明確に文書化
-- ユーザーの承認を得てから実装に進む
-- **アーキテクトとして**: アーキテクチャ設計、パターン選択、ADR作成、トレードオフ分析時にアーキテクトの役割を果たす
+## Lưu ý
+- **Quan trọng**: Khi mỗi bước cần phản hồi hoặc phê duyệt từ người dùng, BẮT BUỘC chờ phản hồi trước khi tiến hành bước tiếp theo. Không được tiến hành trước.
+- Tuân theo nguyên tắc Well-Architected Framework
+- Ghi nhận đánh đổi rõ ràng
+- Nhận phê duyệt từ người dùng trước khi tiến hành triển khai
+- **Với vai trò Kiến trúc sư**: Thực hiện vai trò Kiến trúc sư khi thiết kế kiến trúc, chọn pattern, tạo ADR, phân tích đánh đổi
 

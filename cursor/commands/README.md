@@ -1,75 +1,75 @@
-# AI-DLC コマンド一覧
+# Danh sách Lệnh AI-DLC
 
-このディレクトリには、AI-DLCフレームワークで使用可能なすべてのコマンドが含まれています。
+Thư mục này chứa tất cả các lệnh có thể sử dụng trong framework AI-DLC.
 
-## セットアップ
+## Thiết lập
 
 ### `@aidlc-setup`
-プロジェクトの初期セットアップを行います。
+Thực hiện thiết lập ban đầu cho dự án.
 
-## Inception Phase（開始フェーズ）
+## Giai đoạn Inception (Khởi tạo)
 
 ### `@aidlc-inception "<product-description>"`
-IntentをUser StoriesとUnitsに分解します。
+Phân tách Intent thành User Stories và Units.
 
-## Construction Phase（構築フェーズ）
+## Giai đoạn Construction (Xây dựng)
 
 ### `@aidlc-brownfield <existing-code-path>`
-既存コードを高レベルなモデリング表現に変換します（Brown-Field開発用）。
+Chuyển đổi mã nguồn hiện có thành biểu diễn mô hình hoá cấp cao (dùng cho phát triển Brown-Field).
 
 ### `@aidlc-domain-model <unit-name>`
-指定されたUnitのDomain Designを作成します。
+Tạo Domain Design cho Unit được chỉ định.
 
 ### `@aidlc-architecture <unit-name>`
-Domain DesignをLogical Designに変換し、NFRsを満たすためのアーキテクチャパターンを適用します。
+Chuyển đổi Domain Design thành Logical Design và áp dụng các pattern kiến trúc để đáp ứng NFRs.
 
 ### `@aidlc-code-generation <unit-name>`
-Domain ModelとLogical Designに基づいて、実行可能なコードとユニットテストを生成します。
+Sinh mã nguồn thực thi và unit test dựa trên Domain Model và Logical Design.
 
 ### `@aidlc-iac-apis <unit-name> [tool]`
-Infrastructure as CodeとREST APIを生成します。`tool`は`terraform`、`cdk`、`cloudformation`のいずれかです。
+Sinh Infrastructure as Code và REST API. `tool` có thể là `terraform`, `cdk`, hoặc `cloudformation`.
 
-## Operations Phase（運用フェーズ）
+## Giai đoạn Operations (Vận hành)
 
 ### `@aidlc-deployment <unit-name> [environment]`
-Deployment Unitsをパッケージ化し、指定された環境（`staging`または`production`）にデプロイします。
+Đóng gói Deployment Units và triển khai đến môi trường được chỉ định (`staging` hoặc `production`).
 
 ### `@aidlc-monitoring <unit-name>`
-デプロイされたシステムの監視、メトリクス分析、インシデント管理を設定します。
+Thiết lập giám sát, phân tích metrics và quản lý sự cố cho hệ thống đã triển khai.
 
-## Modification & Improvement（改修・改善）
+## Chỉnh sửa & Cải thiện (Modification & Improvement)
 
 ### `@aidlc-modification "<new-requirement>"`
-追加改修や要件変更が発生した際に、既存のアーティファクトへの影響を分析し、改修計画を策定します。
+Khi phát sinh chỉnh sửa bổ sung hoặc thay đổi yêu cầu, phân tích tác động đến các artifact hiện có và lập kế hoạch chỉnh sửa.
 
 ### `@aidlc-refactor "<target>"`
-既存のコードベースと設計を分析し、リファクタリングを提案・実行します。
+Phân tích codebase và thiết kế hiện có, đề xuất và thực hiện tái cấu trúc.
 
-## 専門家の役割
+## Vai trò Chuyên gia
 
-Cursor公式ドキュメントのベストプラクティスに従い、エージェントを呼び出すのではなく、Commands内で直接専門家の役割を果たすように設計されています。
+Tuân theo best practice của tài liệu chính thức Cursor, thay vì gọi agent, các vai trò chuyên gia được thiết kế để thực hiện trực tiếp trong Commands.
 
-多くのコマンドは、特定の専門家の役割を内包しています：
+Nhiều lệnh bao gồm các vai trò chuyên gia cụ thể:
 
-- **`/aidlc-inception`**: 計画スペシャリストとして実装計画を作成
-- **`/aidlc-architecture`**: アーキテクトとしてアーキテクチャ設計を実行
-- **`/aidlc-code-generation`**: TDD専門家、ビルドエラー解決専門家、コードレビュー専門家、セキュリティ専門家として複数の役割を果たす
-- **`/aidlc-code-review`**: コードレビュー専門家としてレビューを実行
-- **`/aidlc-security-review`**: セキュリティ専門家としてセキュリティレビューを実行
-- **`/aidlc-build-fix`**: ビルドエラー解決専門家としてエラーを修正
+- **`/aidlc-inception`**: Tạo kế hoạch triển khai với vai trò Chuyên gia Lập kế hoạch
+- **`/aidlc-architecture`**: Thực hiện thiết kế kiến trúc với vai trò Kiến trúc sư
+- **`/aidlc-code-generation`**: Đảm nhận nhiều vai trò - Chuyên gia TDD, Chuyên gia Xử lý Lỗi Build, Chuyên gia Review Mã nguồn, Chuyên gia Bảo mật
+- **`/aidlc-code-review`**: Thực hiện review với vai trò Chuyên gia Review Mã nguồn
+- **`/aidlc-security-review`**: Thực hiện review bảo mật với vai trò Chuyên gia Bảo mật
+- **`/aidlc-build-fix`**: Sửa lỗi với vai trò Chuyên gia Xử lý Lỗi Build
 
-詳細は [AGENTS.md](../AGENTS.md) を参照してください。
+Chi tiết xem tại [AGENTS.md](../AGENTS.md).
 
-## 使用方法
+## Cách sử dụng
 
-各コマンドは、Cursorエディタのチャットで`@`記号に続けてコマンド名を入力することで実行できます。
+Mỗi lệnh có thể được thực thi bằng cách nhập ký hiệu `@` theo sau là tên lệnh trong chat của Cursor editor.
 
-例：
+Ví dụ:
 ```
 @aidlc-setup
-@aidlc-inception "レコメンデーションエンジンを開発する"
-@aidlc-domain-model "レコメンデーションアルゴリズム"
+@aidlc-inception "Phát triển engine đề xuất sản phẩm"
+@aidlc-domain-model "Thuật toán đề xuất"
 ```
 
-各コマンドの詳細については、対応する`.md`ファイルを参照してください。
+Chi tiết về từng lệnh, xem file `.md` tương ứng.
 

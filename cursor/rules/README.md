@@ -1,43 +1,43 @@
-# AI-DLC Rules（ルール）
+# Quy tắc AI-DLC (Rules)
 
-このディレクトリには、AI-DLCフレームワークで常に従うべきガイドラインが含まれています。
+Thư mục này chứa các hướng dẫn phải luôn tuân thủ trong framework AI-DLC.
 
-## ルール一覧
+## Danh sách Quy tắc
 
 ### security.mdc
-セキュリティガイドライン。ハードコードされた秘密情報の禁止、入力検証、SQLインジェクション対策など。
+Hướng dẫn bảo mật. Cấm hard-code thông tin bí mật, xác thực đầu vào, phòng chống SQL Injection, v.v.
 
 ### testing.mdc
-テスト要件。80%の最小カバレッジ、TDDワークフロー、テストタイプの定義。
+Yêu cầu kiểm thử. Độ bao phủ tối thiểu 80%, quy trình TDD, định nghĩa các loại kiểm thử.
 
 ### performance.mdc
-パフォーマンス最適化。モデル選択戦略、コンテキストウィンドウ管理、並列タスク実行。
+Tối ưu hiệu suất. Chiến lược chọn model, quản lý cửa sổ ngữ cảnh, thực thi tác vụ song song.
 
 ### coding-style.mdc
-コーディングスタイル。イミュータビリティ、ファイル構成、エラーハンドリング、入力検証。
+Phong cách lập trình. Tính bất biến (Immutability), cấu trúc file, xử lý lỗi, xác thực đầu vào.
 
-## ファイル形式
+## Định dạng File
 
-Cursor公式ドキュメントに準拠して、すべてのルールファイルは `.mdc` 形式（Markdown with frontmatter）を使用しています。
+Tuân theo tài liệu chính thức của Cursor, tất cả file quy tắc sử dụng định dạng `.mdc` (Markdown with frontmatter).
 
-各ファイルには以下のfrontmatterが含まれています：
-- `description`: ルールの説明
-- `globs`: 適用するファイルパターン（オプション）
-- `alwaysApply`: 常に適用するか（オプション）
-- `type`: ルールタイプ（always | auto | agent-requested | manual）
+Mỗi file chứa các frontmatter sau:
+- `description`: Mô tả quy tắc
+- `globs`: Pattern file áp dụng (tuỳ chọn)
+- `alwaysApply`: Luôn áp dụng hay không (tuỳ chọn)
+- `type`: Loại quy tắc (always | auto | agent-requested | manual)
 
-## 使用方法
+## Cách sử dụng
 
-これらのルールは、Cursorエディタで自動的に読み込まれ、すべてのCommandsとAIエージェントが従います。
+Các quy tắc này được tự động đọc trong Cursor editor, và tất cả Commands cùng AI Agent đều tuân theo.
 
-## AI-DLC統合
+## Tích hợp AI-DLC
 
-各ルールは、AI-DLCの特定のフェーズと統合されています：
+Mỗi quy tắc được tích hợp với các giai đoạn cụ thể của AI-DLC:
 
-- **Construction Phase**: コード生成時にすべてのルールが適用される
-- **Code Generationコマンド**: 生成されたコードがすべてのルールに準拠していることを確認
-- **Commands**: すべてのCommandsがこれらのルールを参照し、専門家の役割を果たす際に従う
+- **Giai đoạn Construction**: Tất cả quy tắc được áp dụng khi sinh mã nguồn
+- **Lệnh Code Generation**: Xác nhận mã nguồn đã sinh tuân thủ tất cả quy tắc
+- **Commands**: Tất cả Commands tham chiếu các quy tắc này và tuân thủ khi thực hiện vai trò chuyên gia
 
-## カスタマイズ
+## Tuỳ chỉnh
 
-プロジェクト固有の要件に合わせて、これらのルールをカスタマイズできます。
+Có thể tuỳ chỉnh các quy tắc này theo yêu cầu riêng của dự án.

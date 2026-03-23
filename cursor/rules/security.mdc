@@ -1,31 +1,31 @@
 ---
-description: セキュリティガイドライン。ハードコードされた秘密情報の禁止、入力検証、SQLインジェクション対策など。
+description: Hướng dẫn bảo mật. Cấm hard-code thông tin bí mật, xác thực đầu vào, phòng chống SQL Injection, v.v.
 globs: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.py", "**/*.go"]
 alwaysApply: true
 type: always
 ---
 
-# セキュリティガイドライン
+# Hướng dẫn Bảo mật
 
-## 必須セキュリティチェック
+## Kiểm tra Bảo mật Bắt buộc
 
-**コミット前の必須チェック**:
-- [ ] ハードコードされた秘密情報がない（APIキー、パスワード、トークン）
-- [ ] すべてのユーザー入力が検証されている
-- [ ] SQLインジェクション対策（パラメータ化クエリ）
-- [ ] XSS対策（HTMLのサニタイズ）
-- [ ] CSRF保護が有効
-- [ ] 認証/認可が検証されている
-- [ ] すべてのエンドポイントにレート制限
-- [ ] エラーメッセージが機密データを漏洩しない
+**Kiểm tra bắt buộc trước khi commit**:
+- [ ] Không có thông tin bí mật được hard-code (API key, mật khẩu, token)
+- [ ] Tất cả đầu vào từ người dùng đã được xác thực
+- [ ] Phòng chống SQL Injection (truy vấn tham số hoá)
+- [ ] Phòng chống XSS (sanitize HTML)
+- [ ] Bảo vệ CSRF đã được kích hoạt
+- [ ] Xác thực/phân quyền đã được kiểm tra
+- [ ] Tất cả endpoint có giới hạn tốc độ (rate limit)
+- [ ] Thông báo lỗi không rò rỉ dữ liệu nhạy cảm
 
-## 秘密情報の管理
+## Quản lý Thông tin Bí mật
 
 ```typescript
-// ❌ 禁止: ハードコードされた秘密情報
+// ❌ Cấm: Hard-code thông tin bí mật
 const apiKey = "sk-proj-xxxxx"
 
-// ✅ 推奨: 環境変数
+// ✅ Khuyến khích: Biến môi trường
 const apiKey = process.env.OPENAI_API_KEY
 
 if (!apiKey) {
@@ -33,17 +33,17 @@ if (!apiKey) {
 }
 ```
 
-## セキュリティ問題発見時の対応
+## Xử lý khi Phát hiện Vấn đề Bảo mật
 
-セキュリティ問題が見つかった場合:
-1. **即座に停止**
-2. **セキュリティ専門家として行動**（`aidlc-security-review`コマンドまたは`aidlc-code-generation`コマンド内、ステップ11）
-3. **CRITICAL**問題を修正してから続行
-4. 漏洩した秘密情報をローテーション
-5. 類似の問題がないかコードベース全体をレビュー
+Khi phát hiện vấn đề bảo mật:
+1. **Dừng ngay lập tức**
+2. **Hành động với vai trò Chuyên gia Bảo mật** (lệnh `aidlc-security-review` hoặc trong lệnh `aidlc-code-generation`, Bước 11)
+3. Sửa vấn đề **CRITICAL** trước khi tiếp tục
+4. Xoay vòng (rotate) thông tin bí mật bị rò rỉ
+5. Review toàn bộ codebase để tìm vấn đề tương tự
 
-## AI-DLC統合
+## Tích hợp AI-DLC
 
-- **Construction Phase**: コード生成時に自動的にセキュリティチェックを実行
-- **Code Generationコマンド**: 生成されたコードに対して自動的にセキュリティレビューを実行
-- **デプロイ前**: すべてのセキュリティチェックをパスする必要がある
+- **Giai đoạn Construction**: Tự động chạy kiểm tra bảo mật khi sinh mã nguồn
+- **Lệnh Code Generation**: Tự động thực hiện review bảo mật cho mã nguồn đã sinh
+- **Trước triển khai**: Tất cả kiểm tra bảo mật phải pass

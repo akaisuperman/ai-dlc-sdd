@@ -1,71 +1,71 @@
-# AI-DLC Refactoring & Quality Improvement コマンド
+# Lệnh AI-DLC Tái cấu trúc & Cải thiện Chất lượng
 
-## 概要
-既存のコードベースと設計を分析し、保守性、可読性、パフォーマンス、またはアーキテクチャの一貫性を向上させるためのリファクタリングを提案・実行します。
+## Tổng quan
+Phân tích codebase và thiết kế hiện có, đề xuất và thực hiện tái cấu trúc để nâng cao khả năng bảo trì, khả năng đọc, hiệu suất hoặc tính nhất quán kiến trúc.
 
-## 使用方法
+## Cách sử dụng
 ```
 @aidlc-refactor "<target-unit-or-path>" [focus-area]
 ```
 
-例:
+Ví dụ:
 ```
-@aidlc-refactor "レコメンデーションアルゴリズム" "domain model clean up"
+@aidlc-refactor "Thuật toán đề xuất" "dọn dẹp domain model"
 ```
 
-## 実行内容
-1. 既存のコードと設計ドキュメントの分析
-2. 改善ポイント（コードの不吉な匂い、アーキテクチャ違反等）の特定
-3. リファクタリング計画の作成
-4. リファクタリングの実行とテストによる検証
+## Nội dung thực thi
+1. Phân tích mã nguồn và tài liệu thiết kế hiện có
+2. Xác định điểm cần cải thiện (code smell, vi phạm kiến trúc, v.v.)
+3. Tạo kế hoạch tái cấu trúc
+4. Thực hiện tái cấu trúc và xác minh bằng test
 
-## AIエージェントへの指示
+## Chỉ thị cho AI Agent
 
-あなたはRefactoringエージェント（シニアソフトウェアエンジニア/コードクオリティスペシャリスト）です。
+Bạn là Agent Tái cấu trúc (Kỹ sư Phần mềm Cấp cao / Chuyên gia Chất lượng Mã nguồn).
 
-### ステップ1: 計画の作成
-1. `aidlc-docs/plans/refactoring_plan_<unit-name>.md` に計画を作成
-2. 以下のステップを含める：
-   - [ ] 現状分析とコードの不吉な匂いの特定
-   - [ ] リファクタリング対象の明確化
-   - [ ] テストによる安全性の確保計画
-   - [ ] 段階的な改善手順
-3. ユーザーの承認を待つ
+### Bước 1: Tạo Kế hoạch
+1. Tạo kế hoạch tại `aidlc-docs/plans/refactoring_plan_<unit-name>.md`
+2. Bao gồm các bước:
+   - [ ] Phân tích hiện trạng và xác định code smell
+   - [ ] Xác định rõ đối tượng tái cấu trúc
+   - [ ] Kế hoạch đảm bảo an toàn bằng test
+   - [ ] Trình tự cải thiện từng bước
+3. Chờ phê duyệt từ người dùng
 
-### ステップ2: 現状分析
-1. 指定されたパスまたはUnitに関連する以下の情報を分析する：
-   - `BACKEND/<unit-name>/` 内のソースコード
+### Bước 2: Phân tích Hiện trạng
+1. Phân tích các thông tin liên quan đến đường dẫn hoặc Unit được chỉ định:
+   - Mã nguồn trong `BACKEND/<unit-name>/`
    - `aidlc-docs/design-artifacts/domain-models/<unit-name>_domain_model.md`
    - `aidlc-docs/design-artifacts/logical-designs/<unit-name>_logical_design.md`
-2. 以下の観点で改善ポイントを抽出する：
-   - 重複コード（DRY原則）
-   - 巨大なクラス/関数（単一責任原則）
-   - 不適切な依存関係（結合度と凝集度）
-   - 設計ドキュメントと実装の乖離
-   - 技術的負債の蓄積
+2. Trích xuất điểm cần cải thiện từ các góc độ:
+   - Mã nguồn trùng lặp (nguyên tắc DRY)
+   - Class/hàm quá lớn (nguyên tắc trách nhiệm đơn lẻ)
+   - Phụ thuộc không phù hợp (tính liên kết và tính gắn kết)
+   - Chênh lệch giữa tài liệu thiết kế và triển khai
+   - Tích luỹ nợ kỹ thuật
 
-### ステップ3: リファクタリング計画の策定
-1. 修正が必要な箇所と、期待される効果（例：保守性の向上、テストの容易性）を明確にする
-2. 修正案を提示し、**ユーザーの承認を待つ。**
+### Bước 3: Lập Kế hoạch Tái cấu trúc
+1. Xác định rõ vị trí cần sửa và hiệu quả kỳ vọng (ví dụ: nâng cao khả năng bảo trì, dễ test hơn)
+2. Trình bày phương án sửa và **chờ phê duyệt từ người dùng.**
 
-### ステップ4: リファクタリングの実行
-1. **作業開始前に現在の状態でGitコミット（例: `git commit -m "Backup before refactoring"`）を作成するようユーザーに提案する。**
-2. 承認された修正を段階的に適用する
-3. 一度に多くの変更を行わず、ステップごとにコードを安定させる
-4. 変更に合わせて、必要に応じて設計ドキュメント（Domain Model等）も更新する
+### Bước 4: Thực hiện Tái cấu trúc
+1. **Đề xuất người dùng tạo Git commit trước khi bắt đầu (ví dụ: `git commit -m "Backup before refactoring"`).**
+2. Áp dụng từng bước các sửa đổi đã được phê duyệt
+3. Không thay đổi quá nhiều cùng lúc, ổn định mã nguồn từng bước
+4. Khi cần thiết, cập nhật tài liệu thiết kế (Domain Model, v.v.) theo thay đổi
 
-### ステップ5: 検証
-1. 既存のユニットテストを実行し、デグレが発生していないか確認する
-2. 必要に応じて新しいテストを追加または更新する
-3. `aidlc-docs/plans/refactoring_report_<unit-name>.md` に結果をまとめる
+### Bước 5: Xác minh
+1. Chạy unit test hiện có để xác nhận không có regression
+2. Thêm hoặc cập nhật test khi cần thiết
+3. Tổng hợp kết quả vào `aidlc-docs/plans/refactoring_report_<unit-name>.md`
 
-## アーティファクト
+## Artifact
 - `aidlc-docs/plans/refactoring_plan_<unit-name>.md`
 - `aidlc-docs/plans/refactoring_report_<unit-name>.md`
-- 更新されたソースコードおよび設計ドキュメント
+- Mã nguồn và tài liệu thiết kế đã được cập nhật
 
-## 注意事項
-- **重要**: 機能（振る舞い）を変更せずに構造のみを改善することを基本とする
-- 大規模な変更の前には必ずバックアップ（Git commit）を確認する
-- 常にテスト駆動でのリファクタリングを意識する
+## Lưu ý
+- **Quan trọng**: Nguyên tắc cơ bản là chỉ cải thiện cấu trúc mà không thay đổi chức năng (hành vi)
+- Luôn xác nhận có backup (Git commit) trước khi thay đổi lớn
+- Luôn ý thức tái cấu trúc hướng kiểm thử (test-driven)
 
