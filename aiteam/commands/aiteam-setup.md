@@ -13,7 +13,17 @@ Khởi tạo cấu trúc dự án cho workflow team.
    - Danh sách thành viên team
    - Mô tả ngắn gọn dự án
 
-2. Tạo cấu trúc thư mục:
+2. **Kiểm tra Cursor integration**:
+   - Kiểm tra `.cursor/commands/` có chứa `aiteam-*.md` chưa
+   - Kiểm tra `.cursor/rules/` có chứa `*.mdc` từ aiteam chưa
+   - Nếu chưa → copy commands và rules vào `.cursor/`:
+     ```bash
+     mkdir -p .cursor/commands .cursor/rules
+     cp aiteam/commands/*.md .cursor/commands/
+     cp aiteam/rules/*.mdc .cursor/rules/
+     ```
+
+3. **Tạo cấu trúc docs**:
    ```
    docs/
    ├── specs/
@@ -24,13 +34,11 @@ Khởi tạo cấu trúc dự án cho workflow team.
    └── status.md
    ```
 
-3. Copy template `overview-spec.md` vào `docs/specs/overview.md`
+4. Copy template `overview-spec.md` vào `docs/specs/overview.md`
 
-4. Copy template `status.md` vào `docs/status.md`
+5. Copy template `status.md` vào `docs/status.md`
 
-5. Điền thông tin từ step 1 vào `overview.md` và `status.md`
-
-6. Copy `aiteam/rules/*.mdc` vào `.cursor/rules/` (nếu chưa có)
+6. Điền thông tin từ step 1 vào `overview.md` và `status.md`
 
 7. Thông báo kết quả.
 

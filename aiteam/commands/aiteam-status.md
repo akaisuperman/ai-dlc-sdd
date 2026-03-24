@@ -11,27 +11,31 @@ Xem trạng thái dự án, module, và đề xuất bước tiếp theo.
 1. **Gather Context** — Nếu chưa được cung cấp, hỏi:
    - Xem status tổng thể hay module cụ thể?
 
-2. **Đọc trạng thái**:
+2. **Auto-detect trạng thái**:
+   - Resolve `<aiteam-dir>` là thư mục chứa `AGENTS.md` trong project (thường `aiteam/`)
+   - Chạy `<aiteam-dir>/scripts/check-status.sh` để scan trạng thái từ file system
+   - Nếu script không tồn tại → đọc thủ công ở step 3
+
+3. **Đọc trạng thái thủ công** (nếu cần):
    - Đọc `docs/status.md`
    - Đọc `docs/specs/overview.md` (danh sách modules)
    - Scan `docs/specs/modules/` → modules nào có spec
    - Scan `docs/reviews/` → modules nào đã review
-   - Nếu có `scripts/check-status.sh` → chạy để auto-detect
 
-3. **Hiển thị**:
-   - Bảng trạng thái: mỗi module → spec / review / implement / integrate
+4. **Hiển thị**:
+   - Bảng trạng thái: mỗi module → spec / review / implement
    - Blockers & risks hiện tại
    - Quyết định gần đây (từ `docs/decisions/`)
 
-4. **Đề xuất next steps**:
+5. **Đề xuất next steps**:
    - Module chưa có spec → `aiteam-spec`
    - Spec xong chưa review → `aiteam-review`
    - Review approved chưa implement → `aiteam-implement`
-   - Implement xong → push PR, `aiteam-review` code
+   - Implement xong → push PR, `aiteam-review-code`
    - Tất cả modules xong → integration test
 
-5. **Cập nhật** `docs/status.md` nếu có thay đổi.
+6. **Cập nhật** `docs/status.md` nếu có thay đổi.
 
 ## Next
 
-- Theo đề xuất ở step 4 — command phù hợp với trạng thái hiện tại
+- Theo đề xuất ở step 5 — command phù hợp với trạng thái hiện tại

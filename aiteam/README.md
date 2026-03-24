@@ -4,13 +4,41 @@ Bộ khung giúp team phối hợp phát triển phần mềm với AI agent tro
 
 ## Cài đặt
 
-Copy toàn bộ thư mục `aiteam/` vào dự án:
+### Bước 1: Copy aiteam vào dự án
 
 ```bash
 cp -r aiteam/ /path/to/your-project/aiteam/
 ```
 
-Sau đó chạy command `aiteam-setup` trong Cursor để khởi tạo cấu trúc `docs/`.
+### Bước 2: Link vào Cursor
+
+Cursor tìm commands ở `.cursor/commands/`, rules ở `.cursor/rules/`. Cần copy hoặc symlink:
+
+```bash
+cd /path/to/your-project
+
+# Commands
+mkdir -p .cursor/commands
+cp aiteam/commands/*.md .cursor/commands/
+
+# Rules
+mkdir -p .cursor/rules
+cp aiteam/rules/*.mdc .cursor/rules/
+```
+
+Hoặc dùng symlink (auto-sync khi aiteam update):
+
+```bash
+mkdir -p .cursor/commands .cursor/rules
+ln -sf ../../aiteam/commands/*.md .cursor/commands/
+ln -sf ../../aiteam/rules/*.mdc .cursor/rules/
+```
+
+### Bước 3: Khởi tạo docs
+
+Chạy command `aiteam-setup` trong Cursor để tạo cấu trúc `docs/`.
+
+> **Lưu ý**: Skills và templates nằm trong `aiteam/` — commands tham chiếu trực tiếp qua path `aiteam/skills/...` và `aiteam/templates/...`.
 
 ## Commands
 
