@@ -1,0 +1,15 @@
+---
+description: Ràng buộc bảo mật. Invariants áp dụng cho mọi code mới.
+alwaysApply: true
+---
+
+# Ràng buộc Bảo mật
+
+- Không hardcode secrets (API keys, passwords, tokens) — dùng env vars
+- Validate mọi user input trước xử lý
+- Database queries dùng parameterized/prepared statements
+- Output hiển thị phải escape/sanitize (chống XSS)
+- Error messages không rò rỉ thông tin hệ thống
+- File uploads kiểm tra MIME type, extension, size
+- CSRF protection cho POST/PUT/DELETE
+- Không dùng eval, exec, system, shell_exec

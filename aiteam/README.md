@@ -1,10 +1,10 @@
 # aiteam — Bộ khung phối hợp Team cho Cursor
 
-Bộ khung giúp team phối hợp phát triển phần mềm với AI agent trong Cursor. Tập trung vào spec-driven development: viết spec trước, review chéo, rồi mới implement.
+Bộ khung giúp team phối hợp phát triển phần mềm với AI agent trong Cursor. Kết hợp team coordination (spec, review, contracts) với individual dev tools (implement, fix, test, debug).
 
 ## Cài đặt
 
-Copy toàn bộ thư mục `aiteam/` vào dự án của bạn:
+Copy toàn bộ thư mục `aiteam/` vào dự án:
 
 ```bash
 cp -r aiteam/ /path/to/your-project/aiteam/
@@ -12,57 +12,38 @@ cp -r aiteam/ /path/to/your-project/aiteam/
 
 Sau đó chạy command `aiteam-setup` trong Cursor để khởi tạo cấu trúc `docs/`.
 
-## Workflow
+## Commands
+
+### Team Coordination — phối hợp giữa các thành viên
+
+| Command | Khi nào | Ai dùng |
+|---------|---------|---------|
+| `aiteam-setup` | Bắt đầu dự án | Lead / cả team |
+| `aiteam-plan` | Lên kế hoạch, chia modules, contracts | Cả team |
+| `aiteam-spec` | Viết spec chi tiết module | Owner module |
+| `aiteam-review` | Review chéo spec | Reviewer |
+| `aiteam-review-code` | Review code trên PR | Reviewer |
+| `aiteam-status` | Xem trạng thái, next steps | Ai cũng gọi được |
+
+### Individual Dev — công cụ cá nhân, gọi bất cứ lúc nào
+
+| Command | Khi nào | Mô tả |
+|---------|---------|-------|
+| `aiteam-implement` | Implement module | Viết test + production code (TDD) |
+| `aiteam-fix` | Gặp bug/build error | Fix nhanh, diff tối thiểu |
+| `aiteam-test` | Cần thêm tests | Viết tests, check coverage |
+| `aiteam-debug` | Vấn đề phức tạp | Root-cause analysis trước khi sửa |
+
+### Workflow điển hình
 
 ```
-aiteam-setup → aiteam-kickoff → aiteam-spec → aiteam-review-spec → aiteam-implement → aiteam-integrate
+Ngày 1 (team):    aiteam-setup → aiteam-plan → phân chia modules
+Ngày 2 (mỗi dev): aiteam-spec → nhờ dev khác aiteam-review (spec)
+Ngày 3+ (mỗi dev): aiteam-implement → gặp bug? aiteam-debug/fix
+                    → cần tests? aiteam-test → push PR
+                    → nhờ dev khác aiteam-review-code
+Bất cứ lúc nào:   aiteam-status → xem ai đang làm gì, next steps
 ```
-
-### `aiteam-setup` — Khởi tạo cấu trúc dự án
-
-Tạo thư mục `docs/` với cấu trúc chuẩn: specs, contracts, reviews, decisions, status.
-
-### `aiteam-kickoff` — Spec tổng thể
-
-Cả team cùng nhau:
-- Mô tả vấn đề, mục tiêu, phạm vi
-- Chia hệ thống thành modules
-- Định nghĩa contracts giữa modules
-- Phân công owner cho từng module
-
-**Output**: `docs/specs/overview.md` + contract files + decisions
-
-### `aiteam-spec` — Spec chi tiết module
-
-Mỗi dev viết spec chi tiết cho module mình own, theo 5 sections:
-1. Overview & Requirements
-2. Architecture & Design
-3. Contracts & Dependencies
-4. Implementation Plan
-5. Test Cases & Success Criteria
-
-**Output**: `docs/specs/modules/{module-name}.md`
-
-### `aiteam-review-spec` — Review chéo
-
-Dev A review spec của Dev B. Tập trung vào:
-- Contracts có match giữa hai modules?
-- Spec có đầy đủ và rõ ràng?
-- Có mâu thuẫn với overview hoặc modules khác?
-
-**Output**: `docs/reviews/{module-name}.md`
-
-### `aiteam-implement` — Implement theo spec
-
-Mỗi dev implement module trên feature branch, sử dụng TDD:
-- Derive tests từ spec (Section 5)
-- Red → Green → Refactor cycle
-- Commit thường xuyên
-- Coverage >= 80%
-
-### `aiteam-integrate` — Integration test (dự kiến)
-
-Nối modules, chạy integration/E2E tests, merge vào main. Sẽ triển khai chi tiết khi cần.
 
 ## Cấu trúc
 
@@ -71,48 +52,54 @@ aiteam/
 ├── README.md
 ├── AGENTS.md
 ├── commands/
-│   ├── aiteam-setup.md
-│   ├── aiteam-kickoff.md
-│   ├── aiteam-spec.md
-│   ├── aiteam-review-spec.md
-│   ├── aiteam-implement.md
-│   └── aiteam-integrate.md
+│   ├── aiteam-setup.md          # Team: khởi tạo
+│   ├── aiteam-plan.md           # Team: lên kế hoạch
+│   ├── aiteam-spec.md           # Team: viết spec
+│   ├── aiteam-review.md         # Team: review spec
+│   ├── aiteam-review-code.md   # Team: review code
+│   ├── aiteam-status.md         # Team: xem trạng thái
+│   ├── aiteam-implement.md      # Dev: implement
+│   ├── aiteam-fix.md            # Dev: fix bug
+│   ├── aiteam-test.md           # Dev: viết tests
+│   └── aiteam-debug.md          # Dev: debug
 ├── rules/
-│   └── team-conventions.mdc
+│   ├── team-conventions.mdc     # Ràng buộc team (~16 dòng)
+│   ├── code-quality.mdc         # Ràng buộc code quality (~12 dòng)
+│   └── security.mdc             # Ràng buộc security (~12 dòng)
 ├── skills/
 │   ├── spec-writing/
 │   │   ├── SKILL.md
 │   │   └── references/
-│   │       ├── overview-guide.md
-│   │       └── module-guide.md
 │   ├── cross-review/
 │   │   ├── SKILL.md
 │   │   └── references/
-│   │       └── review-process.md
+│   ├── code-review/
+│   │   ├── SKILL.md
+│   │   └── references/
 │   └── tdd-workflow/
 │       ├── SKILL.md
 │       └── references/
-│           └── tdd-cycle.md
-└── templates/
-    ├── overview-spec.md
-    ├── module-spec.md
-    ├── contract.md
-    ├── review.md
-    ├── status.md
-    └── decision.md
+├── templates/
+│   ├── overview-spec.md
+│   ├── module-spec.md
+│   ├── contract.md
+│   ├── review.md
+│   ├── status.md
+│   └── decision.md
+└── scripts/
+    └── check-status.sh          # Auto-detect trạng thái
 ```
 
 ## Triết lý thiết kế
 
 | Layer | Vai trò | Khi nào load |
 |-------|---------|-------------|
-| **Rule** | Ràng buộc bất biến (~16 dòng) | Luôn luôn |
-| **Command** | Ý định thực thi (~30-40 dòng) | Khi user gọi |
-| **Skill SKILL.md** | Overview methodology (~30 dòng) | Khi command tham chiếu |
+| **Rule** | Ràng buộc bất biến (~12-16 dòng mỗi file) | Luôn luôn |
+| **Command** | Ý định thực thi (~30-50 dòng) | Khi user gọi |
+| **Skill SKILL.md** | Overview methodology (~30-40 dòng) | Khi command tham chiếu |
 | **Skill references/** | Chi tiết methodology | Chỉ khi cần |
 | **Template** | Format nhất quán | Khi tạo artifact |
-
-**Tại sao tách?** Giữ context window nhẹ. Rules luôn load (~16 dòng). Commands chỉ load intent. Skills dùng progressive disclosure: SKILL.md ngắn gọn → references/ chi tiết chỉ load khi cần.
+| **Script** | Automation | Khi command gọi |
 
 ## Backward Transitions
 
@@ -120,20 +107,23 @@ Khi phát hiện vấn đề ở bước sau, quay lại sửa ở bước đún
 
 | Phát hiện ở | Loại vấn đề | Quay về |
 |-------------|-------------|---------|
-| `aiteam-review-spec` | Spec thiếu/sai | `aiteam-spec` sửa spec |
-| `aiteam-implement` | Spec sai | `aiteam-spec` → `aiteam-review-spec` |
-| `aiteam-implement` | Contract mismatch | `aiteam-kickoff` cập nhật contracts |
-| `aiteam-integrate` | Modules không khớp | `aiteam-kickoff` cập nhật contracts |
+| `aiteam-review` | Spec thiếu/sai | `aiteam-spec` sửa spec |
+| `aiteam-implement` | Spec sai | `aiteam-spec` → `aiteam-review` |
+| `aiteam-implement` | Contract mismatch | `aiteam-plan` cập nhật contracts |
+| `aiteam-review-code` | Design issue | `aiteam-spec` hoặc `aiteam-plan` |
+| `aiteam-debug` | Design flaw | `aiteam-spec` hoặc `aiteam-plan` |
 
 ## Progressive Rollout
 
 Không cần dùng hết ngay:
 
-**Bắt đầu**: `aiteam-setup` + `aiteam-kickoff` + `aiteam-spec`
+**Bắt đầu**: `aiteam-setup` + `aiteam-plan` + `aiteam-spec`
 
-**Khi team đã quen**: thêm `aiteam-review-spec` + `aiteam-implement`
+**Khi team đã quen**: thêm `aiteam-review` + `aiteam-implement`
 
-**Khi team thuần thục**: thêm `aiteam-integrate`
+**Khi cần dev tools**: thêm `aiteam-fix` + `aiteam-test` + `aiteam-debug`
+
+**Monitoring**: `aiteam-status` bất cứ lúc nào
 
 ## Branching Strategy
 
@@ -141,10 +131,9 @@ Không cần dùng hết ngay:
 main
 ├── feature/module-a     ← Dev A implement module A
 ├── feature/module-b     ← Dev B implement module B
-├── feature/module-c     ← Dev C implement module C
-└── integration/v1       ← Nối modules, E2E test
+└── feature/module-c     ← Dev C implement module C
 ```
 
 - Mỗi module = 1 feature branch
-- Merge qua PR với code review
-- Integration branch để test nối modules
+- Merge qua PR với `aiteam-review-code`
+- Integration test sau khi merge

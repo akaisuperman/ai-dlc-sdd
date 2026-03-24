@@ -1,5 +1,5 @@
 ---
-description: Khởi tạo cấu trúc thư mục và files ban đầu cho dự án aiteam
+description: Khởi tạo cấu trúc thư mục và files ban đầu cho dự án
 ---
 
 # aiteam-setup
@@ -30,7 +30,7 @@ Khởi tạo cấu trúc dự án cho workflow team.
 
 5. Điền thông tin từ step 1 vào `overview.md` và `status.md`
 
-6. Copy `aiteam/rules/team-conventions.mdc` vào `.cursor/rules/` (nếu chưa có)
+6. Copy `aiteam/rules/*.mdc` vào `.cursor/rules/` (nếu chưa có)
 
 7. Thông báo kết quả.
 
@@ -41,4 +41,4 @@ Khởi tạo cấu trúc dự án cho workflow team.
 
 ## Next
 
-→ `aiteam-kickoff` để bắt đầu viết spec tổng thể
+→ `aiteam-plan` để bắt đầu lên kế hoạch tổng thể

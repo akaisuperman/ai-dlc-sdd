@@ -29,7 +29,7 @@ Dev viết spec chi tiết cho module mình own.
    - **Section 2**: Architecture & Design — component diagram, data models, flows
    - **Section 3**: Contracts & Dependencies — interfaces EXPOSE/CONSUME, cross-check với contract files
    - **Section 4**: Implementation Plan — tasks nhỏ (1-2h), thứ tự, rủi ro
-   - **Section 5**: Test Cases & Success Criteria — derive từ requirements
+   - **Section 5**: Acceptance Criteria & Test Scenarios — derive từ requirements
 
 4. Chạy self-check theo checklist trong skill `spec-writing`
 
@@ -39,10 +39,10 @@ Dev viết spec chi tiết cho module mình own.
 
 ## Backward
 
-- Overview chưa đề cập module này → quay `aiteam-kickoff` cập nhật overview
-- Contracts thiếu → quay `aiteam-kickoff` thêm contracts
+- Overview chưa đề cập module này → quay `aiteam-plan` cập nhật overview
+- Contracts thiếu → quay `aiteam-plan` thêm contracts
 
 ## Next
 
-- Spec đã hoàn thành → nhờ dev khác chạy `aiteam-review-spec` để review
-- Phát hiện overview cần sửa → quay `aiteam-kickoff`
+- Spec đã hoàn thành → nhờ dev khác chạy `aiteam-review` để review spec
+- Phát hiện overview cần sửa → quay `aiteam-plan`

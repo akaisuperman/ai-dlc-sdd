@@ -1,0 +1,15 @@
+---
+description: Ràng buộc chất lượng code. Invariants áp dụng cho mọi code mới.
+alwaysApply: true
+---
+
+# Ràng buộc Chất lượng Code
+
+- Hàm < 50 dòng, single responsibility
+- File < 800 dòng, tách khi vượt
+- Không mutate objects — tạo mới với spread/copy
+- Không deep nesting > 4 levels — extract helper functions
+- Không hardcoded values — dùng constants hoặc config
+- Không `console.log` trong production code
+- Error handling: mọi async operation cần try/catch
+- Naming rõ ràng, nhất quán theo convention dự án

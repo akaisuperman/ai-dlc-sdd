@@ -1,22 +1,31 @@
 ---
 name: tdd-workflow
-description: Quy trình Test-Driven Development khi implement module theo spec. Dùng khi dev implement module (aiteam-implement), bao gồm derive tests từ spec, Red-Green-Refactor cycle, và coverage check.
+description: Quy trình implement module theo spec đã approved, kết hợp spec-driven acceptance criteria với TDD cycle. Dùng khi dev implement module (aiteam-implement).
 ---
 
 # TDD Workflow
 
-Test-Driven Development cho modules theo spec đã approved.
+Implement module theo spec đã approved, dùng TDD cycle cho từng behavior.
+
+## Mô hình: Spec-Driven + TDD
+
+Aiteam kết hợp hai kỹ thuật:
+
+1. **Spec-driven**: Section 5 của module spec định nghĩa acceptance criteria (behavior scenarios) — **WHAT** cần đúng
+2. **TDD cycle**: Khi implement, dev chọn **từng scenario** → viết test → implement → refactor — **HOW** xây dựng code
+
+Spec **không** viết sẵn test code. Spec mô tả **behavior mong đợi**, dev chuyển thành test trong lúc implement.
 
 ## Nguyên tắc
 
-- **Test từ spec, không từ code** — test cases đã có sẵn trong Section 5 của module spec
-- **Red → Green → Refactor** — viết test thất bại trước, implement tối thiểu, cải thiện
-- **Commit thường xuyên** — mỗi Green cycle = 1 commit
-- **Contract tests ưu tiên** — test interfaces EXPOSE trước, modules khác phụ thuộc vào đó
+- **Scenario → Test → Code** — chọn 1 scenario từ spec, viết test cho nó, implement vừa đủ
+- **Red → Green → Refactor** — mỗi scenario qua 1 TDD cycle
+- **Commit mỗi Green** — mỗi cycle thành công = 1 commit nhỏ
+- **Contract tests ưu tiên** — test interfaces EXPOSE trước vì modules khác phụ thuộc
 
-## Quy trình
+## Quy trình chi tiết
 
-Xem chi tiết: [references/tdd-cycle.md](references/tdd-cycle.md)
+Xem: [references/tdd-cycle.md](references/tdd-cycle.md)
 
 ## Thứ tự implement khuyến nghị
 
@@ -28,8 +37,8 @@ Xem chi tiết: [references/tdd-cycle.md](references/tdd-cycle.md)
 
 ## Anti-patterns
 
-- **Test sau code**: test chỉ confirm code hiện tại, không catch bugs
-- **Test quá chi tiết**: test implementation details → dễ vỡ khi refactor
+- **Viết hết tests rồi mới implement**: mất tính incremental của TDD, khó debug khi nhiều tests fail cùng lúc
+- **Test implementation details**: test internal state → dễ vỡ khi refactor
 - **Skip refactor**: Red-Green mà không Refactor → technical debt
-- **Commit lớn**: gom nhiều features → khó revert, khó review
-- **Ignore spec**: implement khác spec mà không cập nhật → mất đồng bộ
+- **Commit lớn**: gom nhiều scenarios → khó revert, khó review
+- **Implement khác spec**: không cập nhật spec → mất đồng bộ giữa doc và code

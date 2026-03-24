@@ -19,19 +19,11 @@
 - Commit message format: `[module-name] mô tả thay đổi`
 - Ghi quyết định kiến trúc quan trọng vào `docs/decisions/` theo template `decision.md`
 
-## Workflow
-
-```
-aiteam-setup → aiteam-kickoff → aiteam-spec → aiteam-review-spec → aiteam-implement → aiteam-integrate
-```
-
-Khi phát hiện vấn đề ở bước sau, quay lại bước trước sửa spec trước khi tiếp tục.
-
 ## Backward Transitions
 
 - Review phát hiện gaps → quay `aiteam-spec` sửa spec
-- Implement phát hiện spec sai → quay `aiteam-spec` cập nhật, rồi `aiteam-review-spec` lại
-- Integrate phát hiện contract mismatch → quay `aiteam-kickoff` cập nhật contracts
+- Implement phát hiện spec sai → quay `aiteam-spec` cập nhật, rồi `aiteam-review` lại
+- Contract mismatch → quay `aiteam-plan` cập nhật contracts
 
 ## Skills
 
@@ -39,17 +31,29 @@ Mỗi skill nằm trong directory riêng với `SKILL.md` + `references/`. Chỉ
 
 | Skill | Mô tả | Dùng bởi |
 |-------|--------|----------|
-| `spec-writing` | Viết overview spec và module spec | `aiteam-kickoff`, `aiteam-spec` |
-| `cross-review` | Review chéo spec | `aiteam-review-spec` |
+| `spec-writing` | Viết overview spec và module spec | `aiteam-plan`, `aiteam-spec` |
+| `cross-review` | Review chéo spec | `aiteam-review` |
+| `code-review` | Review code quality, security | `aiteam-review-code` |
 | `tdd-workflow` | TDD cycle khi implement | `aiteam-implement` |
 
 ## Commands
 
+### Team Coordination
+
 | Command | Mô tả |
 |---------|--------|
 | `aiteam-setup` | Khởi tạo cấu trúc thư mục dự án |
-| `aiteam-kickoff` | Cả team viết spec tổng thể, chia modules, định nghĩa contracts |
+| `aiteam-plan` | Lên kế hoạch tổng thể, chia modules, định nghĩa contracts |
 | `aiteam-spec` | Viết spec chi tiết cho module được phân công |
-| `aiteam-review-spec` | Review chéo spec của dev khác |
-| `aiteam-implement` | Implement module theo spec đã approved, TDD |
-| `aiteam-integrate` | Nối modules, integration test (dự kiến) |
+| `aiteam-review` | Review chéo spec giữa team members |
+| `aiteam-review-code` | Review code trên PR — quality, security, spec alignment |
+| `aiteam-status` | Xem trạng thái team, auto-detect phase, đề xuất next step |
+
+### Individual Dev
+
+| Command | Mô tả |
+|---------|--------|
+| `aiteam-implement` | Implement module — viết cả test lẫn production code (TDD) |
+| `aiteam-fix` | Fix bug hoặc build error, diff tối thiểu |
+| `aiteam-test` | Viết hoặc chạy tests, kiểm tra coverage |
+| `aiteam-debug` | Debug vấn đề với root-cause analysis |
