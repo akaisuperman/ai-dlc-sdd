@@ -9,7 +9,7 @@ Lên kế hoạch cho dự án hoặc module. Gọi được bất cứ lúc nà
 ## Đọc trước
 
 - Đọc skill `aiteam/skills/spec-writing/SKILL.md`
-- Đọc `docs/specs/overview.md` (nếu có)
+- Đọc `docs/ai/specs/overview.md` (nếu có)
 
 ## Steps
 
@@ -32,10 +32,10 @@ Lên kế hoạch cho dự án hoặc module. Gọi được bất cứ lúc nà
    - Gợi ý: module ít phụ thuộc → dễ bắt đầu sớm
 
 4. **Tạo artifacts**:
-   - Tạo/cập nhật `docs/specs/overview.md` theo template `overview-spec.md`
-   - Tạo contract files trong `docs/specs/contracts/` theo template `contract.md`
-   - Ghi quyết định kiến trúc vào `docs/decisions/` theo template `decision.md`
-   - Cập nhật `docs/status.md`
+   - Tạo/cập nhật `docs/ai/specs/overview.md` theo template `overview-spec.md`
+   - Tạo contract files trong `docs/ai/specs/contracts/` theo template `contract.md`
+   - Ghi quyết định kiến trúc vào `docs/ai/decisions/` theo template `decision.md`
+   - Cập nhật `docs/ai/status.md`
 
 ## Backward
 

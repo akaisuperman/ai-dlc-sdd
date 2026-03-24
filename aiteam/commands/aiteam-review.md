@@ -17,9 +17,9 @@ Review chéo spec module do dev khác viết. Tập trung vào contracts match, 
    - Bạn own module nào? (để cross-check contracts)
 
 2. **Đọc context**:
-   - `docs/specs/overview.md`
-   - `docs/specs/modules/{module-name}.md` (spec cần review)
-   - Contracts liên quan trong `docs/specs/contracts/`
+   - `docs/ai/specs/overview.md`
+   - `docs/ai/specs/modules/{module-name}.md` (spec cần review)
+   - Contracts liên quan trong `docs/ai/specs/contracts/`
    - Spec module mà reviewer own
 
 3. **Review** theo skill `cross-review`:
@@ -30,9 +30,9 @@ Review chéo spec module do dev khác viết. Tập trung vào contracts match, 
 
 4. Viết review theo template `review.md`
 
-5. Lưu review vào `docs/reviews/{module-name}.md`
+5. Lưu review vào `docs/ai/reviews/{module-name}.md`
 
-6. Cập nhật `docs/status.md`: module → review status
+6. Cập nhật `docs/ai/status.md`: module → review status
 
 ## Backward
 

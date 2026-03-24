@@ -17,15 +17,15 @@ Xem trạng thái dự án, module, và đề xuất bước tiếp theo.
    - Nếu script không tồn tại → đọc thủ công ở step 3
 
 3. **Đọc trạng thái thủ công** (nếu cần):
-   - Đọc `docs/status.md`
-   - Đọc `docs/specs/overview.md` (danh sách modules)
-   - Scan `docs/specs/modules/` → modules nào có spec
-   - Scan `docs/reviews/` → modules nào đã review
+   - Đọc `docs/ai/status.md`
+   - Đọc `docs/ai/specs/overview.md` (danh sách modules)
+   - Scan `docs/ai/specs/modules/` → modules nào có spec
+   - Scan `docs/ai/reviews/` → modules nào đã review
 
 4. **Hiển thị**:
    - Bảng trạng thái: mỗi module → spec / review / implement
    - Blockers & risks hiện tại
-   - Quyết định gần đây (từ `docs/decisions/`)
+   - Quyết định gần đây (từ `docs/ai/decisions/`)
 
 5. **Đề xuất next steps**:
    - Module chưa có spec → `aiteam-spec`
@@ -34,7 +34,7 @@ Xem trạng thái dự án, module, và đề xuất bước tiếp theo.
    - Implement xong → push PR, `aiteam-review-code`
    - Tất cả modules xong → integration test
 
-6. **Cập nhật** `docs/status.md` nếu có thay đổi.
+6. **Cập nhật** `docs/ai/status.md` nếu có thay đổi.
 
 ## Next
 

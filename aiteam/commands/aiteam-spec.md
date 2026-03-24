@@ -9,8 +9,8 @@ Dev viết spec chi tiết cho module mình own.
 ## Đọc trước
 
 - Đọc skill `aiteam/skills/spec-writing/SKILL.md`
-- Đọc `docs/specs/overview.md`
-- Đọc contracts liên quan trong `docs/specs/contracts/`
+- Đọc `docs/ai/specs/overview.md`
+- Đọc contracts liên quan trong `docs/ai/specs/contracts/`
 
 ## Steps
 
@@ -20,7 +20,7 @@ Dev viết spec chi tiết cho module mình own.
    - Có yêu cầu đặc biệt nào không?
 
 2. Kiểm tra prerequisites:
-   - `docs/specs/overview.md` phải tồn tại
+   - `docs/ai/specs/overview.md` phải tồn tại
    - Module phải nằm trong danh sách modules của overview
    - Xác nhận user là owner của module
 
@@ -33,9 +33,9 @@ Dev viết spec chi tiết cho module mình own.
 
 4. Chạy self-check theo checklist trong skill `spec-writing`
 
-5. Lưu spec vào `docs/specs/modules/{module-name}.md`
+5. Lưu spec vào `docs/ai/specs/modules/{module-name}.md`
 
-6. Cập nhật `docs/status.md`: module → spec: `draft`
+6. Cập nhật `docs/ai/status.md`: module → spec: `draft`
 
 ## Backward
 

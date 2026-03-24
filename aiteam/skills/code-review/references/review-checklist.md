@@ -2,7 +2,7 @@
 
 ## Bước 1: Context
 
-1. Đọc spec module: `docs/specs/modules/{module-name}.md`
+1. Đọc spec module: `docs/ai/specs/modules/{module-name}.md`
 2. Đọc contracts liên quan
 3. Xem diff: `git diff main...HEAD` hoặc PR diff
 4. Hiểu scope thay đổi trước khi review chi tiết

@@ -2,22 +2,22 @@
 
 ## Cấu trúc Tài liệu
 
-- `docs/specs/overview.md` — Spec tổng thể (kiến trúc, modules, contracts)
-- `docs/specs/modules/` — Spec chi tiết từng module
-- `docs/specs/contracts/` — Contracts giữa modules
-- `docs/reviews/` — Kết quả review chéo
-- `docs/decisions/` — Architecture Decision Records
-- `docs/status.md` — Trạng thái tổng thể team
+- `docs/ai/specs/overview.md` — Spec tổng thể (kiến trúc, modules, contracts)
+- `docs/ai/specs/modules/` — Spec chi tiết từng module
+- `docs/ai/specs/contracts/` — Contracts giữa modules
+- `docs/ai/reviews/` — Kết quả review chéo
+- `docs/ai/decisions/` — Architecture Decision Records
+- `docs/ai/status.md` — Trạng thái tổng thể team
 
 ## Ràng buộc
 
-- Đọc `docs/specs/overview.md` trước khi implement bất kỳ module nào
+- Đọc `docs/ai/specs/overview.md` trước khi implement bất kỳ module nào
 - Không implement module chưa có spec ở trạng thái `approved`
 - Không sửa trực tiếp spec của module mình không own — tạo review note thay vì sửa
 - Thay đổi contract cần đồng ý của owners cả hai modules liên quan
 - Code mới phải có test coverage >= 80%
 - Commit message format: `[module-name] mô tả thay đổi`
-- Ghi quyết định kiến trúc quan trọng vào `docs/decisions/` theo template `decision.md`
+- Ghi quyết định kiến trúc quan trọng vào `docs/ai/decisions/` theo template `decision.md`
 
 ## Backward Transitions
 

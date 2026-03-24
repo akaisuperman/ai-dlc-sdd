@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DOCS="docs"
+DOCS="docs/ai"
 
 exists() { [[ -f "$1" ]]; }
 
@@ -10,23 +10,23 @@ echo ""
 
 # Check base structure
 if [[ ! -d "$DOCS/specs" ]]; then
-  echo "[MISS] docs/specs/ — chạy aiteam-setup trước"
+  echo "[MISS] docs/ai/specs/ — chạy aiteam-setup trước"
   exit 1
 fi
 
 # Overview
 if exists "$DOCS/specs/overview.md"; then
-  echo "[OK]   docs/specs/overview.md"
+  echo "[OK]   docs/ai/specs/overview.md"
 else
-  echo "[MISS] docs/specs/overview.md — chạy aiteam-plan"
+  echo "[MISS] docs/ai/specs/overview.md — chạy aiteam-plan"
   exit 0
 fi
 
 # Status
 if exists "$DOCS/status.md"; then
-  echo "[OK]   docs/status.md"
+  echo "[OK]   docs/ai/status.md"
 else
-  echo "[MISS] docs/status.md"
+  echo "[MISS] docs/ai/status.md"
 fi
 
 echo ""

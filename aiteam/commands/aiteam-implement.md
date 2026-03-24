@@ -9,8 +9,8 @@ Implement module theo spec, sử dụng TDD workflow.
 ## Đọc trước
 
 - Đọc skill `aiteam/skills/tdd-workflow/SKILL.md`
-- Đọc `docs/specs/modules/{module-name}.md` (spec đã approved)
-- Đọc contracts liên quan trong `docs/specs/contracts/`
+- Đọc `docs/ai/specs/modules/{module-name}.md` (spec đã approved)
+- Đọc contracts liên quan trong `docs/ai/specs/contracts/`
 
 ## Steps
 
@@ -51,7 +51,7 @@ Implement module theo spec, sử dụng TDD workflow.
 8. **Cập nhật**:
    - Đánh dấu tasks hoàn thành trong spec (Section 4)
    - Đánh dấu scenarios đã pass trong spec (Section 5)
-   - Cập nhật `docs/status.md`: module → implement: `done`
+   - Cập nhật `docs/ai/status.md`: module → implement: `done`
 
 9. **Push branch**, tạo PR.
 

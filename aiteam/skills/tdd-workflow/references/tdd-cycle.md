@@ -2,8 +2,8 @@
 
 ## Bước 1: Chuẩn bị
 
-1. Đọc module spec: `docs/specs/modules/{module-name}.md`
-2. Đọc contracts liên quan: `docs/specs/contracts/`
+1. Đọc module spec: `docs/ai/specs/modules/{module-name}.md`
+2. Đọc contracts liên quan: `docs/ai/specs/contracts/`
 3. Tạo feature branch: `feature/{module-name}`
 4. Khởi tạo cấu trúc module + setup test runner
 
@@ -74,5 +74,5 @@ npm run test:coverage
 
 1. Đánh dấu tasks hoàn thành trong spec (Section 4)
 2. Đánh dấu scenarios đã pass trong spec (Section 5)
-3. Cập nhật `docs/status.md`
+3. Cập nhật `docs/ai/status.md`
 4. Push branch, tạo PR khi module hoàn thành

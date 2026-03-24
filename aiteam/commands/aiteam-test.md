@@ -9,7 +9,7 @@ Viết tests hoặc kiểm tra coverage. Gọi độc lập, không cần đi k�
 ## Đọc trước
 
 - Đọc skill `aiteam/skills/tdd-workflow/SKILL.md` (nếu cần TDD guidance)
-- Đọc spec module: `docs/specs/modules/{module-name}.md` (Section 5 — Acceptance Criteria)
+- Đọc spec module: `docs/ai/specs/modules/{module-name}.md` (Section 5 — Acceptance Criteria)
 
 ## Steps
 

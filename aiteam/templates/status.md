@@ -40,7 +40,7 @@ last_updated: YYYY-MM-DD
 
 ## Quyết định Gần đây
 
-<!-- 5 quyết định gần nhất, chi tiết trong docs/decisions/ -->
+<!-- 5 quyết định gần nhất, chi tiết trong docs/ai/decisions/ -->
 
 | Ngày | Quyết định | Ai quyết định | Chi tiết |
 |------|-----------|--------------|---------|

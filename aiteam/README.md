@@ -36,7 +36,7 @@ ln -sf ../../aiteam/rules/*.mdc .cursor/rules/
 
 ### Bước 3: Khởi tạo docs
 
-Chạy command `aiteam-setup` trong Cursor để tạo cấu trúc `docs/`.
+Chạy command `aiteam-setup` trong Cursor để tạo cấu trúc `docs/ai/`.
 
 > **Lưu ý**: Skills và templates nằm trong `aiteam/` — commands tham chiếu trực tiếp qua path `aiteam/skills/...` và `aiteam/templates/...`.
 

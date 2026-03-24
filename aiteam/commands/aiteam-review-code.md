@@ -17,7 +17,7 @@ Review code trước khi merge. Kiểm tra quality, security, và alignment vớ
    - Có spec cho module này không? (path)
 
 2. **Đọc context**:
-   - Spec module: `docs/specs/modules/{module-name}.md` (nếu có)
+   - Spec module: `docs/ai/specs/modules/{module-name}.md` (nếu có)
    - Contracts liên quan
    - Xem diff: `git diff main...HEAD` hoặc PR diff
 

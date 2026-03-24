@@ -5,11 +5,11 @@ alwaysApply: true
 
 # Ràng buộc Team
 
-- Đọc `docs/specs/overview.md` và spec của module liên quan trước khi viết code
-- Không sửa spec của module không phải mình own — tạo review note trong `docs/reviews/`
+- Đọc `docs/ai/specs/overview.md` và spec của module liên quan trước khi viết code
+- Không sửa spec của module không phải mình own — tạo review note trong `docs/ai/reviews/`
 - Thay đổi contract phải có đồng ý của owners cả hai modules
 - Mỗi module implement trên feature branch riêng: `feature/{module-name}`
 - Code mới phải có test coverage >= 80%
 - Commit message format: `[module-name] mô tả`
-- Cập nhật `docs/status.md` khi chuyển phase
+- Cập nhật `docs/ai/status.md` khi chuyển phase
 - Khi phát hiện vấn đề ở phase sau → quay lại sửa spec trước, không sửa code để "work around"

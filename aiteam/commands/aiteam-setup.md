@@ -25,7 +25,7 @@ Khởi tạo cấu trúc dự án cho workflow team.
 
 3. **Tạo cấu trúc docs**:
    ```
-   docs/
+   docs/ai/
    ├── specs/
    │   ├── modules/
    │   └── contracts/
@@ -34,9 +34,9 @@ Khởi tạo cấu trúc dự án cho workflow team.
    └── status.md
    ```
 
-4. Copy template `overview-spec.md` vào `docs/specs/overview.md`
+4. Copy template `overview-spec.md` vào `docs/ai/specs/overview.md`
 
-5. Copy template `status.md` vào `docs/status.md`
+5. Copy template `status.md` vào `docs/ai/status.md`
 
 6. Điền thông tin từ step 1 vào `overview.md` và `status.md`
 
@@ -44,7 +44,7 @@ Khởi tạo cấu trúc dự án cho workflow team.
 
 ## Lưu ý
 
-- Nếu thư mục `docs/` đã tồn tại, hỏi trước khi ghi đè
+- Nếu thư mục `docs/ai/` đã tồn tại, hỏi trước khi ghi đè
 - Không tạo file code nào — command này chỉ tạo docs structure
 
 ## Next

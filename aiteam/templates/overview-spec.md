@@ -37,7 +37,7 @@ graph TD
 <!-- Tech stack và lý do chọn -->
 
 ### Quyết định kiến trúc quan trọng
-<!-- Liệt kê các quyết định lớn, ghi chi tiết trong docs/decisions/ -->
+<!-- Liệt kê các quyết định lớn, ghi chi tiết trong docs/ai/decisions/ -->
 
 ## Danh sách Modules
 

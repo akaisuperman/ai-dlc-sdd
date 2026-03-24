@@ -2,9 +2,9 @@
 
 ## Bước 1: Đọc context
 
-1. Đọc `docs/specs/overview.md` — hiểu module nằm ở đâu trong hệ thống
-2. Đọc spec cần review: `docs/specs/modules/{module-name}.md`
-3. Đọc contracts liên quan: `docs/specs/contracts/`
+1. Đọc `docs/ai/specs/overview.md` — hiểu module nằm ở đâu trong hệ thống
+2. Đọc spec cần review: `docs/ai/specs/modules/{module-name}.md`
+3. Đọc contracts liên quan: `docs/ai/specs/contracts/`
 4. Đọc spec module mình own (để cross-check contracts)
 
 ## Bước 2: Kiểm tra Completeness
