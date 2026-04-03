@@ -1,5 +1,5 @@
 ---
-description: Lên kế hoạch tổng thể hoặc module — chia modules, định nghĩa contracts, phân công
+description: Lên kế hoạch tổng thể hoặc module — chia modules, contracts, EST
 ---
 
 # aiteam-plan
@@ -14,22 +14,25 @@ Lên kế hoạch cho dự án hoặc module. Gọi được bất cứ lúc nà
 ## Steps
 
 1. **Gather Context** — Nếu chưa được cung cấp, hỏi:
-   - Đây là dự án mới hay thêm feature vào dự án hiện tại?
+   - Đây là dự án mới hay thêm feature?
+   - Requirements đã có sẵn chưa? (nếu có → đọc trước, skip requirement gathering)
    - Vấn đề cần giải quyết là gì?
    - Mục tiêu cụ thể (3-5 mục tiêu đo lường được)
    - Phạm vi (trong/ngoài)
    - Ràng buộc kỹ thuật, business, thời gian
-   - Thành viên team
+   - Ai tham gia? (solo, team nhỏ, team đa vai trò?)
 
 2. **Phân tích & đề xuất**:
    - Phân tích domain, đề xuất danh sách modules
    - Vẽ component diagram (mermaid)
    - Xác định contracts giữa modules
+   - EST sơ bộ cho từng module (tổng ngày)
    - Trình bày cho user duyệt, chỉnh sửa
 
-3. **Phân công**:
+3. **Phân công** (nếu có nhiều người):
    - Hỏi user phân công module cho ai
    - Gợi ý: module ít phụ thuộc → dễ bắt đầu sớm
+   - Solo dev: bỏ qua bước này
 
 4. **Tạo artifacts**:
    - Tạo/cập nhật `docs/ai/specs/overview.md` theo template `overview-spec.md`
@@ -43,5 +46,5 @@ Lên kế hoạch cho dự án hoặc module. Gọi được bất cứ lúc nà
 
 ## Next
 
-- Overview đã đủ → mỗi dev chạy `aiteam-spec` để viết spec module mình own
+- Overview đã đủ → chạy `aiteam-spec` để viết spec từng module
 - Cần làm rõ thêm → tiếp tục `aiteam-plan` với câu hỏi cụ thể

@@ -4,16 +4,18 @@ description: Khởi tạo cấu trúc thư mục và files ban đầu cho dự �
 
 # aiteam-setup
 
-Khởi tạo cấu trúc dự án cho workflow team.
+Khởi tạo cấu trúc dự án cho workflow spec-driven.
 
 ## Steps
 
 1. **Gather Context** — Nếu chưa được cung cấp, hỏi:
    - Tên dự án
-   - Danh sách thành viên team
    - Mô tả ngắn gọn dự án
+   - Ai tham gia? (solo, team nhỏ, team đa vai trò?)
+   - Docs lưu trong cùng repo hay repo riêng?
 
 2. **Kiểm tra Cursor integration**:
+   - Resolve `<aiteam-dir>` — thư mục chứa `AGENTS.md` (thường `aiteam/`)
    - Kiểm tra `.cursor/commands/` có chứa `aiteam-*.md` chưa
    - Kiểm tra `.cursor/rules/` có chứa `*.mdc` từ aiteam chưa
    - Nếu chưa → copy commands và rules vào `.cursor/`:
@@ -46,7 +48,8 @@ Khởi tạo cấu trúc dự án cho workflow team.
 
 - Nếu thư mục `docs/ai/` đã tồn tại, hỏi trước khi ghi đè
 - Không tạo file code nào — command này chỉ tạo docs structure
+- Nếu docs ở repo riêng → hướng dẫn setup submodule hoặc sparse checkout (xem README.md)
 
 ## Next
 
-→ `aiteam-plan` để bắt đầu lên kế hoạch tổng thể
+→ `aiteam-plan` để bắt đầu lên kế hoạch

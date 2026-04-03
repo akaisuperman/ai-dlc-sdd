@@ -1,10 +1,10 @@
 ---
-description: Xem trạng thái team và auto-detect phase hiện tại
+description: Xem trạng thái dự án, bolt tracking, và đề xuất bước tiếp theo
 ---
 
 # aiteam-status
 
-Xem trạng thái dự án, module, và đề xuất bước tiếp theo.
+Xem trạng thái dự án, module, bolt tracking, và đề xuất bước tiếp theo.
 
 ## Steps
 
@@ -24,6 +24,8 @@ Xem trạng thái dự án, module, và đề xuất bước tiếp theo.
 
 4. **Hiển thị**:
    - Bảng trạng thái: mỗi module → spec / review / implement
+   - Bolt tracking: task-level progress nếu có
+   - EST tổng vs actual (nếu có data)
    - Blockers & risks hiện tại
    - Quyết định gần đây (từ `docs/ai/decisions/`)
 

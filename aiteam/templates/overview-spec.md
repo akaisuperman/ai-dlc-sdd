@@ -2,8 +2,9 @@
 project: <tên-dự-án>
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
-authors: [dev-a, dev-b, dev-c]
+authors: []
 status: draft | approved
+total_est: <X days>
 ---
 
 # Spec Tổng thể: <Tên Dự án>
@@ -41,28 +42,29 @@ graph TD
 
 ## Danh sách Modules
 
-| Module | Mô tả | Owner | Phụ thuộc | Trạng thái |
-|--------|--------|-------|-----------|------------|
-| module-a | ... | dev-a | - | draft |
-| module-b | ... | dev-b | module-a | draft |
-| module-c | ... | dev-c | module-a, module-b | draft |
+| Module | Mô tả | Owner | EST | Phụ thuộc | Trạng thái |
+|--------|--------|-------|-----|-----------|------------|
+| module-a | ... | - | Xd | - | draft |
+| module-b | ... | - | Xd | module-a | draft |
+
+**Tổng EST**: X days
 
 ## Contracts giữa Modules
 
 | Contract | Giữa | Loại | File |
 |----------|-------|------|------|
 | contract-1 | module-a ↔ module-b | API / Event / Shared DB | `contracts/module-a--module-b.md` |
-| contract-2 | module-b ↔ module-c | API | `contracts/module-b--module-c.md` |
 
 ## Phân công & Timeline
 
-| Phase | Thời gian dự kiến | Ai tham gia |
-|-------|-------------------|-------------|
-| Kickoff (spec tổng thể) | ... | Cả team |
-| Spec module | ... | Mỗi dev viết module mình own |
-| Review chéo | ... | Dev review chéo cho nhau |
-| Implement | ... | Mỗi dev implement module mình |
-| Integrate | ... | Cả team |
+| Phase | EST | Ai tham gia |
+|-------|-----|-------------|
+| Plan (spec tổng thể) | ... | ... |
+| Spec module | ... | ... |
+| Review | ... | ... |
+| Implement | ... | ... |
+| Gate review | ... | ... |
+| Integrate | ... | ... |
 
 ## Ràng buộc & Giả định
 
@@ -70,10 +72,9 @@ graph TD
 <!-- Kỹ thuật, business, thời gian -->
 
 ### Giả định
-<!-- Những điều team giả định là đúng -->
+<!-- Những điều giả định là đúng -->
 
 ## Câu hỏi Mở
-<!-- Những điều chưa được giải quyết -->
 
 - [ ] ...
 - [ ] ...

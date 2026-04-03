@@ -1,34 +1,44 @@
 ---
 name: cross-review
-description: Hướng dẫn review chéo spec giữa các dev trong team. Dùng khi dev review spec module của dev khác (aiteam-review-spec), tập trung vào contracts alignment, completeness, và conflicts.
+description: Review spec module. Ho tro cross-review, self-review, va AI review. Dung trong aiteam-review.
 ---
 
-# Cross Review
+# Spec Review
 
-Review chéo spec module do dev khác viết. Tập trung vào contracts match, completeness, và conflicts.
+Review spec module. Ho tro nhieu hinh thuc review.
 
-## Nguyên tắc
+## Hinh thuc review
 
-- **Review spec, không phải code** — logic, contracts, completeness
-- **Đặt câu hỏi, không phải chỉ trích** — "Nên thêm xử lý timeout?" thay vì "Thiếu"
-- **Cross-check contracts là quan trọng nhất** — contracts phải match giữa spec của bạn và module đang review
-- **Góc nhìn người dùng contract** — bạn sẽ gọi API này, spec có đủ rõ để implement?
+| Type | Khi nao | Mo ta |
+|------|---------|-------|
+| **cross** | Team co nhieu nguoi | Nguoi khac review spec cua ban |
+| **self** | Solo dev hoac team nho | Tu review spec cua minh |
+| **ai** | Bat ky luc nao | AI agent review |
 
-## Quy trình
+## Nguyen tac
 
-Xem chi tiết: [references/review-process.md](references/review-process.md)
+- **Review spec, khong phai code** — logic, contracts, completeness, EST
+- **Dat cau hoi, khong phai chi trich** — "Nen them xu ly timeout?" thay vi "Thieu"
+- **Cross-check contracts la quan trong nhat** — contracts phai match
+- **Kiem tra EST** — estimation co hop ly khong? qua lac quan hay bi quan?
+- **Goc nhin nguoi dung contract** — ban se goi API nay, spec co du ro de implement?
 
-## Mức độ findings
+## Quy trinh
 
-| Mức độ | Khi nào | Ví dụ |
+Xem chi tiet: [references/review-process.md](references/review-process.md)
+
+## Muc do findings
+
+| Muc do | Khi nao | Vi du |
 |--------|---------|-------|
-| **Critical** | Chặn implement, phải sửa | Contract mismatch, thiếu error handling |
-| **Important** | Nên sửa trước implement | Thiếu edge case tests, ambiguity |
-| **Minor** | Có thể sửa sau | Typo, formatting, suggestion |
+| **Critical** | Chan implement, phai sua | Contract mismatch, thieu error handling |
+| **Important** | Nen sua truoc implement | Thieu edge case tests, ambiguity, EST khong hop ly |
+| **Minor** | Co the sua sau | Typo, formatting, suggestion |
 
 ## Anti-patterns
 
-- **Rubber stamp**: approve mà không đọc kỹ
-- **Scope creep**: đề xuất thêm feature — ghi vào câu hỏi mở, không block
-- **Rewrite**: viết lại spec theo ý mình — review, không phải rewrite
-- **Chỉ nhìn happy path**: bỏ qua error scenarios và edge cases
+- **Rubber stamp**: approve ma khong doc ky
+- **Scope creep**: de xuat them feature — ghi vao cau hoi mo, khong block
+- **Rewrite**: viet lai spec theo y minh — review, khong phai rewrite
+- **Chi nhin happy path**: bo qua error scenarios va edge cases
+- **Bo qua EST**: khong kiem tra estimation co hop ly khong

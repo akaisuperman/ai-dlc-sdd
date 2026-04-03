@@ -13,17 +13,28 @@ last_updated: YYYY-MM-DD
 | Specs hoàn thành | 0 |
 | Reviews hoàn thành | 0 |
 | Modules đang implement | 0 |
-| Modules đã integrate | 0 |
+| Modules đã hoàn thành | 0 |
+| Tổng EST | 0 days |
+| EST còn lại | 0 days |
 
 ## Trạng thái theo Module
 
-| Module | Owner | Spec | Review | Implement | Integrate | Ghi chú |
-|--------|-------|------|--------|-----------|-----------|---------|
-| module-a | dev-a | draft | - | - | - | |
-| module-b | dev-b | draft | - | - | - | |
-| module-c | dev-c | draft | - | - | - | |
+| Module | Owner | EST | Spec | Review | Implement | Ghi chú |
+|--------|-------|-----|------|--------|-----------|---------|
+| module-a | - | Xd | draft | - | - | |
+| module-b | - | Xd | draft | - | - | |
 
 **Legend**: - (chưa bắt đầu) | draft | in-progress | done | blocked
+
+## Bolt Tracking
+
+<!-- Task-level progress. Cập nhật khi implement. -->
+
+| Bolt | Module | Task | Owner | EST | Actual | Status |
+|------|--------|------|-------|-----|--------|--------|
+| B-001 | module-a | Task 1: Setup | - | 0.5d | - | pending |
+
+**Legend**: pending | in-progress | done | blocked
 
 ## Contracts
 
@@ -33,8 +44,6 @@ last_updated: YYYY-MM-DD
 
 ## Blockers & Risks
 
-<!-- Những vấn đề đang chặn tiến độ -->
-
 | # | Mô tả | Ảnh hưởng modules | Người chịu trách nhiệm | Trạng thái |
 |---|--------|-------------------|------------------------|------------|
 
@@ -42,8 +51,16 @@ last_updated: YYYY-MM-DD
 
 <!-- 5 quyết định gần nhất, chi tiết trong docs/ai/decisions/ -->
 
-| Ngày | Quyết định | Ai quyết định | Chi tiết |
-|------|-----------|--------------|---------|
+| Ngày | Quyết định | Chi tiết |
+|------|-----------|---------|
+
+## EST Change History
+
+<!-- Theo dõi thay đổi EST theo thời gian -->
+
+| Ngày | EST cũ (tổng) | EST mới (tổng) | Lý do |
+|------|--------------|----------------|-------|
+| YYYY-MM-DD | - | Xd | Khởi tạo |
 
 ## Lịch sử Cập nhật
 

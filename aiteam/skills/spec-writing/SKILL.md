@@ -1,20 +1,22 @@
 ---
 name: spec-writing
-description: Hướng dẫn viết spec tổng thể và spec chi tiết cho module theo template 5 phần. Dùng khi team viết overview spec (aiteam-kickoff) hoặc module spec (aiteam-spec).
+description: Viết spec tổng thể và spec chi tiết cho module/component. Dùng trong aiteam-plan (overview) và aiteam-spec (module).
 ---
 
 # Spec Writing
 
-Viết spec cho dự án aiteam. Hai loại spec:
-- **Overview spec**: kiến trúc tổng thể, chia modules, contracts → dùng trong `aiteam-kickoff`
-- **Module spec**: chi tiết 5 sections cho từng module → dùng trong `aiteam-spec`
+Viết spec cho dự án. Ba loại spec:
+- **Overview spec**: kiến trúc tổng thể, chia modules, contracts, EST tổng
+- **Module spec**: chi tiết 5 sections cho từng module, EST cho mỗi task
+- **Component spec** (tùy chọn): chi tiết cho component trong module lớn
 
 ## Nguyên tắc
 
-- **Spec là contract** — dev khác dựa vào spec để viết code tương tác
-- **Cụ thể hơn chung chung** — "Xử lý nhanh" → "Response time < 200ms p95"
+- **Spec là contract** — người khác dựa vào spec để viết code tương tác
+- **Cụ thể hơn chung chung** — "Xử lý nhanh" thành "Response time < 200ms p95"
 - **Diagram trước prose** — ít nhất 1 mermaid diagram mỗi spec
 - **Test cases từ requirements** — mỗi requirement phải có ít nhất 1 test case
+- **EST là bắt buộc** — mỗi task cần estimation, tổng EST ghi trong frontmatter
 
 ## Viết Overview Spec
 
@@ -30,9 +32,12 @@ Xem chi tiết: [references/module-guide.md](references/module-guide.md)
 - [ ] Mọi interface EXPOSE/CONSUME khớp với contract files
 - [ ] Có ít nhất 1 mermaid diagram
 - [ ] Tasks đủ nhỏ (1-2 giờ mỗi task)
+- [ ] Mỗi task có EST (estimation)
+- [ ] Tổng EST ghi trong frontmatter
 - [ ] Success criteria đo lường được
 - [ ] Không có phần nào viết "TBD" hoặc để trống
 - [ ] Scope nhất quán với overview.md
+- [ ] Nếu module lớn: đã xem xét tách components
 
 ## Anti-patterns
 
@@ -40,3 +45,4 @@ Xem chi tiết: [references/module-guide.md](references/module-guide.md)
 - **Copy-paste từ overview**: module spec phải chi tiết hơn, không phải lặp lại
 - **Thiếu error handling**: chỉ mô tả happy path
 - **Contract một chiều**: chỉ mô tả request, thiếu response và errors
+- **Thiếu EST**: tasks không có estimation — khó tracking tiến độ

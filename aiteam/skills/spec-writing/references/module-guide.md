@@ -1,38 +1,68 @@
 # Viết Module Spec (5 Sections)
 
-Hướng dẫn chi tiết viết spec cho 1 module (dùng trong `aiteam-spec`).
+Hướng dẫn chi tiết viết spec cho 1 module.
 
 ## Section 1: Overview & Requirements
 
 1. Bắt đầu bằng 1-2 câu mô tả module làm gì
 2. Liệt kê user stories: "Là [vai trò], tôi muốn [hành động] để [giá trị]"
-3. Phân biệt rõ trong/ngoài phạm vi — liệt kê cụ thể những gì module KHÔNG làm
+3. Phân biệt rõ trong/ngoài phạm vi
 4. Tham chiếu overview.md để đảm bảo scope nhất quán
 
 ## Section 2: Architecture & Design
 
 1. Vẽ component diagram (mermaid):
    - Components bên trong module
-   - Kết nối với modules phụ thuộc (dùng tên đúng như overview.md)
+   - Kết nối với modules phụ thuộc
    - Database/storage nếu có
 2. Mô tả data models — entities, types, relationships
 3. Mô tả luồng xử lý chính (lời hoặc sequence diagram)
 4. Ghi công nghệ chọn dùng và lý do
+5. Nếu module lớn: liệt kê components và đánh giá có cần spec riêng không
 
 ## Section 3: Contracts & Dependencies
 
-1. Liệt kê interfaces module EXPOSE — API mà modules khác gọi
+1. Liệt kê interfaces module EXPOSE
 2. Liệt kê interfaces module CONSUME — tham chiếu contract files
 3. Dùng TypeScript interface hoặc pseudocode cho signatures
-4. Mô tả error handling giữa modules — ai xử lý lỗi gì
+4. Mô tả error handling giữa modules
 5. Cross-check: mọi interface phải khớp với file contract tương ứng
 
 ## Section 4: Implementation Plan
 
 1. Chia tasks sao cho mỗi task hoàn thành trong 1-2 giờ
-2. Thứ tự: data models → business logic → API layer → tests
-3. Đánh dấu task nào phụ thuộc task khác
-4. Liệt kê rủi ro và biện pháp
+2. Mỗi task phải có EST:
+
+```markdown
+#### Task N: Tên task
+**EST**: X day
+**Detail**:
+- Công việc cụ thể 1
+- Công việc cụ thể 2
+```
+
+3. Ghi tổng EST cuối section
+4. Thứ tự: data models → business logic → API layer → tests
+5. Đánh dấu task nào phụ thuộc task khác
+6. Liệt kê rủi ro và biện pháp
+
+### Nguyên tắc EST
+
+- **Đơn vị**: day (0.5d, 1d, 2d) hoặc hour (2h, 4h)
+- **Bao gồm**: cả viết test lẫn implement (TDD cycle)
+- **Buffer**: thêm 20-30% cho integration và unexpected issues
+- **Review EST khi scope thay đổi**: ghi vào EST Change Log
+
+### EST Change Log
+
+Khi scope thay đổi (thêm requirement, phát hiện complexity mới):
+
+```markdown
+| Ngày | Thay đổi | Task ảnh hưởng | EST cũ | EST mới | Lý do |
+|------|----------|----------------|--------|---------|-------|
+| 2026-04-01 | Thêm rate limiting | Task 4 | 1d | 1.5d | Yêu cầu mới |
+| 2026-04-02 | Task mới: Cache | Task 9 (mới) | - | 0.5d | Performance |
+```
 
 ## Section 5: Test Cases & Success Criteria
 

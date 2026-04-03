@@ -1,58 +1,70 @@
-# Quy trình Review Chéo
+# Quy trinh Review Spec
 
-## Bước 1: Đọc context
+## Buoc 1: Doc context
 
-1. Đọc `docs/ai/specs/overview.md` — hiểu module nằm ở đâu trong hệ thống
-2. Đọc spec cần review: `docs/ai/specs/modules/{module-name}.md`
-3. Đọc contracts liên quan: `docs/ai/specs/contracts/`
-4. Đọc spec module mình own (để cross-check contracts)
+1. Doc `docs/ai/specs/overview.md` — hieu module nam o dau trong he thong
+2. Doc spec can review: `docs/ai/specs/modules/{module-name}.md`
+3. Doc contracts lien quan: `docs/ai/specs/contracts/`
+4. Doc component specs neu co: `docs/ai/specs/modules/{module-name}/components/`
+5. Neu cross-review: doc spec module minh own (de cross-check contracts)
 
-## Bước 2: Kiểm tra Completeness
+## Buoc 2: Kiem tra Completeness
 
 **Section 1 (Overview)**:
-- Mục đích rõ ràng? Đọc xong biết module làm gì?
-- User stories đầy đủ? Có thiếu flow nào?
-- Phạm vi nhất quán với overview.md?
+- Muc dich ro rang? Doc xong biet module lam gi?
+- User stories day du? Co thieu flow nao?
+- Pham vi nhat quan voi overview.md?
 
 **Section 2 (Architecture)**:
-- Có diagram không? Diagram rõ ràng?
-- Data models đủ chi tiết để implement?
-- Luồng xử lý cover cả error path?
+- Co diagram khong? Diagram ro rang?
+- Data models du chi tiet de implement?
+- Luong xu ly cover ca error path?
+- Neu module lon: co can tach components khong?
 
 **Section 3 (Contracts)**:
-- Interface signatures rõ ràng (params, return types, errors)?
-- Khớp với contract files?
-- Error handling giữa modules rõ ràng — ai xử lý lỗi gì?
+- Interface signatures ro rang (params, return types, errors)?
+- Khop voi contract files?
+- Error handling giua modules ro rang — ai xu ly loi gi?
 
 **Section 4 (Implementation Plan)**:
-- Tasks đủ nhỏ (1-2 giờ)?
-- Thứ tự hợp lý? Dependencies rõ ràng?
-- Có rủi ro chưa được đề cập?
+- Tasks du nho (1-2 gio)?
+- Moi task co EST?
+- Tong EST hop ly (khong qua lac quan/bi quan)?
+- Thu tu hop ly? Dependencies ro rang?
+- Co rui ro chua duoc de cap?
 
 **Section 5 (Test Cases)**:
-- Mỗi user story có test case?
+- Moi user story co test case?
 - Edge cases: null, empty, boundary, error?
-- Success criteria đo lường được?
+- Success criteria do luong duoc?
 
-## Bước 3: Kiểm tra Contracts (quan trọng nhất)
+## Buoc 3: Kiem tra Contracts (quan trong nhat)
 
-1. Mở spec module bạn own
-2. Tìm tất cả chỗ module bạn tương tác với module đang review
-3. So sánh:
+1. Tim tat ca cho module tuong tac voi module khac
+2. So sanh:
    - Interface signatures match? (params, return types)
    - Error codes match?
    - Data format match?
-4. Nếu mismatch → ghi vào "Contract Alignment" trong review
+3. Neu mismatch — ghi vao "Contract Alignment" trong review
 
-## Bước 4: Kiểm tra Conflicts
+## Buoc 4: Kiem tra EST
 
-1. So sánh với overview.md — có mâu thuẫn không?
-2. So sánh với spec modules khác — overlap hoặc conflict?
-3. Kiểm tra giả định — module giả định điều gì chưa xác nhận?
+1. Tong EST co phu hop voi do phuc tap?
+2. So sanh voi modules tuong tu (neu co)
+3. Co tinh buffer cho integration va unexpected issues?
+4. Tasks nao co the mat nhieu thoi gian hon du kien?
 
-## Bước 5: Viết Review
+## Buoc 5: Kiem tra Conflicts
 
-1. Dùng template `review.md`
-2. Phân loại findings: Critical / Important / Minor
-3. Đưa verdict: approved / needs-revision / blocked
-4. Nếu needs-revision: liệt kê cụ thể điều kiện để approve
+1. So sanh voi overview.md — co mau thuan khong?
+2. So sanh voi spec modules khac — overlap hoac conflict?
+3. Kiem tra gia dinh — module gia dinh dieu gi chua xac nhan?
+
+## Buoc 6: Viet Review
+
+1. Dung template `review.md`
+2. Tu dong dien reviewer tu git config
+3. Phan loai findings: Critical / Important / Minor
+4. Dua verdict: approved / needs-revision / blocked
+5. Neu needs-revision: liet ke cu the dieu kien de approve
+6. Luu file: `docs/ai/reviews/{module-name}__{reviewer}__{date}.md`

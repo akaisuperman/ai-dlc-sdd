@@ -1,25 +1,25 @@
 ---
 module: <module-name>
-owner: <developer-name>
+owner: <name>
 status: draft | in-review | approved | implementing | done
 depends_on: []
 last_updated: YYYY-MM-DD
+total_est: <X days>
 ---
 
-# Module: <Tên Module>
+# Module: <Ten Module>
 
 ## 1. Overview & Requirements
 
-### Mục đích
-<!-- Module này làm gì, giải quyết phần nào của bài toán tổng thể -->
+### Muc dich
+<!-- Module nay lam gi, giai quyet phan nao cua bai toan tong the -->
 
-### User Stories liên quan
-<!-- Liệt kê user stories mà module này đáp ứng -->
-- Là [vai trò], tôi muốn [hành động] để [giá trị]
+### User Stories lien quan
+- La [vai tro], toi muon [hanh dong] de [gia tri]
 
-### Phạm vi
-- **Trong phạm vi**: ...
-- **Ngoài phạm vi**: ...
+### Pham vi
+- **Trong pham vi**: ...
+- **Ngoai pham vi**: ...
 
 ## 2. Architecture & Design
 
@@ -31,86 +31,134 @@ graph TD
         ComponentA[Component A]
         ComponentB[Component B]
     end
-    ExternalDep[Module phụ thuộc] --> ComponentA
+    ExternalDep[Module phu thuoc] --> ComponentA
     ComponentA --> ComponentB
     ComponentB --> DB[(Database)]
 ```
 
 ### Data Models
-<!-- Mô tả entities, schemas, relationships -->
+<!-- Mo ta entities, schemas, relationships -->
 
-### Luồng xử lý chính
-<!-- Mô tả các flow quan trọng, có thể dùng sequence diagram -->
+### Luong xu ly chinh
+<!-- Mo ta cac flow quan trong, co the dung sequence diagram -->
 
-### Công nghệ & Lý do
-<!-- Công nghệ cụ thể cho module này và lý do chọn -->
+### Cong nghe & Ly do
+<!-- Cong nghe cu the cho module nay va ly do chon -->
+
+### Components (neu module lon)
+<!-- Khi module co logic phuc tap, tach thanh components.
+     Moi component co the co spec rieng trong modules/{module-name}/components/ -->
+
+| Component | Mo ta | EST | Spec rieng? |
+|-----------|-------|-----|-------------|
+| component-a | ... | Xd | Co / Khong |
 
 ## 3. Contracts & Dependencies
 
-### Interfaces module này EXPOSE (cho modules khác dùng)
-<!-- API endpoints, events, shared types mà module này cung cấp -->
+### Interfaces module nay EXPOSE (cho modules khac dung)
 
 ```typescript
-// Ví dụ interface
 interface IModuleNameService {
   methodA(param: TypeA): Promise<ResultA>
   methodB(param: TypeB): Promise<ResultB>
 }
 ```
 
-### Interfaces module này CONSUME (từ modules khác)
-<!-- Liệt kê và tham chiếu đến contract files -->
-- `module-x`: sử dụng `methodY()` — xem `contracts/module-x--module-name.md`
+### Interfaces module nay CONSUME (tu modules khac)
+- `module-x`: su dung `methodY()` — xem `contracts/module-x--module-name.md`
 
-### Error Handling giữa modules
-<!-- Cách xử lý khi module phụ thuộc lỗi -->
+### Error Handling giua modules
+<!-- Cach xu ly khi module phu thuoc loi -->
 
 ## 4. Implementation Plan
 
 ### Tasks
-<!-- Mỗi task là 1 cặp: viết test trước → implement → refactor (TDD cycle) -->
-<!-- Chia nhỏ thành tasks có thể hoàn thành trong 1-2 giờ -->
-- [ ] Task 1: Khởi tạo cấu trúc module + setup test runner
-- [ ] Task 2: Data models — test schema/validation → implement models
-- [ ] Task 3: Contract interfaces — test EXPOSE signatures → implement stubs
-- [ ] Task 4: Business logic — test core behaviors → implement logic
-- [ ] Task 5: API/integration layer — test endpoints/connectors → implement layer
-- [ ] Task 6: Error handling — test edge cases/failures → implement error paths
-- [ ] Task 7: Integration tests — test tương tác qua contracts
-- [ ] Task 8: Documentation
 
-### Thứ tự ưu tiên
-<!-- Task nào làm trước, task nào phụ thuộc task khác -->
+#### Task 1: Khoi tao cau truc module + setup test runner
+**EST**: 0.5 day
+**Detail**:
+- Tao folder structure theo convention
+- Config test runner
+- Verify test runner chay duoc voi empty test
 
-### Rủi ro & Biện pháp
-| Rủi ro | Mức độ | Biện pháp |
+#### Task 2: Data models
+**EST**: X day
+**Detail**:
+- Dinh nghia entities, schemas
+- Viet validation rules
+- Test schema/validation
+
+#### Task 3: Contract interfaces
+**EST**: X day
+**Detail**:
+- Implement EXPOSE interfaces (stubs)
+- Test interface signatures match contract files
+
+#### Task 4: Business logic
+**EST**: X day
+**Detail**:
+- Core behaviors theo user stories
+- Test tung behavior
+
+#### Task 5: API/integration layer
+**EST**: X day
+**Detail**:
+- Endpoints hoac connectors
+- Test endpoints
+
+#### Task 6: Error handling
+**EST**: X day
+**Detail**:
+- Edge cases, failure scenarios
+- Test error paths
+
+#### Task 7: Integration tests
+**EST**: X day
+**Detail**:
+- Test tuong tac qua contracts
+- Mock modules phu thuoc
+
+#### Task 8: Documentation
+**EST**: 0.5 day
+**Detail**:
+- API docs
+- README module
+
+### Tong EST: X days
+
+### EST Change Log
+<!-- Khi scope thay doi, ghi ro o day -->
+
+| Ngay | Thay doi | Task anh huong | EST cu | EST moi | Ly do |
+|------|----------|----------------|--------|---------|-------|
+| | | | | | |
+
+### Thu tu uu tien
+<!-- Task nao lam truoc, task nao phu thuoc task khac -->
+
+### Rui ro & Bien phap
+| Rui ro | Muc do | Bien phap |
 |--------|--------|-----------|
-| ... | Cao/Trung bình/Thấp | ... |
+| ... | Cao/Trung binh/Thap | ... |
 
 ## 5. Acceptance Criteria & Test Scenarios
 
-<!-- Section này định nghĩa WHAT cần đúng, không phải HOW test.
-     Khi implement (aiteam-implement), dev sẽ chọn từng scenario → viết test → implement → refactor (TDD cycle). -->
-
 ### Behavior Scenarios
-<!-- Mô tả behavior mong đợi — dev sẽ chuyển thành test khi implement -->
-- [ ] Scenario: [mô tả hành vi] — expected: [kết quả]
-- [ ] Scenario: [edge case] — expected: [kết quả]
-- [ ] Scenario: [error case] — expected: [kết quả]
+- [ ] Scenario: [mo ta hanh vi] — expected: [ket qua]
+- [ ] Scenario: [edge case] — expected: [ket qua]
+- [ ] Scenario: [error case] — expected: [ket qua]
 
 ### Integration Scenarios
-<!-- Behavior khi tương tác với modules khác qua contracts -->
-- [ ] Scenario: [mô tả flow] — expected: [kết quả]
+- [ ] Scenario: [mo ta flow] — expected: [ket qua]
 
 ### Success Criteria
-<!-- Đo lường được, liên kết với mục tiêu trong overview.md -->
 - [ ] Criteria 1: ...
 - [ ] Criteria 2: ...
 
 ### Definition of Done
-- [ ] Tất cả scenarios ở trên đã có test và pass
+- [ ] Tat ca scenarios o tren da co test va pass
 - [ ] Unit test coverage >= 80%
 - [ ] Integration tests pass
-- [ ] Code đã được review (PR approved)
-- [ ] Documentation đã cập nhật
-- [ ] Không có lỗi CRITICAL từ review
+- [ ] Code da duoc review (PR approved)
+- [ ] Documentation da cap nhat
+- [ ] Khong co loi CRITICAL tu review

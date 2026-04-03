@@ -1,10 +1,10 @@
 ---
-description: Viết spec chi tiết cho module được phân công
+description: Viết spec chi tiết cho module hoặc component
 ---
 
 # aiteam-spec
 
-Dev viết spec chi tiết cho module mình own.
+Viết spec chi tiết cho module. Nếu module lớn, có thể viết thêm component specs.
 
 ## Đọc trước
 
@@ -16,26 +16,33 @@ Dev viết spec chi tiết cho module mình own.
 
 1. **Gather Context** — Nếu chưa được cung cấp, hỏi:
    - Module nào cần viết spec?
-   - Ai là owner?
+   - Module lớn cần tách components không?
    - Có yêu cầu đặc biệt nào không?
 
 2. Kiểm tra prerequisites:
    - `docs/ai/specs/overview.md` phải tồn tại
    - Module phải nằm trong danh sách modules của overview
-   - Xác nhận user là owner của module
 
 3. Viết spec theo template `module-spec.md`, 5 sections:
    - **Section 1**: Overview & Requirements — derive từ overview.md
    - **Section 2**: Architecture & Design — component diagram, data models, flows
-   - **Section 3**: Contracts & Dependencies — interfaces EXPOSE/CONSUME, cross-check với contract files
-   - **Section 4**: Implementation Plan — tasks nhỏ (1-2h), thứ tự, rủi ro
+   - **Section 3**: Contracts & Dependencies — interfaces EXPOSE/CONSUME, cross-check contracts
+   - **Section 4**: Implementation Plan — tasks có EST, thứ tự, rủi ro
    - **Section 5**: Acceptance Criteria & Test Scenarios — derive từ requirements
 
-4. Chạy self-check theo checklist trong skill `spec-writing`
+4. **EST cho mỗi task** — mỗi task trong Section 4 cần:
+   - Tiêu đề task
+   - EST (đơn vị: day hoặc hour)
+   - Detail: liệt kê công việc cụ thể
+   - Tổng EST cho module
 
-5. Lưu spec vào `docs/ai/specs/modules/{module-name}.md`
+5. Chạy self-check theo checklist trong skill `spec-writing`
 
-6. Cập nhật `docs/ai/status.md`: module → spec: `draft`
+6. Lưu spec:
+   - Module spec → `docs/ai/specs/modules/{module-name}.md`
+   - Component specs (nếu có) → `docs/ai/specs/modules/{module-name}/components/{component}.md`
+
+7. Cập nhật `docs/ai/status.md`: module → spec: `draft`
 
 ## Backward
 
@@ -44,5 +51,5 @@ Dev viết spec chi tiết cho module mình own.
 
 ## Next
 
-- Spec đã hoàn thành → nhờ dev khác chạy `aiteam-review` để review spec
+- Spec hoàn thành → chạy `aiteam-review` để review spec
 - Phát hiện overview cần sửa → quay `aiteam-plan`

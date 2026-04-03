@@ -1,10 +1,10 @@
 ---
-description: Review chéo spec — dev A review spec của dev B trước khi implement
+description: Review spec — cross-review, self-review, hoặc AI review
 ---
 
 # aiteam-review
 
-Review chéo spec module do dev khác viết. Tập trung vào contracts match, completeness, và conflicts.
+Review spec module. Hỗ trợ nhiều hình thức: cross-review (người khác review), self-review, hoặc AI review.
 
 ## Đọc trước
 
@@ -14,33 +14,40 @@ Review chéo spec module do dev khác viết. Tập trung vào contracts match, 
 
 1. **Gather Context** — Nếu chưa được cung cấp, hỏi:
    - Review spec module nào?
-   - Bạn own module nào? (để cross-check contracts)
+   - Hình thức review: cross-review / self-review / AI review?
 
-2. **Đọc context**:
+2. **Tự động xác định reviewer**:
+   - Lấy từ git config: `git config user.name`
+   - Nếu không có → hỏi tên reviewer
+   - Ghi nhận `review_type`: `cross` | `self` | `ai`
+
+3. **Đọc context**:
    - `docs/ai/specs/overview.md`
    - `docs/ai/specs/modules/{module-name}.md` (spec cần review)
    - Contracts liên quan trong `docs/ai/specs/contracts/`
-   - Spec module mà reviewer own
+   - Component specs nếu có: `docs/ai/specs/modules/{module-name}/components/`
 
-3. **Review** theo skill `cross-review`:
+4. **Review** theo skill `cross-review`:
    - Kiểm tra completeness (5 sections)
-   - Kiểm tra contracts alignment (quan trọng nhất)
+   - Kiểm tra contracts alignment
+   - Kiểm tra EST hợp lý (có quá lạc quan hoặc quá bi quan?)
    - Kiểm tra conflicts với overview và modules khác
    - Phân loại findings: Critical / Important / Minor
 
-4. Viết review theo template `review.md`
+5. Viết review theo template `review.md`
 
-5. Lưu review vào `docs/ai/reviews/{module-name}.md`
+6. Lưu review vào `docs/ai/reviews/{module-name}__{reviewer}__{date}.md`
+   - Cho phép nhiều reviews trên cùng module
 
-6. Cập nhật `docs/ai/status.md`: module → review status
+7. Cập nhật `docs/ai/status.md`: module → review status
 
 ## Backward
 
-- needs-revision → owner chạy `aiteam-spec` sửa rồi submit review lại
+- needs-revision → chạy `aiteam-spec` sửa rồi submit review lại
 - blocked (contract conflict) → chạy `aiteam-plan` cập nhật contracts
 
 ## Next
 
-- **approved** → owner chạy `aiteam-implement`
-- **needs-revision** → owner chạy `aiteam-spec` sửa, rồi review lại
-- **blocked** → escalate cho cả team, có thể cần `aiteam-plan`
+- **approved** → chạy `aiteam-implement`
+- **needs-revision** → chạy `aiteam-spec` sửa, rồi review lại
+- **blocked** → escalate, có thể cần `aiteam-plan`
